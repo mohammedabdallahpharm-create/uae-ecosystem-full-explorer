@@ -1,6 +1,6 @@
-# UAE Health Insurance Ecosystem Explorer
+# UAE Healthcare Ecosystem Explorer
 
-An interactive, bilingual (English/Arabic) map of the UAE health insurance ecosystem — who regulates it, who pays for care, who administers claims, who delivers care, and where the operational friction and improvement opportunities sit.
+An interactive, bilingual (English/Arabic) map of the UAE healthcare ecosystem — who regulates it, who pays for care, who administers claims, who delivers care, and where the operational friction and improvement opportunities sit.
 
 **[Open the Explorer → `index.html`](./index.html)**
 
@@ -8,7 +8,7 @@ An interactive, bilingual (English/Arabic) map of the UAE health insurance ecosy
 
 ## What this is
 
-A single self-contained web page (no install, no server, no external dependencies) that visualizes the UAE health insurance ecosystem as an interactive radial diagram. Entities are grouped into seven consistent functional clusters — **Regulators, Insurers, Brokers & Intermediaries, TPAs & Claims Administration, Providers, Digital Health Infrastructure, and Enablers (Payment, Audit)** — arranged around a central "Member" node, with a side panel that opens on click to show each entity's role, partners, member journey, claims flow, and operational impact.
+A single self-contained web page (no install, no server, no external dependencies) that visualizes the UAE healthcare ecosystem as an interactive radial diagram. Entities are grouped into seven consistent functional clusters — **Regulators, Insurers, Brokers & Intermediaries, TPAs & Claims Administration, Providers, Digital Health Infrastructure, and Enablers (Payment, Audit)** — arranged around a central "Member" node, with a side panel that opens on click to show each entity's role, partners, member journey, claims flow, and operational impact.
 
 It was built in stages: starting as a single Abu Dhabi map, merged with a Dubai map, then redesigned and expanded to cover **all seven emirates**, and finally extended with a fifth **Value & Opportunity** view that reframes the same ecosystem around value flow, operational friction, and where technology (including, but not limited to, AI) could realistically help. The full history of that evolution — including every factual correction made along the way — is documented separately (see [Evidence & Limitations](#evidence--limitations) below).
 
