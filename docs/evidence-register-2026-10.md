@@ -62,3 +62,34 @@
 4. Pilot results comparing a baseline with a measured intervention, including human-review and safety controls.
 
 **Scoring note:** the current friction/value/data/decision scores remain analyst judgements. They must not be described as measured market statistics or financial impact.
+
+
+## October 2026 update log — reviewed 12 October 2026
+
+This is a dated update to the evidence layer. It does **not** certify that every UAE regulator, emirate, policy, circular, or system was exhaustively reviewed. Only the changes below are treated as confirmed from the cited public sources.
+
+### Newly reviewed sources
+
+| ID | Source and date | What it supports | What it does not establish |
+|---|---|---|---|
+| S17 | DHA, **Electronic Claims Audit Orientation – Health Insurance**, circular CIR-2026-00000162, 2 Sep 2026. https://services.dha.gov.ae/sheryan/wps/portal/home/circular-details?circularRefNo=CIR-2026-00000162&fromHome=true&isPublicCircular=true | DHA has issued claims-audit awareness guidance to licensed healthcare facilities in its jurisdiction; it is relevant to documentation, coding, completeness and claims compliance workflows. | It does not quantify error rates, audit findings, recoveries, avoidable denials, or the business impact of AI. |
+| S18 | CBUAE, **Insurance Company Licensing Regulation C 4/2026**, effective 14 Aug 2026. https://rulebook.centralbank.ae/en/entiresection/7304 | Current licensing framework for insurance companies, including governance, risk/internal controls, ICT/cybersecurity, and fair treatment/claims and complaints handling requirements described in the regulation. | It is not evidence of a new health-claims adjudication rule or a change to clinical claim coding rules. Apply it to insurer governance/licensing nodes, not as proof of a claims-processing mandate. |
+| S19 | MoHRE guide on existing worker health-insurance procedures, reported by WAM on 23 Jul 2026. https://www.wam.ae/en/article/c1d74f5-mohre-issues-guide-existing-worker-health | The guide clarifies existing procedures linking valid health-insurance verification with issuance/renewal of certain work permits; the report says it did not introduce new employer obligations. | It does not quantify coverage gaps, manual workload, failed checks, or processing-time savings. |
+| S20 | DOH Abu Dhabi, current Shafafiya prices/adjudication page, checked 12 Oct 2026. https://www.doh.gov.ae/en/Shafafiya/prices | The live page lists DOH Claims and Adjudication Rules V2025.1 and multiple addenda, alongside current tariff and reimbursement-reform materials. Treat the page as the index for the currently published materials. | The page listing alone does not establish that every listed item applies to every claim, nor does it establish operational pain or financial impact. Review each applicable addendum before implementing rule-specific claims. |
+
+### Confirmed implications for the explorer
+
+- **CADJ / CSUB / HOSP / REG2:** Include the September 2026 DHA claims-audit orientation as a current compliance signal. It strengthens the case for documenting claims checks and audit readiness, but not a claim that errors or losses are widespread.
+- **DOH adjudication rules:** The live DOH page now visibly lists version **V2025.1** plus addenda 01–07, including IVF home-visit services, IFHAS 3.0, infusions/injections, stroke payment model, indicators, therapeutic apheresis and ART/PGT. The prior direct V2025 URL should not be treated as the sole source for the current rule set; use S20 as the current index and inspect applicable addenda.
+- **Insurer governance / REG2:** CBUAE C 4/2026 is a current licensing/governance source. Do not imply it directly changed medical-claims adjudication without a relevant article or separate circular.
+- **ENR / EMPCOV / SPON:** MoHRE's July guide clarifies an existing electronic verification workflow for specified work-permit processes. It supports the existence of a compliance integration point, not a measured eligibility mismatch problem.
+
+### Checks still pending before calling the whole ecosystem “fully updated to October 2026”
+
+1. Search and compare all relevant DOH Abu Dhabi circulars issued in 2026, including whether any affect claims, prior authorisation, tariffs, DRG, or health-information exchange.
+2. Review DHA circulars through 12 Oct 2026 by topic, not just by newest date; the public list includes many non-claims circulars that should not be added to claims logic.
+3. Check MOHAP/Riayati and emirate HIE sources for a dated 2026 operational update. Existing public Riayati page metrics may be stale and must not be reused as October 2026 figures without a newer dated source.
+4. Re-check the relevant CBUAE insurance regulations and the applicable federal legal instruments for any health-insurance-specific amendments after the 2025 Central Bank law.
+5. Validate all 19 opportunity cards and the full ecosystem map against the confirmed 2026 changes; avoid describing this commit as exhaustive until those checks are complete.
+
+**Review date:** 12 October 2026. **Scope label:** confirmed update tranche; full-market source audit remains in progress.
