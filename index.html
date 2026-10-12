@@ -193,6 +193,10 @@ svg#oppMatrix{ width:100%; max-width:420px; height:auto; display:block; margin-i
 .score-dim .dim-label{ font-size:.7rem; color:var(--text-muted); font-weight:700; text-transform:uppercase; letter-spacing:.06em; }
 [dir="rtl"] .score-dim .dim-label{ letter-spacing:0; }
 .score-dim .dim-value{ font-size:1rem; font-weight:800; color:var(--p-navy-900); }
+.evidence-status{display:inline-flex;padding:5px 10px;border-radius:var(--radius-full);background:var(--p-sand-100);color:var(--p-navy-900);font-size:.78rem;font-weight:800;margin-block-end:var(--space-3)}
+.evidence-sources{display:flex;flex-direction:column;gap:8px;margin-block-start:8px}
+.evidence-source-link{display:block;padding:10px 12px;border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-primary);text-decoration:underline;text-underline-offset:3px;font-size:.88rem;overflow-wrap:anywhere}
+.evidence-source-link:hover{background:var(--surface-hover)}
 .evidence-tag{ display:inline-block; font-size:.72rem; font-weight:700; padding:2px 10px; border-radius:var(--radius-full); background:var(--p-gray-100); color:var(--text-secondary); }
 
 .journey-steps{ display:flex; flex-direction:column; gap:0; }
@@ -383,7 +387,8 @@ en:{
   frictionLow:"Low friction", frictionModerate:"Moderate friction", frictionHigh:"High friction", frictionStructural:"Structural friction",
   journeyProblem:"Problem", journeyFriction:"Friction", journeyData:"Data", journeyDecision:"Decision",
   journeyIntervention:"Intervention", journeyOutcome:"Outcome",
-  evidenceVerified:"Verified", evidenceDirectional:"Directional", evidenceAnalyst:"Analyst assessment", evidenceNeedsVerification:"Needs verification"
+  evidenceVerified:"Verified", evidenceDirectional:"Directional", evidenceAnalyst:"Analyst assessment", evidenceNeedsVerification:"Needs verification",
+  tabEvidence:"Evidence & validation", evidenceSupported:"What the sources support", evidenceLimit:"What is not proven", evidenceNext:"Next validation step", evidenceSources:"Official sources", evidenceStatus:"Evidence status", evidencePartial:"Partially supported", evidenceHypothesis:"Hypothesis — validate", evidenceNoMarketProof:"Official sources establish rules or infrastructure; they do not by themselves establish the prevalence, cost, or operational impact of a problem."
 },
 ar:{
   eyebrow:"الإمارات · 2025–2026",
@@ -437,7 +442,8 @@ ar:{
   frictionLow:"احتكاك منخفض", frictionModerate:"احتكاك متوسط", frictionHigh:"احتكاك مرتفع", frictionStructural:"احتكاك هيكلي",
   journeyProblem:"المشكلة", journeyFriction:"الاحتكاك", journeyData:"البيانات", journeyDecision:"القرار",
   journeyIntervention:"التدخّل", journeyOutcome:"النتيجة",
-  evidenceVerified:"مؤكَّد", evidenceDirectional:"إرشادي", evidenceAnalyst:"تقييم تحليلي", evidenceNeedsVerification:"يحتاج تحققًا"
+  evidenceVerified:"مؤكَّد", evidenceDirectional:"إرشادي", evidenceAnalyst:"تقييم تحليلي", evidenceNeedsVerification:"يحتاج تحققًا",
+  tabEvidence:"الأدلة والتحقق", evidenceSupported:"ما تدعمه المصادر", evidenceLimit:"ما لم يثبت بعد", evidenceNext:"خطوة التحقق التالية", evidenceSources:"المصادر الرسمية", evidenceStatus:"حالة الدليل", evidencePartial:"مدعوم جزئياً", evidenceHypothesis:"فرضية تحتاج إلى تحقق", evidenceNoMarketProof:"المصادر الرسمية تثبت وجود القواعد أو البنية التحتية، لكنها لا تثبت وحدها مدى انتشار المشكلة أو تكلفتها أو أثرها التشغيلي."
 }
 };
 
@@ -2732,7 +2738,7 @@ function renderPanel(){
   header.appendChild(closeBtn); panel.appendChild(header);
 
   const tabDefs = isValue
-    ? [["overview",t.tabOppOverview],["journeyOpp",t.tabOppJourney],["scoring",t.tabScoring],["tech",t.tabTech]]
+    ? [["overview",t.tabOppOverview],["journeyOpp",t.tabOppJourney],["scoring",t.tabScoring],["tech",t.tabTech],["evidence",t.tabEvidence]]
     : [["overview",t.tabOverview],["journey",t.tabJourney],["claims",t.tabClaims],["impact",t.tabImpact]];
   const tabs=document.createElement("div"); tabs.className="tabs"; tabs.setAttribute("role","tablist");
   tabDefs.forEach(([key,label])=>{
@@ -2797,6 +2803,46 @@ function renderTabContent(n){
   return frag;
 }
 function escapeHtml(s){ const d=document.createElement("div"); d.textContent=s; return d.innerHTML; }
+
+const EVIDENCE_SOURCES={
+S1:{en:"DOH — Shafafiya prices and adjudication rules",ar:"دائرة الصحة — التعرفة وقواعد البت",url:"https://www.doh.gov.ae/en/Shafafiya/prices"},
+S2:{en:"DOH — Claims and Adjudication Rules v2025",ar:"دائرة الصحة — قواعد المطالبات والبت 2025",url:"https://www.doh.gov.ae/-/media/Feature/shafifya/Prices/Adjudication-Rules/DOH-Claims-and-Adjudication-Rules-V2025.ashx"},
+S3:{en:"DOH — Shafafiya reporting requirements",ar:"دائرة الصحة — متطلبات الإبلاغ في شفا",url:"https://www.doh.gov.ae/en/shafafiya/reporting"},
+S4:{en:"DOH — Prior Request Authorization dictionary",ar:"دائرة الصحة — قاموس طلبات الموافقة المسبقة",url:"https://www.doh.gov.ae/en/shafafiya/dictionary/Prior%20Request%20Authorization"},
+S5:{en:"DOH — PBM dosage and frequency rules",ar:"دائرة الصحة — قواعد جرعات وتكرار الأدوية",url:"https://www.doh.gov.ae/en/Shafafiya/notices/dose-frequency-and-rxinstruction-in-pbm-prior-authorisations-and-claims"},
+S6:{en:"DOH — Shafafiya web services",ar:"دائرة الصحة — خدمات شفا الإلكترونية",url:"https://www.doh.gov.ae/en/Shafafiya/Costing/webservices"},
+S7:{en:"MOHRE — Basic Health Insurance Scheme",ar:"وزارة الموارد البشرية — نظام التأمين الصحي الأساسي",url:"https://tasheel.mohre.gov.ae/en/media-center/awareness-and-guidance/health-insurance-scheme.aspx"},
+S8:{en:"DHA — Enaya government health insurance",ar:"هيئة الصحة بدبي — التأمين الحكومي عناية",url:"https://dha.gov.ae/services/details?id=208&segment=individual_services"},
+S9:{en:"CBUAE — Insurance brokers regulation",ar:"المصرف المركزي — تنظيم وسطاء التأمين",url:"https://rulebook.centralbank.ae/en/rulebook/insurance-brokers%E2%80%99-regulation"},
+S10:{en:"CBUAE — Insurance pricing requirements",ar:"المصرف المركزي — متطلبات تسعير التأمين",url:"https://rulebook.centralbank.ae/en/rulebook/article-5-pricing"},
+S11:{en:"CBUAE — Article 90: provision of data",ar:"المصرف المركزي — المادة 90: تقديم البيانات",url:"https://rulebook.centralbank.ae/en/rulebook/article-90-provision-data-and-information"},
+S12:{en:"MOHAP — Riayati national unified medical record",ar:"وزارة الصحة — رعايتي للسجل الطبي الوطني الموحد",url:"https://mohap.gov.ae/en/riayati"},
+S13:{en:"MOHAP — Riayati e-Claims Post Office",ar:"وزارة الصحة — مكتب مطالبات رعايتي الإلكتروني",url:"https://mohap.gov.ae/en/riayati/e-claims-post-office"},
+S14:{en:"DHA — Professional conduct standards (2026)",ar:"هيئة الصحة بدبي — معايير السلوك المهني 2026",url:"https://www.dha.gov.ae/uploads/012026/Standards%20for%20Code%20of%20Ethics%20and%20Professional%20Conduct%20for%20Health%20Professionals%20V1%20202613351.pdf"},
+S15:{en:"DHA — Telehealth services standards",ar:"هيئة الصحة بدبي — معايير خدمات الطب عن بُعد",url:"https://dha.gov.ae/uploads/012023/Standards%20for%20Telehealth%20Services2023158613.pdf"},
+S16:{en:"Al Etihad Payments — Aani instant payments",ar:"الاتحاد للمدفوعات — آني للمدفوعات الفورية",url:"https://aep.ae/en/services/aani/"}
+};
+const EVIDENCE_DETAILS={
+REG1:{status:"partial",sources:["S1","S2","S3","S7","S9"],en:["Authorities publish distinct rules and standards; comparing them across regulators is a valid research task.","A market-wide dual-compliance burden or measurable savings from harmonisation have not been demonstrated.","Map requirements by emirate, product and transaction; validate the burden with payer compliance teams."],ar:["تنشر الجهات الرقابية قواعد ومعايير مختلفة؛ ومقارنتها مهمة بحثية مشروعة.","لم يثبت حجم عبء الامتثال المزدوج على مستوى السوق أو الوفورات الناتجة عن التوحيد.","مقارنة المتطلبات حسب الإمارة والمنتج والمعاملة، ثم التحقق من العبء مع فرق الامتثال."]},
+REG2:{status:"partial",sources:["S11","S14"],en:["Regulatory access to insurer records and professional claims-conduct requirements are documented.","The sources do not prove audits are mainly retrospective or that anomaly detection reduces losses.","Interview audit teams and compare existing sampling workflows with measured outcomes."],ar:["صلاحيات الاطلاع الرقابي على سجلات شركات التأمين ومتطلبات السلوك المهني موثقة.","لا تثبت المصادر أن التدقيق يعتمد أساساً على المراجعة اللاحقة أو أن كشف الشذوذ يقلل الخسائر.","مقابلة فرق التدقيق ومقارنة أساليب أخذ العينات بنتائج مقاسة."]},
+GOVCOV:{status:"partial",sources:["S7","S8"],en:["Named government schemes and defined basic-coverage requirements exist.","Frequent scheme mix-ups, near-total cost sharing and market-wide eligibility errors are not evidenced.","Request anonymised eligibility exceptions and misrouted-claim counts by scheme and emirate."],ar:["توجد برامج تغطية حكومية ومتطلبات محددة للتأمين الأساسي.","لم يثبت تكرار الخلط بين البرامج أو انتشار أخطاء الأهلية أو شبه انعدام مشاركة التكلفة.","طلب أعداد مجهولة الهوية لاستثناءات الأهلية والمطالبات الموجهة خطأً حسب البرنامج والإمارة."]},
+EMPCOV:{status:"hypothesis",sources:["S7"],en:["Mandatory coverage applies to specified worker categories under defined conditions.","Largest-segment status, mostly manual renewals and short uninsured gaps are not proven.","Validate renewal handoffs and coverage-gap frequency with employer, broker and insurer data."],ar:["تسري التغطية الإلزامية على فئات محددة وفق شروط معلنة.","لا يثبت المصدر أن هذه أكبر شريحة أو أن التجديدات يدوية غالباً أو أن فجوات التغطية شائعة.","التحقق من خطوات التجديد وفجوات التغطية عبر بيانات أصحاب العمل والوسطاء والمؤمّنين."]},
+COMCOV:{status:"hypothesis",sources:["S10"],en:["Insurance pricing is subject to documented technical and actuarial requirements.","Relative market size, margins and material value from predictive underwriting are not established.","Use dated market data and validate the analytics case with underwriting teams."],ar:["يخضع تسعير التأمين لمتطلبات فنية واكتوارية موثقة.","لم يثبت الحجم النسبي للشريحة أو هوامشها أو قيمة الاكتتاب التنبؤي.","استخدام بيانات سوق مؤرخة والتحقق من الجدوى مع فرق الاكتتاب."]},
+SPON:{status:"hypothesis",sources:["S7","S9"],en:["Employer/sponsor responsibilities and regulated intermediary roles make enrolment handoffs worth examining.","Frequency, cost and root causes of sponsor-side data errors remain unmeasured.","Collect exception examples and interview HR, sponsor, broker and insurer operations."],ar:["تجعل مسؤوليات صاحب العمل أو الكفيل وأدوار الوسطاء عمليات تسليم بيانات التسجيل جديرة بالفحص.","لم تُقَس وتيرة أخطاء البيانات أو تكلفتها أو أسبابها.","جمع أمثلة للاستثناءات ومقابلة فرق الموارد البشرية والكفلاء والوسطاء والمؤمّنين."]},
+DIST:{status:"partial",sources:["S9"],en:["Broker licensing, governance and product-comparison obligations are documented.","The source does not show broker distribution is generally inefficient or mostly manual.","Map a real broker workflow and measure re-keying, turnaround and incomplete-data rates."],ar:["متطلبات ترخيص الوسطاء وحوكمتهم ومقارنة المنتجات موثقة.","لا يثبت المصدر أن التوزيع عبر الوسطاء غير فعّال عموماً أو يدوي في معظمه.","رسم مسار عمل وسيط وقياس إعادة إدخال البيانات وزمن الإنجاز ونقص البيانات."]},
+ENR:{status:"partial",sources:["S6","S7"],en:["Eligibility-related and insurance-history transaction services are documented; coverage rules apply to defined groups.","Cross-system mismatch frequency and coverage-gap prevalence are not quantified.","Measure failed eligibility checks, mismatches and resolution time in a defined workflow."],ar:["توجد خدمات معاملات مرتبطة بالأهلية وسجل التأمين، وتسري قواعد التغطية على فئات محددة.","لم تُقَس وتيرة عدم التطابق بين الأنظمة أو فجوات التغطية.","قياس فشل التحقق وعدم التطابق وزمن حل المشكلة في مسار محدد."]},
+PA:{status:"partial",sources:["S4","S5","S6"],en:["Prior-authorisation fields, validation rules and related transaction services are documented.","Approval turnaround, avoidable requests, denial rates and savings are not established by rulebooks.","Obtain request volumes, turnaround percentiles, reason codes and resubmission rates from a pilot."],ar:["حقول الموافقات المسبقة وقواعد التحقق وخدمات المعاملات موثقة.","لا تثبت القواعد زمن الموافقة أو الطلبات القابلة للتجنب أو نسب الرفض أو الوفورات.","جمع حجم الطلبات ومئينات زمن الإنجاز وأسباب القرار ومعدلات إعادة التقديم من تجربة تشغيلية."]},
+CSUB:{status:"partial",sources:["S3","S6","S13"],en:["Electronic reporting, submission and claims-transaction infrastructure are documented.","Incomplete, duplicate or manually re-entered claims are not quantified market-wide.","Measure return reasons, duplicates and manual touches in a defined claims sample."],ar:["متطلبات الإبلاغ الإلكتروني والتقديم وبنية معاملات المطالبات موثقة.","لم تُقَس على مستوى السوق المطالبات الناقصة أو المكررة أو المعاد إدخالها يدوياً.","قياس أسباب الإرجاع والتكرار والتدخل اليدوي في عينة مطالبات محددة."]},
+CADJ:{status:"partial",sources:["S1","S2","S3"],en:["Formal adjudication rules and tariff requirements are published for Abu Dhabi.","The share of delayed, inconsistent or unnecessarily manual decisions is not measured.","Request anonymised adjudication outcomes, exception reasons and cycle-time distributions."],ar:["قواعد البت في المطالبات ومتطلبات التعرفة منشورة في أبوظبي.","لم تُقَس نسبة القرارات المتأخرة أو غير المتسقة أو التي تتطلب عملاً يدوياً غير ضروري.","طلب نتائج البت مجهولة الهوية وأسباب الاستثناءات وتوزيع أزمنة الإنجاز."]},
+HOSP:{status:"hypothesis",sources:["S1","S2","S3","S14"],en:["Provider claims and documentation sit within formal rules and professional requirements.","Hospital-level denial burden, coding rework and delayed-payment cost are not evidenced.","Validate by facility type using provider-level claims and revenue-cycle metrics."],ar:["تخضع مطالبات مزودي الخدمة والتوثيق لقواعد رسمية ومتطلبات مهنية.","لم يثبت عبء الرفض أو إعادة الترميز أو تكلفة تأخر الدفع على مستوى المستشفيات.","التحقق حسب نوع المنشأة باستخدام بيانات المطالبات ومؤشرات دورة الإيرادات."]},
+OPN:{status:"hypothesis",sources:["S3","S4","S5","S6"],en:["Claims, authorisation and medication-related rules cover several outpatient workflow steps.","Network access gaps, pricing friction and exception prevalence are not established.","Segment exceptions by pharmacy, diagnostics and outpatient services and compare rates."],ar:["تغطي قواعد المطالبات والموافقات والأدوية عدة خطوات في مسارات العيادات الخارجية.","لم تثبت فجوات الوصول للشبكات أو احتكاكات الأسعار أو انتشار الاستثناءات.","تقسيم الاستثناءات حسب الصيدلة والتشخيص والعيادات ومقارنة معدلاتها."]},
+PHYS:{status:"partial",sources:["S14","S15"],en:["Professional standards specify documentation and claims responsibilities; telehealth standards describe related obligations.","Clinician time lost to administration and its impact are not quantified.","Use a time study or structured interviews to measure documentation and claims workload."],ar:["تحدد المعايير المهنية مسؤوليات التوثيق والمطالبات، وتوضح معايير الطب عن بعد التزامات ذات صلة.","لا تقيس المصادر وقت الأطباء المفقود في الأعمال الإدارية أو أثره.","إجراء دراسة زمنية أو مقابلات منظمة لقياس عبء التوثيق والمطالبات."]},
+HIE:{status:"partial",sources:["S12","S13"],en:["Riayati exists and integrates with Malaffi and NABIDH; e-claims exchange is documented for the northern emirates.","This does not establish complete facility connectivity, data quality, timeliness or practical interoperability.","Validate facility coverage, active connections, data completeness and cross-system retrieval using a dated sample."],ar:["رعايتي قائمة ومتكاملة مع ملفي ونبض، كما توجد بنية لتبادل المطالبات الإلكترونية في الإمارات الشمالية.","لا يثبت ذلك اكتمال ربط المنشآت أو جودة البيانات وحداثتها أو قابلية التشغيل البيني عملياً.","التحقق من تغطية المنشآت والاتصالات النشطة واكتمال البيانات واسترجاعها بين الأنظمة ضمن عينة مؤرخة."]},
+CTI:{status:"partial",sources:["S6","S13"],en:["Documented web services and e-claims exchange provide evidence of transaction infrastructure.","Adoption coverage, uptime, latency and duplicate manual entry are not established by service descriptions.","Seek dated service-level/adoption data and test a representative end-to-end transaction."],ar:["تقدم خدمات الويب وتبادل المطالبات الإلكترونية دليلاً على وجود بنية للمعاملات.","لا تثبت أوصاف الخدمات نسبة التبني أو الجاهزية أو زمن الاستجابة أو تكرار الإدخال اليدوي.","طلب بيانات مؤرخة عن مستويات الخدمة والتبني واختبار معاملة كاملة ممثلة للواقع."]},
+GRD:{status:"hypothesis",sources:["S1","S3","S11","S12"],en:["Regulatory rules, reporting requirements and health-data initiatives are published.","Broad claims that government data is siloed, inaccessible or inconsistent are not demonstrated.","Catalogue datasets, owners, access paths, update cadence and permitted use."],ar:["تُنشر القواعد التنظيمية ومتطلبات الإبلاغ ومبادرات البيانات الصحية.","لم تثبت الادعاءات العامة بأن بيانات الحكومة منعزلة أو غير متاحة أو غير متسقة.","حصر مجموعات البيانات وملاكها وطرق الوصول إليها ودورية تحديثها والاستخدام المسموح."]},
+PAY:{status:"partial",sources:["S6","S16"],en:["Claim-count reconciliation services are documented and instant-payment infrastructure exists.","This does not prove Aani is used for medical-insurance settlement or quantify delays and reconciliation errors.","Map payer-provider settlement and measure cycle time, unmatched items and contractual constraints."],ar:["توجد خدمات موثقة لمطابقة أعداد المطالبات وبنية للمدفوعات الفورية.","لا يثبت ذلك استخدام آني لتسوية التأمين الطبي أو يقيس تأخر الدفع وأخطاء المطابقة.","رسم مسار التسوية وقياس الزمن والعناصر غير المطابقة والقيود التعاقدية."]},
+DEC:{status:"hypothesis",sources:["S2","S14","S15"],en:["Claims, professional and telehealth standards establish governed decision points.","A causal link between a proposed AI intervention and improved care outcomes has not been demonstrated.","Define outcome metric, baseline, comparison group and human/clinical review before impact testing."],ar:["تحدد معايير المطالبات والمهنة والطب عن بعد نقاط قرار تخضع للحوكمة.","لم تثبت علاقة سببية بين تدخل ذكاء اصطناعي مقترح وتحسن نتائج الرعاية.","تحديد مؤشر نتائج وخط أساس ومجموعة مقارنة ومراجعة بشرية/سريرية قبل اختبار الأثر."]}
+};
 
 function renderValueTabContent(n){
   const t = STRINGS[state.lang];
@@ -2870,6 +2916,19 @@ function renderValueTabContent(n){
     const evLabel = document.createElement("div"); evLabel.className="field-label"; evLabel.textContent=t.labelEvidenceTag;
     evWrap.appendChild(evLabel); evWrap.appendChild(evidenceTag());
     frag.appendChild(evWrap);
+  }
+  if(state.activeTab==="evidence"){
+    const d=EVIDENCE_DETAILS[n.id]; if(!d) return frag;
+    const status=document.createElement("div"); status.className="evidence-status";
+    status.textContent=t.evidenceStatus+": "+t[d.status==="partial"?"evidencePartial":"evidenceHypothesis"]; frag.appendChild(status);
+    frag.appendChild(field("evidenceSupported",isEn?d.en[0]:d.ar[0]));
+    frag.appendChild(field("evidenceLimit",isEn?d.en[1]:d.ar[1]));
+    frag.appendChild(field("evidenceNext",isEn?d.en[2]:d.ar[2]));
+    const note=document.createElement("p"); note.className="confidence-note"; note.textContent=t.evidenceNoMarketProof; frag.appendChild(note);
+    const box=document.createElement("div"); box.className="evidence-sources";
+    const label=document.createElement("div"); label.className="field-label"; label.textContent=t.evidenceSources; box.appendChild(label);
+    d.sources.forEach(id=>{const source=EVIDENCE_SOURCES[id];if(!source)return;const link=document.createElement("a");link.href=source.url;link.target="_blank";link.rel="noopener noreferrer";link.className="evidence-source-link";link.textContent=(isEn?source.en:source.ar)+" ↗";box.appendChild(link);});
+    frag.appendChild(box);
   }
   if(state.activeTab==="tech"){
     const chipWrap = document.createElement("div");
