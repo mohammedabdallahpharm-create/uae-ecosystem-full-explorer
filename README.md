@@ -10,7 +10,7 @@ An interactive, bilingual (English/Arabic) map of the UAE healthcare ecosystem �
 
 A single self-contained web page (no install, no server, no external dependencies) that visualizes the UAE healthcare ecosystem as an interactive radial diagram. Entities are grouped into seven consistent functional clusters — **Regulators, Insurers, Brokers & Intermediaries, TPAs & Claims Administration, Providers, Digital Health Infrastructure, and Enablers (Payment, Audit)** — arranged around a central "Member" node, with a side panel that opens on click to show each entity's role, partners, member journey, claims flow, and operational impact.
 
-It was built in stages: starting as a single Abu Dhabi map, merged with a Dubai map, then redesigned and expanded to cover **all seven emirates**, and finally extended with a fifth **Value & Opportunity** view that reframes the same ecosystem around value flow, operational friction, and where technology (including, but not limited to, AI) could realistically help. The full history of that evolution — including every factual correction made along the way — is documented separately (see [Evidence & Limitations](#evidence--limitations) below).
+It was built in stages: starting as a single Abu Dhabi map, merged with a Dubai map, then redesigned and expanded to cover **all seven emirates**, and finally extended with a fifth **Value & Opportunity** view that reframes the same ecosystem around value flow, operational friction, and where technology (including, but not limited to, AI) could realistically help. The full history of that evolution — including factual corrections and remaining verification notes — is documented in the [Redesign & Corrections Report](docs/redesign-corrections-report.md).
 
 ## Professional case study
 
@@ -19,6 +19,8 @@ This portfolio project demonstrates how I approach a complex healthcare-insuranc
 It draws on my pharmacy background and prior health-insurance claims work, including outpatient and pharmacy claims adjudication and medical-documentation review. The UAE ecosystem views are market analysis and a portfolio exercise; they should not be read as a claim that I have personally performed UAE prior-authorization work or implemented these processes for a UAE payer.
 
 **Questions explored:** Who owns each part of the workflow? Where can handoffs create friction? Which opportunities call for better rules, process design, or human review—and where might technology help?
+
+**Created by:** Mohammed Abdallah · [LinkedIn](https://www.linkedin.com/in/mohammed-hassan-abdallah/) · [Email](mailto:mohammed.abdallah.pharm@gmail.com) · [Live Explorer](https://uae-ecosystem-evidence-lab.vercel.app)
 
 ## What it covers
 
@@ -36,7 +38,7 @@ Every entity's detail panel also states **which emirate(s) it applies to**, and 
 
 ## How to use it
 
-1. Open `index.html` in any modern browser — double-click the file, or visit the deployed link if one is set up (see [Deployment readiness](#deployment-readiness)).
+1. [Open the live Explorer](https://uae-ecosystem-evidence-lab.vercel.app) in any modern browser, or open `index.html` locally.
 2. Use the view switcher at the top to move between National Overview, the three emirate views, and Value & Opportunity.
 3. Click any node (bubble) to open its detail panel on the side; click the center "Member" node, press <kbd>Esc</kbd>, or click the panel's close button to dismiss it.
 4. Use the filter chips to highlight a segment (Citizens, Residents, Cross-emirate commuters, Seasonal visitors on the ecosystem views; "Where AI fits" and "Who owns the problem" on the Value & Opportunity view) — matching entities stay full-opacity, everything else dims, nothing is hidden.
@@ -74,15 +76,14 @@ No build step, no package manager, no server required.
   ```
   This step is optional — it's only useful if you want to test it the way it would behave when served from a real web address rather than opened as a local file.
 
-## Deployment readiness
+## Deployment
 
-This is a static, single-file, dependency-free web page, so it is ready to deploy as-is to any static hosting service with no configuration:
+The public version is hosted on Vercel: [Open the live Explorer](https://uae-ecosystem-evidence-lab.vercel.app). The source is available in this repository. The page is a static, dependency-free web page:
 
 - **GitHub Pages** — push this repository to GitHub, enable Pages on the `main` branch (root folder), and it will serve directly since the file is already named `index.html`.
 - **Netlify, Vercel, Cloudflare Pages, or similar** — drag-and-drop deployment of this folder works with zero build settings.
 
 Recommended before a fully public launch (see the companion report's QA section for the complete list):
-- A native Arabic speaker should proofread the Arabic copy.
 - A manual print/PDF export check across Chrome, Safari, Firefox, and Edge, since browsers render large SVGs slightly differently when printing.
 
 ## Repository structure
