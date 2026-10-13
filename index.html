@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<title>UAE Health Insurance Ecosystem Explorer · 2025–2026</title>
+<title>UAE Healthcare Ecosystem Explorer · 2025–2026</title>
 <meta name="description" content="An interactive, bilingual (EN/AR) map of the UAE health insurance ecosystem — regulators, insurers, TPAs, providers, and digital infrastructure across Abu Dhabi, Dubai, and the Northern Emirates, plus a value-flow and operational-opportunity view.">
-<meta name="author" content="UAE Health Insurance Ecosystem Explorer">
+<meta name="author" content="Mohammed Abdallah">
 <meta name="theme-color" content="#0b2340">
-<meta property="og:title" content="UAE Health Insurance Ecosystem Explorer">
+<meta property="og:title" content="UAE Healthcare Ecosystem Explorer | Mohammed Abdallah">
 <meta property="og:description" content="An interactive, bilingual map of the UAE health insurance ecosystem — regulators, insurers, TPAs, providers, digital infrastructure, and operational opportunity, across all seven emirates.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UAE Health Insurance Ecosystem Explorer">
+<meta name="twitter:title" content="UAE Healthcare Ecosystem Explorer | Mohammed Abdallah">
 <meta name="twitter:description" content="An interactive, bilingual map of the UAE health insurance ecosystem across all seven emirates.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%230b2340'/%3E%3Ccircle cx='50' cy='50' r='14' fill='none' stroke='%23b98a3b' stroke-width='4'/%3E%3Ccircle cx='50' cy='16' r='7' fill='%2312897f'/%3E%3Ccircle cx='80' cy='34' r='6' fill='%23b98a3b'/%3E%3Ccircle cx='80' cy='66' r='6' fill='%23b8493f'/%3E%3Ccircle cx='50' cy='84' r='6' fill='%232f6fa8'/%3E%3Ccircle cx='20' cy='66' r='6' fill='%236b7280'/%3E%3Ccircle cx='20' cy='34' r='6' fill='%235b6f9e'/%3E%3C/svg%3E">
 <style>
@@ -145,6 +145,29 @@ svg#map{ width:100%; height:100%; display:block; }
 .legend-size .dot{ background:var(--p-navy-800); border-radius:50%; }
 .legend-size-item{ display:flex; flex-direction:column; align-items:center; gap:var(--space-2); font-size:.72rem; color:var(--text-secondary); }
 
+
+.profile-strip{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--surface-panel);border:1px solid var(--border-default);border-radius:var(--radius-md);padding:12px 16px;box-shadow:var(--shadow-card)}
+.profile-strip__copy{display:flex;flex-direction:column;gap:2px}
+.profile-strip__name{font-weight:800;color:var(--p-navy-900)}
+.profile-strip__note{font-size:.82rem;color:var(--text-secondary)}
+.profile-strip__links{display:flex;gap:8px;flex-wrap:wrap}
+.profile-link{display:inline-flex;align-items:center;text-decoration:none;border:1px solid var(--border-strong);border-radius:999px;padding:7px 12px;font-size:.82rem;font-weight:700;color:var(--p-navy-900);background:var(--surface-control)}
+.profile-link:hover{border-color:var(--accent-primary);color:var(--accent-primary)}
+.claim-case{background:var(--surface-panel);border:1px solid var(--border-default);border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow-card);display:flex;flex-direction:column;gap:14px}
+.claim-case__intro{display:flex;flex-direction:column;gap:6px;max-width:900px}
+.claim-case h2{font-size:1.15rem;color:var(--p-navy-900)}
+.claim-case__eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-primary)}
+.claim-case__disclaimer{font-size:.82rem;color:var(--text-secondary);background:var(--p-sand-100);border-inline-start:3px solid var(--accent-gold);padding:10px 12px;border-radius:6px}
+.claim-steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.claim-step{border:1px solid var(--border-default);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:5px}
+.claim-step__top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.claim-step__title{font-weight:800;font-size:.9rem}
+.claim-step__body{font-size:.84rem;color:var(--text-secondary)}
+.claim-tag{flex:none;font-size:.68rem;font-weight:800;border-radius:999px;padding:4px 7px;background:#e4f2ed;color:#145c4c}
+.claim-tag--human{background:#fff0d8;color:#855515}
+.claim-case__foot{font-size:.8rem;color:var(--text-secondary)}
+@media(max-width:720px){.claim-steps{grid-template-columns:1fr}.profile-strip{align-items:flex-start}}
+
 .footnote{ font-size:.76rem; color:var(--text-muted); line-height:1.6; padding-inline:var(--space-2); }
 #methodNote{ font-style:italic; opacity:.85; }
 
@@ -243,6 +266,17 @@ svg#oppMatrix{ width:100%; max-width:420px; height:auto; display:block; margin-i
     </div>
   </div>
 
+  <section class="profile-strip" aria-label="Project author and contact">
+    <div class="profile-strip__copy">
+      <span class="profile-strip__name" data-i18n="profileName">Built by Mohammed Abdallah</span>
+      <span class="profile-strip__note" data-i18n="profileNote">Pharmacy background · Health-insurance claims · Healthcare AI problem-solving</span>
+    </div>
+    <div class="profile-strip__links">
+      <a class="profile-link" href="https://www.linkedin.com/in/mohammed-hassan-abdallah/" target="_blank" rel="noopener noreferrer" data-i18n="contactLinkedIn">LinkedIn profile</a>
+      <a class="profile-link" href="mailto:mohammed.abdallah.pharm@gmail.com" data-i18n="contactEmail">Email</a>
+    </div>
+  </section>
+
   <div class="emirate-switch" role="group" aria-label="View">
     <button class="emirate-btn" type="button" data-view="national" aria-pressed="true">National Overview</button>
     <button class="emirate-btn" type="button" data-view="abudhabi" aria-pressed="false">Abu Dhabi</button>
@@ -321,6 +355,25 @@ svg#oppMatrix{ width:100%; max-width:420px; height:auto; display:block; margin-i
     <svg id="oppMatrix" viewBox="0 0 420 420" role="img" aria-label="Opportunity matrix: friction versus value at stake"></svg>
   </div>
 
+  <section class="claim-case" aria-labelledby="claimCaseTitle">
+    <div class="claim-case__intro">
+      <span class="claim-case__eyebrow" data-i18n="claimEyebrow">Illustrative workflow · Pharmacy claims</span>
+      <h2 id="claimCaseTitle" data-i18n="claimTitle">A human-centred pharmacy-claim review</h2>
+      <p class="field-text" data-i18n="claimIntro">A simplified example of how a pharmacy claim can be checked consistently while keeping judgement and accountability with a human reviewer.</p>
+    </div>
+    <p class="claim-case__disclaimer" data-i18n="claimDisclaimer">Illustrative scenario only — not a UAE payer rulebook, production system, or a claim of UAE prior-authorization experience.</p>
+    <div class="claim-steps">
+      <article class="claim-step"><div class="claim-step__top"><span class="claim-step__title" data-i18n="claimStep1">1. Intake and completeness</span><span class="claim-tag" data-i18n="claimRule">Rule-based check</span></div><p class="claim-step__body" data-i18n="claimBody1">Check required claim fields and supporting documents are present.</p></article>
+      <article class="claim-step"><div class="claim-step__top"><span class="claim-step__title" data-i18n="claimStep2">2. Member eligibility and coverage</span><span class="claim-tag" data-i18n="claimRule">Rule-based check</span></div><p class="claim-step__body" data-i18n="claimBody2">Apply the relevant eligibility and benefit information available for the claim.</p></article>
+      <article class="claim-step"><div class="claim-step__top"><span class="claim-step__title" data-i18n="claimStep3">3. Prescription, diagnosis and medicine</span><span class="claim-tag" data-i18n="claimRule">Rule-based check</span></div><p class="claim-step__body" data-i18n="claimBody3">Check consistency across submitted prescription details, diagnosis and medicine information; flag mismatches.</p></article>
+      <article class="claim-step"><div class="claim-step__top"><span class="claim-step__title" data-i18n="claimStep4">4. Quantity, dose and frequency</span><span class="claim-tag" data-i18n="claimRule">Rule-based check</span></div><p class="claim-step__body" data-i18n="claimBody4">Run configured checks and route unusual values or exceptions for review.</p></article>
+      <article class="claim-step"><div class="claim-step__top"><span class="claim-step__title" data-i18n="claimStep5">5. Missing or ambiguous information</span><span class="claim-tag claim-tag--human" data-i18n="claimHuman">Human review</span></div><p class="claim-step__body" data-i18n="claimBody5">Pause the automated path and request clarification or supporting evidence.</p></article>
+      <article class="claim-step"><div class="claim-step__top"><span class="claim-step__title" data-i18n="claimStep6">6. Outcome and audit trail</span><span class="claim-tag claim-tag--human" data-i18n="claimHuman">Human review</span></div><p class="claim-step__body" data-i18n="claimBody6">A human reviewer confirms the outcome: pay, reject with a reason, or escalate; record the rationale.</p></article>
+    </div>
+    <p class="claim-case__foot" data-i18n="claimFoot">Design principle: automate repeatable checks; route ambiguity and exceptions to a person; keep reasons traceable.</p>
+  </section>
+
+  <p class="footnote" id="companionReport">Methodology, corrections log, and source list: <a href="https://github.com/mohammedabdallahpharm-create/uae-ecosystem-full-explorer/blob/main/docs/redesign-corrections-report.md" target="_blank" rel="noopener noreferrer">Redesign &amp; Corrections Report</a>.</p>
   <p class="footnote" id="footnote"></p>
   <p class="footnote" id="methodNote" data-i18n="methodNote">Data as of August 2026. Methodology, corrections log, and full source list: see the companion "Redesign & Corrections Report."</p>
 
