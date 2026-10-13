@@ -2,16 +2,16 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<title>UAE Healthcare Ecosystem Explorer · 2025–2026</title>
-<meta name="description" content="An interactive, bilingual (EN/AR) map of the UAE health insurance ecosystem — regulators, insurers, TPAs, providers, and digital infrastructure across Abu Dhabi, Dubai, and the Northern Emirates, plus a value-flow and operational-opportunity view.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UAE Health Insurance Ecosystem Explorer · 2025–2026</title>
+<meta name="description" content="Explore the UAE health insurance ecosystem in English or Arabic: regulators, insurers, TPAs, providers, digital health infrastructure, claims workflows, and operational opportunities across all seven emirates.">
 <meta name="author" content="Mohammed Abdallah">
 <meta name="theme-color" content="#0b2340">
-<meta property="og:title" content="UAE Healthcare Ecosystem Explorer | Mohammed Abdallah">
+<meta property="og:title" content="UAE Health Insurance Ecosystem Explorer | Mohammed Abdallah">
 <meta property="og:description" content="An interactive, bilingual map of the UAE health insurance ecosystem — regulators, insurers, TPAs, providers, digital infrastructure, and operational opportunity, across all seven emirates.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UAE Healthcare Ecosystem Explorer | Mohammed Abdallah">
+<meta name="twitter:title" content="UAE Health Insurance Ecosystem Explorer | Mohammed Abdallah">
 <meta name="twitter:description" content="An interactive, bilingual map of the UAE health insurance ecosystem across all seven emirates.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%230b2340'/%3E%3Ccircle cx='50' cy='50' r='14' fill='none' stroke='%23b98a3b' stroke-width='4'/%3E%3Ccircle cx='50' cy='16' r='7' fill='%2312897f'/%3E%3Ccircle cx='80' cy='34' r='6' fill='%23b98a3b'/%3E%3Ccircle cx='80' cy='66' r='6' fill='%23b8493f'/%3E%3Ccircle cx='50' cy='84' r='6' fill='%232f6fa8'/%3E%3Ccircle cx='20' cy='66' r='6' fill='%236b7280'/%3E%3Ccircle cx='20' cy='34' r='6' fill='%235b6f9e'/%3E%3C/svg%3E">
 <style>
@@ -101,8 +101,12 @@ svg#map{ width:100%; height:100%; display:block; }
 .node.is-dimmed circle.node-bubble{ opacity:var(--node-dimmed-opacity); }
 .node.is-dimmed text{ opacity:var(--node-dimmed-opacity); }
 .node text.node-code{ fill:var(--text-on-dark); font-size:10.5px; font-weight:800; text-anchor:middle; dominant-baseline:middle; pointer-events:none; }
-.node text.node-label{ fill:var(--text-primary); font-size:12.5px; font-weight:700; pointer-events:none; }
-.node text.node-sub{ fill:var(--text-muted); font-size:9.5px; font-weight:500; pointer-events:none; }
+.node text.node-label{ fill:var(--text-primary); font-size:12px; font-weight:800; pointer-events:none; paint-order:stroke fill; stroke:var(--surface-canvas); stroke-width:3.5px; stroke-linejoin:round; }
+.node text.node-sub{ fill:var(--text-secondary); font-size:9.5px; font-weight:600; pointer-events:none; paint-order:stroke fill; stroke:var(--surface-canvas); stroke-width:2.8px; stroke-linejoin:round; }
+#map.lang-ar .node text.node-label{font-size:10.5px;font-weight:750;}
+#map.lang-ar .node text.node-sub{display:none;}
+#map.lang-ar .cluster-label{font-size:11px;letter-spacing:0;}
+#map.lang-ar .cluster-label-sub{display:none;}
 
 .center-node circle{ fill:var(--surface-center-node); stroke:var(--accent-gold); stroke-width:3; }
 .center-node text{ fill:var(--text-on-dark); font-size:14px; font-weight:800; }
@@ -153,6 +157,16 @@ svg#map{ width:100%; height:100%; display:block; }
 .profile-strip__links{display:flex;gap:8px;flex-wrap:wrap}
 .profile-link{display:inline-flex;align-items:center;text-decoration:none;border:1px solid var(--border-strong);border-radius:999px;padding:7px 12px;font-size:.82rem;font-weight:700;color:var(--p-navy-900);background:var(--surface-control)}
 .profile-link:hover{border-color:var(--accent-primary);color:var(--accent-primary)}
+.search-panel{background:var(--surface-panel);border:1px solid var(--border-default);border-radius:var(--radius-lg);padding:12px 16px;box-shadow:var(--shadow-card);display:grid;grid-template-columns:minmax(180px,1fr) auto;gap:10px;align-items:center}
+.search-panel label{font-size:.8rem;font-weight:700;color:var(--text-secondary)}
+.search-panel input{width:100%;min-width:0;border:1px solid var(--border-strong);border-radius:var(--radius-sm);padding:12px 14px;font:inherit;font-size:16px;background:var(--surface-control);color:var(--text-primary)}
+.search-results{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px}
+.search-result{border:1px solid var(--border-default);border-radius:var(--radius-sm);padding:10px 12px;background:var(--surface-canvas);color:var(--text-primary);font:inherit;text-align:start;cursor:pointer;min-height:44px}
+.search-result:hover{border-color:var(--accent-primary)}
+.filters-panel{border:1px solid var(--border-default);border-radius:var(--radius-lg);background:var(--surface-panel);padding:10px 12px;display:flex;flex-direction:column;gap:10px}
+.filters-panel>summary{cursor:pointer;font-size:.9rem;font-weight:800;color:var(--p-navy-900);min-height:44px;display:flex;align-items:center}
+.filters-panel .filterbar{box-shadow:none}
+@media(max-width:720px){.search-panel{grid-template-columns:1fr}.search-panel label{margin-block-end:-6px}.search-panel input{min-height:44px}.search-results{display:grid;grid-template-columns:1fr}.filters-panel{padding:8px}.filters-panel[open]{gap:8px}}
 @media(max-width:720px){.profile-strip{align-items:flex-start}}
 
 .footnote{ font-size:.76rem; color:var(--text-muted); line-height:1.6; padding-inline:var(--space-2); }
@@ -188,7 +202,8 @@ svg#map{ width:100%; height:100%; display:block; }
 svg#oppMatrix{ width:100%; max-width:420px; height:auto; display:block; margin-inline:auto; }
 .quad-label{ font-size:9.5px; font-weight:700; fill:var(--text-muted); }
 .quad-line{ stroke:var(--border-strong); stroke-width:1; stroke-dasharray:2 3; }
-.matrix-dot{ cursor:pointer; stroke:var(--node-stroke); stroke-width:1.5; transition:r .15s ease, stroke .15s ease, stroke-width .15s ease; }
+.matrix-dot{ cursor:pointer; stroke:var(--node-stroke); stroke-width:1.5; transition:r .15s ease, stroke .15s ease, stroke-width .15s ease, opacity .15s ease; }
+.matrix-dot.is-dimmed{ opacity:var(--node-dimmed-opacity); }
 .matrix-dot:hover{ stroke:var(--node-stroke-selected); }
 .matrix-dot.is-selected{ stroke:var(--node-stroke-selected); stroke-width:3; }
 .matrix-axis-label{ font-size:9.5px; font-weight:700; fill:var(--text-secondary); }
@@ -264,6 +279,13 @@ svg#oppMatrix{ width:100%; max-width:420px; height:auto; display:block; margin-i
     </div>
   </section>
 
+  <section class="search-panel" role="search" aria-label="Search ecosystem entities">
+    <label for="entitySearch" data-i18n="searchLabel">Find an entity</label>
+    <input id="entitySearch" type="search" autocomplete="off" placeholder="Search insurers, regulators, TPAs…" data-i18n-placeholder="searchPlaceholder" aria-controls="searchResults" aria-describedby="searchHelp">
+    <span id="searchHelp" class="footnote" data-i18n="searchHelp">Search names in English or Arabic in the current view.</span>
+    <div id="searchResults" class="search-results" role="listbox" aria-label="Search results" hidden></div>
+  </section>
+
   <div class="emirate-switch" role="group" aria-label="View">
     <button class="emirate-btn" type="button" data-view="national" aria-pressed="true">National Overview</button>
     <button class="emirate-btn" type="button" data-view="abudhabi" aria-pressed="false">Abu Dhabi</button>
@@ -272,6 +294,8 @@ svg#oppMatrix{ width:100%; max-width:420px; height:auto; display:block; margin-i
     <button class="emirate-btn" type="button" data-view="value" aria-pressed="false">Value &amp; Opportunity</button>
   </div>
 
+  <details class="filters-panel">
+    <summary data-i18n="filtersLabel">Filters</summary>
   <div class="filterbar" id="filterbarSegments" role="group" aria-label="Segment filters">
     <span class="filterbar__label" data-i18n="filterLabel">Highlight segment</span>
     <button class="filter-chip" type="button" data-segment="citizens" aria-pressed="false" data-i18n="filterCitizens">Citizens</button>
@@ -300,6 +324,8 @@ svg#oppMatrix{ width:100%; max-width:420px; height:auto; display:block; margin-i
     <button class="filter-chip" type="button" data-owner="government" aria-pressed="false" data-i18n="ownerGovernment">Government</button>
     <button class="filter-chip" type="button" data-owner="digital" aria-pressed="false" data-i18n="ownerDigital">Digital Infrastructure</button>
   </div>
+
+  </details>
 
   <div class="explainer is-hidden" id="valueExplainer">
     <h3 data-i18n="explainerTitle">How to read this view</h3>
@@ -354,7 +380,7 @@ svg#oppMatrix{ width:100%; max-width:420px; height:auto; display:block; margin-i
 const STRINGS = {
 en:{
   eyebrow:"UAE · 2025–2026",
-  title:"Healthcare Ecosystem Explorer",
+  title:"Health Insurance Ecosystem Explorer",
   subtitle:"Major players across the UAE, organised into seven functional clusters around the member — switch between the national view and emirate-level detail.",
   filterLabel:"Highlight segment",
   filterCitizens:"Citizens", filterResidents:"Residents",
@@ -364,6 +390,7 @@ en:{
   profileName:"Built by Mohammed Abdallah",
   profileNote:"Pharmacy background · Health-insurance claims · Healthcare AI problem-solving",
   contactLinkedIn:"LinkedIn profile", contactEmail:"Email",
+  searchLabel:"Find an entity", searchPlaceholder:"Search insurers, regulators, TPAs…", searchHelp:"Search names in English or Arabic in the current view.", filtersLabel:"Filters",
   claimEyebrow:"Illustrative workflow · Pharmacy claims",
   claimTitle:"A human-centred pharmacy-claim review",
   claimIntro:"A simplified example of how a pharmacy claim can be checked consistently while keeping judgement and accountability with a human reviewer.",
@@ -433,6 +460,7 @@ ar:{
   profileName:"إعداد: محمد عبدالله",
   profileNote:"خلفية صيدلانية · مطالبات التأمين الصحي · حل مشكلات الصحة باستخدام الذكاء الاصطناعي",
   contactLinkedIn:"ملفي على LinkedIn", contactEmail:"البريد الإلكتروني",
+  searchLabel:"ابحث عن جهة", searchPlaceholder:"ابحث عن شركة تأمين أو جهة تنظيمية أو مدير مطالبات…", searchHelp:"ابحث بالاسم بالعربية أو الإنجليزية ضمن العرض الحالي.", filtersLabel:"عوامل التصفية",
   claimEyebrow:"مسار توضيحي · مطالبات الصيدلة",
   claimTitle:"مراجعة مطالبة صيدلانية مع بقاء القرار البشري",
   claimIntro:"مثال مبسّط لكيفية فحص المطالبة بصورة متسقة، مع إبقاء التقدير والمسؤولية لدى المراجع البشري.",
@@ -2564,10 +2592,18 @@ function currentData(){ return DATA[state.view]; }
 
 const svg = document.getElementById("map");
 const SVGNS = "http://www.w3.org/2000/svg";
+function shortMapLabel(node){
+  const full = state.lang==="en" ? node.name_en : node.name_ar;
+  if(state.lang==="en") return full.length>23 ? full.slice(0,21).trimEnd()+"…" : full;
+  const cleaned = full.replace(/[（(].*?[）)]/g,"").replace(/\s+/g," ").trim();
+  const words = cleaned.split(" ");
+  return words.length>2 ? words.slice(0,2).join(" ")+"…" : (cleaned.length>13 ? cleaned.slice(0,12)+"…" : cleaned);
+}
 function el(tag,attrs){ const e=document.createElementNS(SVGNS,tag); for(const k in attrs) e.setAttribute(k,attrs[k]); return e; }
 
 function renderMap(){
   svg.innerHTML = "";
+  svg.classList.toggle("lang-ar",state.lang==="ar");
   const d = currentData();
   const isValue = state.view==="value";
 
@@ -2615,7 +2651,10 @@ function renderMap(){
     const labelX = p.x + (rightHalf? p.r+10 : -(p.r+10));
     const anchor = rightHalf ? "start" : "end";
     const label = el("text",{class:"node-label", x:labelX, y:p.y-3, "text-anchor":anchor});
-    label.textContent = state.lang==="en"?p.node.name_en:p.node.name_ar;
+    label.textContent = shortMapLabel(p.node);
+    const fullTitle = el("title",{});
+    fullTitle.textContent = state.lang==="en"?p.node.name_en:p.node.name_ar;
+    g.appendChild(fullTitle);
     const sub = el("text",{class:"node-sub", x:labelX, y:p.y+11, "text-anchor":anchor});
     sub.textContent = isValue
       ? STRINGS[state.lang][frictionLabelKey(p.node.scores.friction)]
@@ -2675,7 +2714,10 @@ function applyVisualState(){
     if(el2) el2.classList.add("is-active");
   }
   document.querySelectorAll(".matrix-dot").forEach(dot=>{
-    dot.classList.toggle("is-selected", dot.getAttribute("data-id")===state.selectedId);
+    const id = dot.getAttribute("data-id");
+    const node = d.nodeById[id];
+    dot.classList.toggle("is-selected", id===state.selectedId);
+    dot.classList.toggle("is-dimmed", isDimmed(node));
   });
 }
 function isDimmed(node){
@@ -2734,8 +2776,28 @@ function renderOpportunityMatrix(){
 }
 
 const panel = document.getElementById("panel");
-function selectNode(id){ state.selectedId=id; state.activeTab="overview"; applyVisualState(); renderPanel(); }
-function closePanel(){ state.selectedId=null; applyVisualState(); renderPanel(); }
+function updateShareHash(){
+  const parts = ["view="+encodeURIComponent(state.view), "lang="+encodeURIComponent(state.lang)];
+  if(state.selectedId) parts.push("node="+encodeURIComponent(state.selectedId));
+  const next = "#"+parts.join("&");
+  if(location.hash!==next) history.replaceState(null,"",next);
+}
+function restoreShareHash(){
+  const raw=location.hash.replace(/^#/,"");
+  if(!raw) return;
+  const params=new URLSearchParams(raw);
+  const view=params.get("view"), lang=params.get("lang"), node=params.get("node");
+  if(view && DATA[view]) state.view=view;
+  if(lang==="ar"||lang==="en") state.lang=lang;
+  document.documentElement.lang=state.lang;
+  document.documentElement.dir=state.lang==="ar"?"rtl":"ltr";
+  document.getElementById("langToggle").setAttribute("aria-pressed",String(state.lang==="ar"));
+  state.selectedId=node && currentData().nodeById[node] ? node : null;
+  document.querySelectorAll(".emirate-btn").forEach(b=>b.setAttribute("aria-pressed",String(b.getAttribute("data-view")===state.view)));
+  applyI18n(); renderLegend(); renderMap(); renderPanel(); applyVisualState();
+}
+function selectNode(id){ state.selectedId=id; state.activeTab="overview"; applyVisualState(); renderPanel(); updateShareHash(); }
+function closePanel(){ state.selectedId=null; applyVisualState(); renderPanel(); updateShareHash(); }
 
 function renderPanel(){
   const t = STRINGS[state.lang];
@@ -2979,6 +3041,10 @@ function applyI18n(){
     if(t[key]!==undefined) node.textContent = t[key];
   });
   document.getElementById("langToggle").textContent = t.langButton;
+  const searchInput=document.getElementById("entitySearch");
+  searchInput.placeholder=t.searchPlaceholder;
+  searchInput.setAttribute("aria-label",t.searchLabel);
+  document.querySelector(".filters-panel>summary").textContent=t.filtersLabel;
   document.querySelectorAll("[data-segment]").forEach(btn=>{
     const seg = btn.getAttribute("data-segment");
     if(seg==="citizens") btn.textContent=t.filterCitizens;
@@ -3012,7 +3078,7 @@ document.getElementById("langToggle").addEventListener("click", ()=>{
   document.documentElement.lang = isAr?"ar":"en";
   document.documentElement.dir = isAr?"rtl":"ltr";
   document.getElementById("langToggle").setAttribute("aria-pressed", String(isAr));
-  applyI18n(); renderLegend(); renderMap(); renderPanel();
+  applyI18n(); renderLegend(); renderMap(); renderPanel(); updateShareHash();
 });
 
 document.querySelectorAll(".emirate-btn").forEach(btn=>{
@@ -3025,7 +3091,7 @@ document.querySelectorAll(".emirate-btn").forEach(btn=>{
     });
     document.getElementById("footnote").textContent = FOOTNOTES[state.lang][state.view];
     updateViewVisibility();
-    renderMap(); renderPanel();
+    renderMap(); renderPanel(); updateShareHash();
   });
 });
 
@@ -3050,15 +3116,50 @@ document.querySelectorAll("[data-ai]").forEach(btn=>{
 document.querySelectorAll("[data-owner]").forEach(btn=>{
   btn.addEventListener("click", ()=>{
     const key = btn.getAttribute("data-owner");
-    if(state.ownerFilters.has(key)){ state.ownerFilters.delete(key); btn.setAttribute("aria-pressed","false"); }
-    else { state.ownerFilters.add(key); btn.setAttribute("aria-pressed","true"); }
+    // Owner filter behaves as a single-choice selector: one active owner at a time.
+    if(state.ownerFilters.size===1 && state.ownerFilters.has(key)){
+      state.ownerFilters.clear();
+    } else {
+      state.ownerFilters.clear();
+      state.ownerFilters.add(key);
+    }
+    document.querySelectorAll("[data-owner]").forEach(b=>{
+      b.setAttribute("aria-pressed", String(state.ownerFilters.has(b.getAttribute("data-owner"))));
+    });
     applyVisualState();
   });
 });
+const searchInput=document.getElementById("entitySearch");
+const searchResults=document.getElementById("searchResults");
+function renderSearchResults(){
+  const q=searchInput.value.trim().toLocaleLowerCase();
+  searchResults.innerHTML="";
+  if(!q){searchResults.hidden=true;return;}
+  const matches=currentData().positioned.filter(p=>{
+    const n=p.node;
+    return [n.name_en,n.name_ar,n.id].some(v=>String(v||"").toLocaleLowerCase().includes(q));
+  }).slice(0,8);
+  if(!matches.length){
+    const empty=document.createElement("span"); empty.className="footnote";
+    empty.textContent=state.lang==="ar"?"لا توجد نتائج في العرض الحالي.":"No matches in the current view.";
+    searchResults.appendChild(empty); searchResults.hidden=false; return;
+  }
+  matches.forEach(p=>{
+    const b=document.createElement("button"); b.type="button"; b.className="search-result"; b.setAttribute("role","option");
+    b.textContent=(state.lang==="ar"?p.node.name_ar:p.node.name_en)+" · "+(state.lang==="ar"?p.cluster.ar:p.cluster.en);
+    b.addEventListener("click",()=>{selectNode(p.node.id);searchResults.hidden=true;searchInput.value=state.lang==="ar"?p.node.name_ar:p.node.name_en;document.getElementById("panel").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"nearest"});});
+    searchResults.appendChild(b);
+  });
+  searchResults.hidden=false;
+}
+searchInput.addEventListener("input",renderSearchResults);
+searchInput.addEventListener("keydown",ev=>{if(ev.key==="Escape"){searchResults.hidden=true;searchInput.blur();}if(ev.key==="Enter"&&!searchResults.hidden){const first=searchResults.querySelector("button");if(first){ev.preventDefault();first.click();}}});
+document.addEventListener("click",ev=>{if(!searchResults.contains(ev.target)&&ev.target!==searchInput)searchResults.hidden=true;});
 document.addEventListener("keydown",(ev)=>{ if(ev.key==="Escape" && state.selectedId) closePanel(); });
 
-
 applyI18n(); renderLegend(); renderMap(); renderPanel();
+restoreShareHash();
+
 
 })();
 </script>

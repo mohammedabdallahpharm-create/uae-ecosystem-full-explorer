@@ -1,6 +1,6 @@
-# UAE Healthcare Ecosystem Explorer
+# UAE Health Insurance Ecosystem Explorer
 
-An interactive, bilingual (English/Arabic) map of the UAE healthcare ecosystem — who regulates it, who pays for care, who administers claims, who delivers care, and where the operational friction and improvement opportunities sit.
+An interactive, bilingual (English/Arabic) map of the UAE health insurance ecosystem — who regulates it, who pays for care, who administers claims, who delivers care, and where the operational friction and improvement opportunities sit.
 
 **[Open the live Explorer →](https://uae-ecosystem-evidence-lab.vercel.app)** · **[View source code](https://github.com/mohammedabdallahpharm-create/uae-ecosystem-full-explorer/blob/main/index.html)**
 
