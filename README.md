@@ -10,7 +10,7 @@ An interactive, bilingual (English/Arabic) map of the UAE healthcare ecosystem �
 
 A single self-contained web page (no install, no server, no external dependencies) that visualizes the UAE healthcare ecosystem as an interactive radial diagram. Entities are grouped into seven consistent functional clusters — **Regulators, Insurers, Brokers & Intermediaries, TPAs & Claims Administration, Providers, Digital Health Infrastructure, and Enablers (Payment, Audit)** — arranged around a central "Member" node, with a side panel that opens on click to show each entity's role, partners, member journey, claims flow, and operational impact.
 
-It was built in stages: starting as a single Abu Dhabi map, merged with a Dubai map, then redesigned and expanded to cover **all seven emirates**, and finally extended with a fifth **Value & Opportunity** view that reframes the same ecosystem around value flow, operational friction, and where technology (including, but not limited to, AI) could realistically help. The full history of that evolution — including factual corrections and remaining verification notes — is documented in the [Redesign & Corrections Report](docs/redesign-corrections-report.md).
+It was built in stages: starting as a single Abu Dhabi map, merged with a Dubai map, then redesigned and expanded to cover **all seven emirates**, and finally extended with a fifth **Value & Opportunity** view that reframes the same ecosystem around value flow, operational friction, and where technology (including, but not limited to, AI) could realistically help. The Explorer is presented as a clean, executive-facing portfolio project.
 
 ## Professional case study
 
@@ -57,11 +57,6 @@ This tool simplifies a genuinely complex, multi-regulator system for clarity. A 
 - **A small number of items are explicitly marked "needs verification"** rather than stated as fact — most notably the exact current administration of Sharjah's separate citizen health scheme.
 - **The Value & Opportunity view's scoring model is a transparent analytical framework, not a measured financial statistic.** The formula is shown in-app; no market sizes, ROI figures, transaction volumes, or savings numbers were invented anywhere in the tool.
 
-The full account of what was changed, what was corrected, why, and what still needs verification — including a detailed QA/testing log — lives in the companion document:
-
-**[`docs/redesign-corrections-report.md`](./docs/redesign-corrections-report.md)**
-
-That report is intentionally kept out of the Explorer's user interface, so the tool itself stays clean and executive-facing.
 
 ## How to run it locally
 
@@ -83,7 +78,7 @@ The public version is hosted on Vercel: [Open the live Explorer](https://uae-eco
 - **GitHub Pages** — push this repository to GitHub, enable Pages on the `main` branch (root folder), and it will serve directly since the file is already named `index.html`.
 - **Netlify, Vercel, Cloudflare Pages, or similar** — drag-and-drop deployment of this folder works with zero build settings.
 
-Recommended before a fully public launch (see the companion report's QA section for the complete list):
+Recommended before a fully public launch:
 - A manual print/PDF export check across Chrome, Safari, Firefox, and Edge, since browsers render large SVGs slightly differently when printing.
 
 ## Repository structure
@@ -93,5 +88,5 @@ Recommended before a fully public launch (see the companion report's QA section 
 ├── index.html                          # The Explorer — open this file to use the tool
 ├── README.md                           # This file
 └── docs/
-    └── redesign-corrections-report.md  # Companion report: full change log, corrections, evidence methodology, QA notes
+    └── docs/                                # Supporting project documentation
 ```
