@@ -198,7 +198,8 @@ svg#map{ width:100%; height:100%; display:block; }
 svg#oppMatrix{ width:100%; max-width:420px; height:auto; display:block; margin-inline:auto; }
 .quad-label{ font-size:9.5px; font-weight:700; fill:var(--text-muted); }
 .quad-line{ stroke:var(--border-strong); stroke-width:1; stroke-dasharray:2 3; }
-.matrix-dot{ cursor:pointer; stroke:var(--node-stroke); stroke-width:1.5; transition:r .15s ease, stroke .15s ease, stroke-width .15s ease; }
+.matrix-dot{ cursor:pointer; stroke:var(--node-stroke); stroke-width:1.5; transition:r .15s ease, stroke .15s ease, stroke-width .15s ease, opacity .15s ease; }
+.matrix-dot.is-dimmed{ opacity:var(--node-dimmed-opacity); }
 .matrix-dot:hover{ stroke:var(--node-stroke-selected); }
 .matrix-dot.is-selected{ stroke:var(--node-stroke-selected); stroke-width:3; }
 .matrix-axis-label{ font-size:9.5px; font-weight:700; fill:var(--text-secondary); }
@@ -2698,7 +2699,10 @@ function applyVisualState(){
     if(el2) el2.classList.add("is-active");
   }
   document.querySelectorAll(".matrix-dot").forEach(dot=>{
-    dot.classList.toggle("is-selected", dot.getAttribute("data-id")===state.selectedId);
+    const id = dot.getAttribute("data-id");
+    const node = d.nodeById[id];
+    dot.classList.toggle("is-selected", id===state.selectedId);
+    dot.classList.toggle("is-dimmed", isDimmed(node));
   });
 }
 function isDimmed(node){
