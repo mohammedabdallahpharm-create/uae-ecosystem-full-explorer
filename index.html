@@ -246,6 +246,17 @@ svg#oppMatrix{ width:100%; max-width:420px; height:auto; display:block; margin-i
   .node:hover circle.node-bubble{ transform:none; }
   a[href]::after{ content:""; }
 }
+
+/* Connected intelligence navigation: clearer grouping and small-screen wrapping */
+.topbar__actions{max-width:100%;align-items:center;justify-content:flex-end}
+.topbar__actions a.btn{font-size:.78rem;white-space:nowrap;text-decoration:none}
+.topbar__actions a.btn:first-child{background:var(--surface-control-active);color:var(--text-on-dark);border-color:var(--surface-control-active)}
+.topbar__actions a.btn:first-child:hover{background:var(--p-navy-700);border-color:var(--p-navy-700)}
+@media(max-width:720px){
+  .topbar__actions{width:100%;justify-content:flex-start;gap:8px}
+  .topbar__actions a.btn{padding:8px 11px;font-size:.76rem}
+  .topbar__actions .btn--lang{margin-inline-start:auto}
+}
 </style>
 </head>
 <body>
@@ -389,6 +400,7 @@ en:{
   filterCommuters:"Cross-emirate commuters", filterSeasonal:"Seasonal visitors",
   panelEmpty:"Select an entity to see its role, member journey, claims flow, and operational impact.",
   methodNote:"Data coverage: through August 2026. Opportunity scores are analytical assessments, not audited financial metrics.",
+  intelligenceHubLink:"Intelligence hub", sectorSignalsLink:"Sector signals",
   profileName:"Built by Mohammed Abdallah",
   profileNote:"Pharmacy background · Health-insurance claims · Healthcare AI problem-solving",
   contactLinkedIn:"LinkedIn profile", contactEmail:"Email",
@@ -459,6 +471,7 @@ ar:{
   filterCommuters:"المتنقلون بين الإمارات", filterSeasonal:"الزوار الموسميون",
   panelEmpty:"اختر جهة لعرض دورها ورحلة العضو ومسار المطالبات والأثر التشغيلي.",
   methodNote:"نطاق تغطية البيانات: حتى أغسطس 2026. درجات الفرص تقديرات تحليلية وليست مؤشرات مالية مدقّقة.",
+  intelligenceHubLink:"مركز الاستخبارات", sectorSignalsLink:"إشارات القطاعات",
   profileName:"إعداد: محمد عبدالله",
   profileNote:"خلفية صيدلانية · مطالبات التأمين الصحي · حل مشكلات الصحة باستخدام الذكاء الاصطناعي",
   contactLinkedIn:"ملفي على LinkedIn", contactEmail:"البريد الإلكتروني",
