@@ -220,6 +220,7 @@ svg#oppMatrix{ width:100%; max-width:420px; height:auto; display:block; margin-i
 .score-dim .dim-value{ font-size:1rem; font-weight:800; color:var(--p-navy-900); }
 .evidence-tag{ display:inline-block; font-size:.72rem; font-weight:700; padding:2px 10px; border-radius:var(--radius-full); background:var(--p-gray-100); color:var(--text-secondary); }
 
+.decision-chain-note{ background:var(--p-sand-100); border:1px solid var(--p-sand-200); border-radius:var(--radius-sm); padding:var(--space-3) var(--space-4); font-size:.82rem; color:var(--text-secondary); }
 .journey-steps{ display:flex; flex-direction:column; gap:0; }
 .journey-step{ position:relative; padding-inline-start:26px; padding-block-end:var(--space-4); border-inline-start:2px solid var(--border-strong); }
 .journey-step:last-child{ border-inline-start-color:transparent; padding-block-end:0; }
@@ -446,7 +447,11 @@ en:{
   frictionLow:"Low friction", frictionModerate:"Moderate friction", frictionHigh:"High friction", frictionStructural:"Structural friction",
   journeyProblem:"Problem", journeyFriction:"Friction", journeyData:"Data", journeyDecision:"Decision",
   journeyIntervention:"Intervention", journeyOutcome:"Outcome",
-  evidenceVerified:"Verified", evidenceDirectional:"Directional", evidenceAnalyst:"Analyst assessment", evidenceNeedsVerification:"Needs verification"
+  evidenceVerified:"Verified", evidenceDirectional:"Directional", evidenceAnalyst:"Analyst assessment", evidenceNeedsVerification:"Needs verification",
+  tabDecisionChain:"Signal → Decision", labelDecisionSignal:"Analytical signal", labelDecisionEvidence:"Current evidence status", labelDecisionInterpretation:"Strategic interpretation", labelDecisionValidation:"Market validation question", labelDecisionImplication:"Decision implication", labelDecisionNext:"Next action",
+  decisionValidationText:"What dated primary source, operational data, or stakeholder confirmation would confirm or challenge this friction in the specific market context?",
+  decisionNextText:"Verify the source and its date, look for counter-evidence, and validate the operational impact before prioritising an intervention.",
+  decisionScopeNote:"Demonstration only: this chain is derived from the selected opportunity's existing analytical content. It is not a newly verified external market signal or proof of financial impact."
 },
 ar:{
   eyebrow:"الإمارات · 2025–2026",
@@ -516,7 +521,11 @@ ar:{
   frictionLow:"احتكاك منخفض", frictionModerate:"احتكاك متوسط", frictionHigh:"احتكاك مرتفع", frictionStructural:"احتكاك هيكلي",
   journeyProblem:"المشكلة", journeyFriction:"الاحتكاك", journeyData:"البيانات", journeyDecision:"القرار",
   journeyIntervention:"التدخّل", journeyOutcome:"النتيجة",
-  evidenceVerified:"مؤكَّد", evidenceDirectional:"إرشادي", evidenceAnalyst:"تقييم تحليلي", evidenceNeedsVerification:"يحتاج تحققًا"
+  evidenceVerified:"مؤكَّد", evidenceDirectional:"إرشادي", evidenceAnalyst:"تقييم تحليلي", evidenceNeedsVerification:"يحتاج تحققًا",
+  tabDecisionChain:"من الإشارة إلى القرار", labelDecisionSignal:"إشارة تحليلية", labelDecisionEvidence:"حالة الدليل الحالية", labelDecisionInterpretation:"التفسير الاستراتيجي", labelDecisionValidation:"سؤال التحقق من السوق", labelDecisionImplication:"ما القرار الذي قد يتأثر؟", labelDecisionNext:"الخطوة التالية",
+  decisionValidationText:"ما المصدر الأولي المؤرخ أو البيانات التشغيلية أو تأكيد أصحاب المصلحة الذي يمكن أن يؤكد هذا الاحتكاك أو يعارضه في سياق السوق المحدد؟",
+  decisionNextText:"تحقق من المصدر وتاريخه، وابحث عن أدلة مضادة، ثم اختبر الأثر التشغيلي قبل إعطاء الأولوية لأي تدخل.",
+  decisionScopeNote:"هذا عرض توضيحي فقط: السلسلة مشتقة من المحتوى التحليلي الموجود للفرصة المختارة. وهي ليست إشارة سوق خارجية تم التحقق منها حديثًا، ولا دليلًا على أثر مالي."
 }
 };
 
@@ -2845,7 +2854,7 @@ function renderPanel(){
   header.appendChild(closeBtn); panel.appendChild(header);
 
   const tabDefs = isValue
-    ? [["overview",t.tabOppOverview],["journeyOpp",t.tabOppJourney],["scoring",t.tabScoring],["tech",t.tabTech]]
+    ? [["overview",t.tabOppOverview],["journeyOpp",t.tabOppJourney],["scoring",t.tabScoring],["tech",t.tabTech],["decision",t.tabDecisionChain]]
     : [["overview",t.tabOverview],["journey",t.tabJourney],["claims",t.tabClaims],["impact",t.tabImpact]];
   const tabs=document.createElement("div"); tabs.className="tabs"; tabs.setAttribute("role","tablist");
   tabDefs.forEach(([key,label])=>{
@@ -2983,6 +2992,24 @@ function renderValueTabContent(n){
     const evLabel = document.createElement("div"); evLabel.className="field-label"; evLabel.textContent=t.labelEvidenceTag;
     evWrap.appendChild(evLabel); evWrap.appendChild(evidenceTag());
     frag.appendChild(evWrap);
+  }
+  if(state.activeTab==="decision"){
+    const wrap = document.createElement("div"); wrap.className="journey-steps";
+    function chainStep(labelKey, value){
+      const step=document.createElement("div"); step.className="journey-step";
+      const label=document.createElement("div"); label.className="field-label"; label.textContent=t[labelKey];
+      const valueEl=document.createElement("div"); valueEl.className="field-text"; valueEl.textContent=value;
+      step.appendChild(label); step.appendChild(valueEl); wrap.appendChild(step);
+    }
+    const evidenceMap={verified:"evidenceVerified",directional:"evidenceDirectional",analyst:"evidenceAnalyst",needsVerification:"evidenceNeedsVerification"};
+    chainStep("labelDecisionSignal", isEn?n.journey.friction_en:n.journey.friction_ar);
+    chainStep("labelDecisionEvidence", t[evidenceMap[n.evidence]||"evidenceAnalyst"]);
+    chainStep("labelDecisionInterpretation", isEn?n.opportunity_en:n.opportunity_ar);
+    chainStep("labelDecisionValidation", t.decisionValidationText);
+    chainStep("labelDecisionImplication", isEn?n.decision_en:n.decision_ar);
+    chainStep("labelDecisionNext", t.decisionNextText);
+    frag.appendChild(wrap);
+    const note=document.createElement("div"); note.className="decision-chain-note"; note.textContent=t.decisionScopeNote; frag.appendChild(note);
   }
   if(state.activeTab==="tech"){
     const chipWrap = document.createElement("div");
