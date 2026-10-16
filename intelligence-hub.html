@@ -76,6 +76,35 @@ html[dir=rtl] .hero-orbit{right:auto;left:4%}
 @media(max-width:900px){.top{align-items:flex-start}.nav{order:3;width:100%;margin-inline-start:0}.hero-index{min-width:115px}.hero-orbit{right:-8%;opacity:.45}}
 @media(max-width:700px){.shell{padding:14px 14px 24px}.top{gap:12px}.identity{min-width:0;flex:1}.brand{font-size:10px}.nav{gap:4px}.nav-link{font-size:12px;padding:8px 10px}.hero{min-height:0;display:block;padding:27px 22px;border-radius:19px}.hero h1{font-size:clamp(34px,10vw,46px);max-width:100%}.hero p{font-size:15px}.hero-index{margin-top:25px;padding:10px 0 0;border-left:0;border-top:1px solid #ffffff36;min-width:0;display:grid;grid-template-columns:auto auto;align-items:center}.hero-index strong{font-size:25px;grid-row:span 2}.hero-orbit{width:220px;height:220px;right:-25%;top:5%;opacity:.3}.method{grid-template-columns:repeat(2,minmax(0,1fr));margin-bottom:32px}.step{padding:14px}.step:nth-child(3){border-inline-start:0;border-top:1px solid var(--line)}.step:nth-child(4){border-top:1px solid var(--line)}.section-intro{display:block}.section-intro p{margin-top:7px}.views{grid-template-columns:1fr}.card{padding:21px}.shared{padding:19px}.foot{font-size:11px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}
+
+/* Shared brand palette aligned with the Health Ecosystem Explorer */
+:root{
+ --navy:#0b2340;--teal:#0f6e6e;--ink:#15191d;--muted:#54626d;
+ --line:#dde3e8;--paper:#f7f8f9;--card:#ffffff;--gold:#b98a3b;
+ --soft-teal:#e8f3f1;--soft-gold:#f5efe1;
+}
+body{background:radial-gradient(ellipse at 90% -10%,#e8f3f1 0,transparent 32%),var(--paper);color:var(--ink)}
+.brand{color:var(--navy)}
+.nav-link{color:var(--muted)}
+.nav-link:hover,.nav-link.active{color:var(--navy);border-color:var(--line)}
+.hero{background:linear-gradient(118deg,#0b2340 0%,#123153 58%,#0f6e6e 100%)}
+.eyebrow{color:#c7e4df}
+.primary-action{background:#e8f3f1;color:#0b4e50}
+.hero-orbit i{background:#83c6bd}
+.hero-orbit i:nth-child(2){background:#caa25f}
+.hero-orbit i:nth-child(4){background:#fff}
+.hero-orbit b{border-color:#caa25f}
+.section-kicker{color:var(--teal)}
+.card-market{border-top-color:var(--teal)}
+.card-health{border-top-color:var(--gold)}
+.card-icon{background:#e8f3f1;color:var(--teal)}
+.card-health .card-icon{background:#f5efe1;color:#9c7130}
+.card li::marker{color:var(--teal)}
+.card-health li::marker{color:var(--gold)}
+.actions .btn{background:var(--navy);border-color:var(--navy)}
+.shared{background:linear-gradient(100deg,#e8f3f1,#f7f8f9);border-color:#d4e6e2}
+.shared h3{color:var(--teal)}
+a:focus-visible,button:focus-visible{outline-color:var(--gold)}
 </style>
 </head>
 <body><main class="shell">
