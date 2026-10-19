@@ -3180,5 +3180,61 @@ restoreShareHash();
 
 })();
 </script>
+
+<!-- Shared navigation and language preference across the Insurance Intelligence System -->
+<style>
+#shared-site-nav{position:sticky;top:0;z-index:99999;display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:8px max(12px,calc((100vw - 1320px)/2));background:rgba(255,255,255,.96);border-bottom:1px solid #dbe3e8;backdrop-filter:blur(10px);font:700 12px/1.2 system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+#shared-site-nav a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #dbe3e8;border-radius:999px;padding:8px 12px;color:#0b2340;background:#fff}
+#shared-site-nav a:hover{border-color:#0f6e6e;color:#0f6e6e}
+#shared-site-nav .shared-nav-spacer{flex:1}
+#shared-site-nav .shared-nav-label{font-weight:600;color:#54626d;font-size:11px}
+@media(max-width:480px){#shared-site-nav{gap:6px;padding:7px 9px}#shared-site-nav a{padding:8px 10px;font-size:11px}#shared-site-nav .shared-nav-label{display:none}}
+</style>
+<nav id="shared-site-nav" aria-label="Site navigation">
+<a href="#" id="shared-back-link"><span aria-hidden="true">←</span><span data-shared-back>Back</span></a>
+<a href="index.html"><span aria-hidden="true">⌂</span><span data-shared-home>Home</span></a>
+<span class="shared-nav-spacer"></span><span class="shared-nav-label" data-shared-label>UAE Insurance Intelligence System</span>
+</nav>
+<script>
+(function(){
+  const KEY="uae-insurance-system-language";
+  const nav=document.getElementById("shared-site-nav");
+  const back=document.getElementById("shared-back-link");
+  function sameSiteReferrer(){
+    try{return !!document.referrer && new URL(document.referrer).origin===location.origin;}
+    catch(e){return false;}
+  }
+  back.addEventListener("click",function(e){
+    if(history.length>1 && sameSiteReferrer()){e.preventDefault();history.back();}
+    else {e.preventDefault();location.href="index.html";}
+  });
+  function paintNav(){
+    const ar=document.documentElement.lang==="ar";
+    nav.dir=ar?"rtl":"ltr";
+    nav.querySelector("[data-shared-back]").textContent=ar?"رجوع":"Back";
+    nav.querySelector("[data-shared-home]").textContent=ar?"الرئيسية":"Home";
+    nav.querySelector("[data-shared-label]").textContent=ar?"نظام استخبارات التأمين الإماراتي":"UAE Insurance Intelligence System";
+    back.querySelector("[aria-hidden]").textContent=ar?"→":"←";
+  }
+  const languageButton=document.querySelector("#langBtn, #lang, #langToggle");
+  if(languageButton){
+    languageButton.addEventListener("click",function(){
+      try{localStorage.setItem(KEY,document.documentElement.lang==="ar"?"ar":"en");}catch(e){}
+      paintNav();
+    });
+    let saved="en";
+    try{saved=localStorage.getItem(KEY)||"en";}catch(e){}
+    if((saved==="ar"?"ar":"en")!==document.documentElement.lang) languageButton.click();
+  }else{
+    try{const saved=localStorage.getItem(KEY);if(saved==="ar"){document.documentElement.lang="ar";document.documentElement.dir="rtl";}}catch(e){}
+  }
+  paintNav();
+  window.addEventListener("storage",function(e){
+    if(e.key!==KEY||!languageButton)return;
+    const wanted=e.newValue==="ar"?"ar":"en";
+    if(document.documentElement.lang!==wanted)languageButton.click();
+  });
+})();
+</script>
 </body>
 </html>
