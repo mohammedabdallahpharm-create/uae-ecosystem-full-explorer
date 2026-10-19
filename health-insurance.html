@@ -257,6 +257,22 @@ svg#oppMatrix{ width:100%; max-width:420px; height:auto; display:block; margin-i
   .topbar__actions a.btn{padding:8px 11px;font-size:.76rem}
   .topbar__actions .btn--lang{margin-inline-start:auto}
 }
+
+.quickstart{background:linear-gradient(135deg,#fff 0%,#faf7f0 100%);border:1px solid var(--p-sand-300);border-radius:var(--radius-lg);padding:16px 18px;box-shadow:var(--shadow-card)}
+.quickstart__head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap}
+.quickstart__eyebrow{font-size:.7rem;letter-spacing:.12em;font-weight:800;color:var(--accent-primary)}
+[dir="rtl"] .quickstart__eyebrow{letter-spacing:0}
+.quickstart h2{font-size:1.15rem;color:var(--p-navy-900);margin:4px 0}
+.quickstart__head p,.quickstart__step p{font-size:.88rem;color:var(--text-secondary);margin-top:4px}
+.quickstart__toggle{white-space:nowrap}
+.quickstart__steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+.quickstart__step{display:flex;gap:10px;align-items:flex-start;padding:12px;background:rgba(255,255,255,.85);border:1px solid var(--border-default);border-radius:var(--radius-md)}
+.quickstart__number{display:grid;place-items:center;flex:none;width:28px;height:28px;border-radius:50%;background:var(--p-navy-900);color:#fff;font-weight:800}
+.quickstart__step h3{font-size:.9rem;color:var(--p-navy-900);margin-top:3px}
+.quickstart__actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.quickstart__steps[hidden]{display:none}
+@media(max-width:720px){.quickstart__steps{grid-template-columns:1fr}.quickstart{padding:13px}.quickstart__head{gap:8px}}
+
 </style>
 </head>
 <body>
@@ -291,6 +307,19 @@ svg#oppMatrix{ width:100%; max-width:420px; height:auto; display:block; margin-i
     <div class="profile-strip__links">
       <a class="profile-link" href="https://www.linkedin.com/in/mohammed-hassan-abdallah/" target="_blank" rel="noopener noreferrer" data-i18n="contactLinkedIn">LinkedIn profile</a>
       <a class="profile-link" href="mailto:mohammed.abdallah.pharm@gmail.com" data-i18n="contactEmail">Email</a>
+    </div>
+  </section>
+
+  <section class="quickstart" aria-labelledby="quickstartTitle">
+    <div class="quickstart__head">
+      <div><span class="quickstart__eyebrow" data-i18n="quickstartEyebrow">START HERE · 5 MINUTES</span><h2 id="quickstartTitle" data-i18n="quickstartTitle">Understand this ecosystem in five minutes</h2><p data-i18n="quickstartIntro">You do not need to understand every node. Follow these four steps, then explore whatever matters to you.</p></div>
+      <button class="btn quickstart__toggle" id="quickstartToggle" type="button" aria-expanded="true" aria-controls="quickstartSteps" data-i18n="quickstartToggle">Hide guide</button>
+    </div>
+    <div class="quickstart__steps" id="quickstartSteps">
+      <article class="quickstart__step"><span class="quickstart__number">1</span><div><h3 data-i18n="quickstartStep1Title">Choose the geography</h3><p data-i18n="quickstartStep1Body">Start with the national overview, or narrow the map to Abu Dhabi, Dubai or the Northern Emirates.</p><div class="quickstart__actions"><button class="filter-chip" type="button" data-guide-view="national" data-i18n="viewNational">National Overview</button><button class="filter-chip" type="button" data-guide-view="dubai" data-i18n="viewDubai">Dubai</button></div></div></article>
+      <article class="quickstart__step"><span class="quickstart__number">2</span><div><h3 data-i18n="quickstartStep2Title">Pick one organisation</h3><p data-i18n="quickstartStep2Body">Tap any bubble on the map, or search for an insurer, regulator, TPA or healthcare provider.</p></div></article>
+      <article class="quickstart__step"><span class="quickstart__number">3</span><div><h3 data-i18n="quickstartStep3Title">Follow its role</h3><p data-i18n="quickstartStep3Body">Read the side panel first. Then move through its tabs to understand responsibilities, member touchpoints and operational issues.</p></div></article>
+      <article class="quickstart__step"><span class="quickstart__number">4</span><div><h3 data-i18n="quickstartStep4Title">Separate facts from interpretation</h3><p data-i18n="quickstartStep4Body">Use the notes and coverage labels as context. Opportunity scores are analytical estimates, not audited market results; check official sources before making decisions.</p></div></article>
     </div>
   </section>
 
@@ -395,6 +424,12 @@ svg#oppMatrix{ width:100%; max-width:420px; height:auto; display:block; margin-i
 const STRINGS = {
 en:{
   eyebrow:"UAE · 2025–2026",
+  quickstartEyebrow:"START HERE · 5 MINUTES", quickstartTitle:"Understand this ecosystem in five minutes", quickstartIntro:"You do not need to understand every node. Follow these four steps, then explore whatever matters to you.", quickstartToggle:"Hide guide",
+  quickstartStep1Title:"Choose the geography", quickstartStep1Body:"Start with the national overview, or narrow the map to Abu Dhabi, Dubai or the Northern Emirates.",
+  quickstartStep2Title:"Pick one organisation", quickstartStep2Body:"Tap any bubble on the map, or search for an insurer, regulator, TPA or healthcare provider.",
+  quickstartStep3Title:"Follow its role", quickstartStep3Body:"Read the side panel first. Then move through its tabs to understand responsibilities, member touchpoints and operational issues.",
+  quickstartStep4Title:"Separate facts from interpretation", quickstartStep4Body:"Use the notes and coverage labels as context. Opportunity scores are analytical estimates, not audited market results; check official sources before making decisions.",
+  viewNational:"National Overview", viewDubai:"Dubai", showGuide:"Show 5-minute guide",
   title:"Health Insurance Ecosystem Explorer",
   subtitle:"Major players across the UAE, organised into seven functional clusters around the member — switch between the national view and emirate-level detail.",
   filterLabel:"Highlight segment",
@@ -466,6 +501,12 @@ en:{
 },
 ar:{
   eyebrow:"الإمارات · 2025–2026",
+  quickstartEyebrow:"ابدأ هنا · ٥ دقائق", quickstartTitle:"افهم المنظومة في خمس دقائق", quickstartIntro:"ما محتاج تفهم كل نقطة في الخريطة. اتبع الخطوات الأربع، وبعدها استكشف الجزء المهم بالنسبة ليك.", quickstartToggle:"إخفاء الدليل",
+  quickstartStep1Title:"اختَر النطاق الجغرافي", quickstartStep1Body:"ابدأ بنظرة الإمارات كلها، أو ركّز على أبوظبي أو دبي أو الإمارات الشمالية.",
+  quickstartStep2Title:"اختَر جهة واحدة", quickstartStep2Body:"اضغط على أي دائرة في الخريطة، أو ابحث عن شركة تأمين أو جهة تنظيمية أو مدير مطالبات أو مقدم رعاية صحية.",
+  quickstartStep3Title:"افهم دور الجهة", quickstartStep3Body:"اقرأ اللوحة الجانبية أولاً، ثم تنقّل بين تبويباتها لفهم المسؤوليات ونقاط اتصال العضو والمشكلات التشغيلية.",
+  quickstartStep4Title:"فرّق بين الحقيقة والتحليل", quickstartStep4Body:"استخدم الملاحظات ونطاق التغطية لفهم السياق. درجات الفرص تقديرات تحليلية وليست نتائج سوقية مدققة؛ راجع المصادر الرسمية قبل اتخاذ القرار.",
+  viewNational:"نظرة وطنية", viewDubai:"دبي", showGuide:"إظهار دليل الخمس دقائق",
   title:"مستكشف منظومة الرعاية الصحية",
   subtitle:"أبرز اللاعبين في الإمارات، منظّمين في سبع مجموعات وظيفية حول العضو — بدّل بين العرض الوطني والتفاصيل على مستوى كل إمارة.",
   filterLabel:"إبراز فئة",
@@ -3088,6 +3129,11 @@ function applyI18n(){
   renderExplainerSteps();
   updateViewVisibility();
 }
+
+
+const quickstartToggle=document.getElementById("quickstartToggle");
+if(quickstartToggle){quickstartToggle.addEventListener("click",()=>{const steps=document.getElementById("quickstartSteps");const show=steps.hidden;steps.hidden=!show;quickstartToggle.setAttribute("aria-expanded",String(show));quickstartToggle.textContent=show?STRINGS[state.lang].quickstartToggle:STRINGS[state.lang].showGuide;});}
+document.querySelectorAll("[data-guide-view]").forEach(btn=>btn.addEventListener("click",()=>{const target=document.querySelector('.emirate-btn[data-view="'+btn.dataset.guideView+'"]');if(target)target.click();}));
 
 document.getElementById("langToggle").addEventListener("click", ()=>{
   state.lang = state.lang==="en"?"ar":"en";
