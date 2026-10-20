@@ -2,5 +2,296 @@
   "dataset": "UAE Insurance Ecosystem Explorer sector taxonomy",
   "retrieved_date": "2026-10-20",
   "source_note": "Extracted from existing index.html; exploratory taxonomy, not official exhaustive classification.",
-  "sectors": []
+  "sectors": [
+    {
+      "sector_id": "health",
+      "name_en": "Health",
+      "name_ar": "التأمين الصحي",
+      "member_journey_en": "Care · claims · networks",
+      "member_journey_ar": "الرعاية · المطالبات · الشبكات",
+      "map_position": {
+        "x": 400,
+        "y": 88
+      },
+      "overview_en": "Health cover connects members to insurers, healthcare providers, health administrators and emirate-specific health infrastructure.",
+      "overview_ar": "يربط التأمين الصحي العضو بشركات التأمين ومقدمي الرعاية ومديري المطالبات والبنية الصحية الخاصة بكل إمارة.",
+      "typical_roles_en": [
+        "Insurer / payer",
+        "Provider network",
+        "Health TPA",
+        "Regulator & health authority"
+      ],
+      "typical_roles_ar": [
+        "شركة التأمين / الدافع",
+        "شبكة مقدمي الرعاية",
+        "مدير مطالبات صحي (TPA)",
+        "الجهة التنظيمية والصحية"
+      ],
+      "detail_page": "health-insurance.html",
+      "detail_type": "Detailed sector explorer",
+      "record_status": "sector taxonomy / conceptual overview",
+      "verification_status": "needs source validation for market-specific participants"
+    },
+    {
+      "sector_id": "motor",
+      "name_en": "Motor",
+      "name_ar": "تأمين المركبات",
+      "member_journey_en": "Vehicle · repair · liability",
+      "member_journey_ar": "المركبة · الإصلاح · المسؤولية",
+      "map_position": {
+        "x": 620,
+        "y": 150
+      },
+      "overview_en": "Motor insurance links the policyholder and vehicle to insurers, intermediaries, repair networks, claims assessors and third parties.",
+      "overview_ar": "يربط تأمين المركبات حامل الوثيقة والمركبة بشركات التأمين والوسطاء وورش الإصلاح ومقيّمي الأضرار والأطراف الأخرى.",
+      "typical_roles_en": [
+        "Policyholder / driver",
+        "Insurer & broker",
+        "Repair garage / assessor",
+        "Third-party claimant"
+      ],
+      "typical_roles_ar": [
+        "حامل الوثيقة / السائق",
+        "شركة التأمين والوسيط",
+        "ورشة الإصلاح / مقيّم الأضرار",
+        "مطالب من طرف ثالث"
+      ],
+      "detail_page": "sector-ecosystem.html?sector=motor",
+      "detail_type": "Sector overview",
+      "record_status": "sector taxonomy / conceptual overview",
+      "verification_status": "needs source validation for market-specific participants"
+    },
+    {
+      "sector_id": "travel",
+      "name_en": "Travel",
+      "name_ar": "تأمين السفر",
+      "member_journey_en": "Traveller · trip · assistance",
+      "member_journey_ar": "المسافر · الرحلة · المساعدة",
+      "map_position": {
+        "x": 690,
+        "y": 320
+      },
+      "overview_en": "Travel cover connects the traveller to insurers, assistance providers, healthcare or transport providers, and claim evidence across borders.",
+      "overview_ar": "يربط تأمين السفر المسافر بشركة التأمين ومقدمي المساعدة والرعاية أو النقل وأدلة المطالبة عبر الحدود.",
+      "typical_roles_en": [
+        "Traveller / insured member",
+        "Insurer / assistance desk",
+        "Medical or travel provider",
+        "Claims review & evidence"
+      ],
+      "typical_roles_ar": [
+        "المسافر / العضو المؤمن عليه",
+        "شركة التأمين / مركز المساعدة",
+        "مقدم طبي أو جهة سفر",
+        "مراجعة المطالبة والأدلة"
+      ],
+      "detail_page": "sector-ecosystem.html?sector=travel",
+      "detail_type": "Detailed sector explorer",
+      "record_status": "sector taxonomy / conceptual overview",
+      "verification_status": "needs source validation for market-specific participants"
+    },
+    {
+      "sector_id": "life",
+      "name_en": "Life",
+      "name_ar": "تأمين الحياة",
+      "member_journey_en": "Life assured · beneficiary",
+      "member_journey_ar": "المؤمن على حياته · المستفيد",
+      "map_position": {
+        "x": 620,
+        "y": 500
+      },
+      "overview_en": "Life insurance centres on the life assured and policyholder, with beneficiaries, distribution channels, underwriting and claims decisions.",
+      "overview_ar": "يرتكز تأمين الحياة على الشخص المؤمن على حياته وحامل الوثيقة، مع المستفيدين وقنوات التوزيع والاكتتاب وتسوية المطالبات.",
+      "typical_roles_en": [
+        "Policyholder / life assured",
+        "Beneficiary",
+        "Insurer & adviser",
+        "Underwriting / claims"
+      ],
+      "typical_roles_ar": [
+        "حامل الوثيقة / المؤمن على حياته",
+        "المستفيد",
+        "شركة التأمين والمستشار",
+        "الاكتتاب / المطالبات"
+      ],
+      "detail_page": "sector-ecosystem.html?sector=life",
+      "detail_type": "Sector overview",
+      "record_status": "sector taxonomy / conceptual overview",
+      "verification_status": "needs source validation for market-specific participants"
+    },
+    {
+      "sector_id": "property",
+      "name_en": "Property",
+      "name_ar": "تأمين الممتلكات",
+      "member_journey_en": "Asset · owner · loss",
+      "member_journey_ar": "الأصل · المالك · الخسارة",
+      "map_position": {
+        "x": 400,
+        "y": 562
+      },
+      "overview_en": "Property insurance connects owners and insured assets to insurers, brokers, surveyors, repair or restoration providers and loss adjusters.",
+      "overview_ar": "يربط تأمين الممتلكات المالك والأصل المؤمن عليه بشركات التأمين والوسطاء والمعاينين ومقدمي الإصلاح ومقيّمي الخسائر.",
+      "typical_roles_en": [
+        "Property owner / member",
+        "Insurer & broker",
+        "Surveyor / loss adjuster",
+        "Repair & restoration"
+      ],
+      "typical_roles_ar": [
+        "مالك العقار / العضو",
+        "شركة التأمين والوسيط",
+        "المعاين / مقيّم الخسائر",
+        "الإصلاح وإعادة التأهيل"
+      ],
+      "detail_page": "sector-ecosystem.html?sector=property",
+      "detail_type": "Sector overview",
+      "record_status": "sector taxonomy / conceptual overview",
+      "verification_status": "needs source validation for market-specific participants"
+    },
+    {
+      "sector_id": "marine",
+      "name_en": "Marine",
+      "name_ar": "التأمين البحري",
+      "member_journey_en": "Cargo · vessel · logistics",
+      "member_journey_ar": "الشحنة · السفينة · اللوجستيات",
+      "map_position": {
+        "x": 180,
+        "y": 500
+      },
+      "overview_en": "Marine cover connects cargo owners, vessel interests and logistics operators with insurers, brokers, surveyors and claims handlers.",
+      "overview_ar": "يربط التأمين البحري أصحاب البضائع ومصالح السفن ومشغلي اللوجستيات بشركات التأمين والوسطاء والمعاينين ومديري المطالبات.",
+      "typical_roles_en": [
+        "Cargo owner / ship interest",
+        "Insurer & broker",
+        "Carrier / logistics",
+        "Marine surveyor"
+      ],
+      "typical_roles_ar": [
+        "صاحب الشحنة / مصلحة السفينة",
+        "شركة التأمين والوسيط",
+        "الناقل / اللوجستيات",
+        "المعاين البحري"
+      ],
+      "detail_page": "sector-ecosystem.html?sector=marine",
+      "detail_type": "Sector overview",
+      "record_status": "sector taxonomy / conceptual overview",
+      "verification_status": "needs source validation for market-specific participants"
+    },
+    {
+      "sector_id": "aviation",
+      "name_en": "Aviation",
+      "name_ar": "تأمين الطيران",
+      "member_journey_en": "Operator · aircraft · risk",
+      "member_journey_ar": "المشغّل · الطائرة · المخاطر",
+      "map_position": {
+        "x": 110,
+        "y": 320
+      },
+      "overview_en": "Aviation insurance involves operators, aircraft owners, specialist brokers, insurers and technical risk or loss assessors.",
+      "overview_ar": "يشمل تأمين الطيران المشغّلين ومالكي الطائرات والوسطاء المتخصصين وشركات التأمين وخبراء تقييم المخاطر والخسائر.",
+      "typical_roles_en": [
+        "Operator / aircraft owner",
+        "Specialist broker",
+        "Insurer / reinsurer",
+        "Technical loss assessor"
+      ],
+      "typical_roles_ar": [
+        "المشغّل / مالك الطائرة",
+        "وسيط متخصص",
+        "شركة التأمين / إعادة التأمين",
+        "خبير فني لتقييم الخسائر"
+      ],
+      "detail_page": "sector-ecosystem.html?sector=aviation",
+      "detail_type": "Sector overview",
+      "record_status": "sector taxonomy / conceptual overview",
+      "verification_status": "needs source validation for market-specific participants"
+    },
+    {
+      "sector_id": "liability",
+      "name_en": "Liability",
+      "name_ar": "تأمين المسؤوليات",
+      "member_journey_en": "Business · claimant · legal",
+      "member_journey_ar": "المنشأة · المطالب · القانون",
+      "map_position": {
+        "x": 180,
+        "y": 150
+      },
+      "overview_en": "Liability insurance connects businesses or professionals, claimants, insurers, legal advisers and evidence about alleged liability.",
+      "overview_ar": "يربط تأمين المسؤوليات المنشآت أو المهنيين بالمطالبين وشركات التأمين والمستشارين القانونيين وأدلة المسؤولية المحتملة.",
+      "typical_roles_en": [
+        "Business / professional member",
+        "Insurer & broker",
+        "Claimant / legal adviser",
+        "Evidence & liability assessment"
+      ],
+      "typical_roles_ar": [
+        "المنشأة / العضو المهني",
+        "شركة التأمين والوسيط",
+        "المطالب / المستشار القانوني",
+        "الأدلة وتقييم المسؤولية"
+      ],
+      "detail_page": "sector-ecosystem.html?sector=liability",
+      "detail_type": "Sector overview",
+      "record_status": "sector taxonomy / conceptual overview",
+      "verification_status": "needs source validation for market-specific participants"
+    },
+    {
+      "sector_id": "engineering",
+      "name_en": "Engineering",
+      "name_ar": "التأمين الهندسي",
+      "member_journey_en": "Project · contractor · asset",
+      "member_journey_ar": "المشروع · المقاول · الأصل",
+      "map_position": {
+        "x": 275,
+        "y": 235
+      },
+      "overview_en": "Engineering cover follows projects, contractors and equipment through insurers, brokers, engineers, surveyors and claims review.",
+      "overview_ar": "يتابع التأمين الهندسي المشاريع والمقاولين والمعدات عبر شركات التأمين والوسطاء والمهندسين والمعاينين ومراجعة المطالبات.",
+      "typical_roles_en": [
+        "Project owner / contractor",
+        "Insurer & broker",
+        "Engineer / surveyor",
+        "Claims & loss adjustment"
+      ],
+      "typical_roles_ar": [
+        "مالك المشروع / المقاول",
+        "شركة التأمين والوسيط",
+        "المهندس / المعاين",
+        "المطالبات وتقييم الخسائر"
+      ],
+      "detail_page": "sector-ecosystem.html?sector=engineering",
+      "detail_type": "Sector overview",
+      "record_status": "sector taxonomy / conceptual overview",
+      "verification_status": "needs source validation for market-specific participants"
+    },
+    {
+      "sector_id": "reinsurance",
+      "name_en": "Reinsurance",
+      "name_ar": "إعادة التأمين",
+      "member_journey_en": "Insurer · reinsurer · risk",
+      "member_journey_ar": "شركة التأمين · المعيد · المخاطر",
+      "map_position": {
+        "x": 525,
+        "y": 235
+      },
+      "overview_en": "Reinsurance connects primary insurers with reinsurers and specialist intermediaries to transfer or share defined risks.",
+      "overview_ar": "تربط إعادة التأمين شركات التأمين المباشر بمعيدي التأمين والوسطاء المتخصصين لنقل المخاطر المحددة أو تقاسمها.",
+      "typical_roles_en": [
+        "Primary insurer / cedant",
+        "Reinsurer",
+        "Reinsurance broker",
+        "Risk & treaty data"
+      ],
+      "typical_roles_ar": [
+        "شركة التأمين المباشر / المحيل",
+        "معيد التأمين",
+        "وسيط إعادة التأمين",
+        "بيانات المخاطر والاتفاقيات"
+      ],
+      "detail_page": "sector-ecosystem.html?sector=reinsurance",
+      "detail_type": "Sector overview",
+      "record_status": "sector taxonomy / conceptual overview",
+      "verification_status": "needs source validation for market-specific participants"
+    }
+  ]
 }
