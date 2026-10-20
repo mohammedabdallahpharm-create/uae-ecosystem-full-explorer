@@ -1,0 +1,173 @@
+{
+  "dataset": "UAE Insurance Ecosystem Explorer entity registry",
+  "retrieved_date": "2026-10-20",
+  "records": [
+    {
+      "entity_id": "ENT-REG-CBUAE",
+      "name_en": "Central Bank of the UAE (CBUAE)",
+      "name_ar": "مصرف الإمارات العربية المتحدة المركزي",
+      "entity_type": "federal_regulator",
+      "jurisdiction": "UAE federal",
+      "sector_ids": [],
+      "description_en": "Federal central bank and insurance-sector regulator; validate the exact regulatory role for each activity against current instruments.",
+      "description_ar": "المصرف المركزي والجهة المنظمة للتأمين اتحادياً؛ يجب التحقق من الاختصاص الدقيق لكل نشاط عبر الأدوات التنظيمية السارية.",
+      "source_ids": [
+        "SRC-CBUAE-RULEBOOK-INSURANCE-OVERVIEW",
+        "SRC-CBUAE-C4-2026-INTRO",
+        "SRC-CBUAE-INSURANCE-PROFESSIONS"
+      ],
+      "verification_status": "official role supported; activity-specific scope must be checked",
+      "entity_scope": "named real entity"
+    },
+    {
+      "entity_id": "ENT-ROLE-INSURER",
+      "name_en": "Insurer",
+      "name_ar": "شركة تأمين",
+      "entity_type": "insurer",
+      "jurisdiction": "UAE; applicability varies by activity and emirate",
+      "sector_ids": [],
+      "description_en": "Participant category, not a named company. Add individual market entities only after checking an official register or authoritative source.",
+      "description_ar": "فئة مشاركين وليست شركة مسماة. تُضاف الشركات الفردية بعد التحقق من سجل رسمي أو مصدر موثوق.",
+      "source_ids": [
+        "SRC-CBUAE-RULEBOOK-INSURANCE-OVERVIEW"
+      ],
+      "verification_status": "category definition supported by CBUAE source; named-market membership not asserted",
+      "entity_scope": "participant category"
+    },
+    {
+      "entity_id": "ENT-ROLE-REINSURER",
+      "name_en": "Reinsurer",
+      "name_ar": "معيد تأمين",
+      "entity_type": "reinsurer",
+      "jurisdiction": "UAE; applicability varies by activity and emirate",
+      "sector_ids": [],
+      "description_en": "Participant category, not a named company. Add individual market entities only after checking an official register or authoritative source.",
+      "description_ar": "فئة مشاركين وليست شركة مسماة. تُضاف الشركات الفردية بعد التحقق من سجل رسمي أو مصدر موثوق.",
+      "source_ids": [
+        "SRC-CBUAE-RULEBOOK-INSURANCE-OVERVIEW"
+      ],
+      "verification_status": "category definition supported by CBUAE source; named-market membership not asserted",
+      "entity_scope": "participant category"
+    },
+    {
+      "entity_id": "ENT-ROLE-BROKER",
+      "name_en": "Insurance broker",
+      "name_ar": "وسيط تأمين",
+      "entity_type": "broker",
+      "jurisdiction": "UAE; applicability varies by activity and emirate",
+      "sector_ids": [],
+      "description_en": "Participant category, not a named company. Add individual market entities only after checking an official register or authoritative source.",
+      "description_ar": "فئة مشاركين وليست شركة مسماة. تُضاف الشركات الفردية بعد التحقق من سجل رسمي أو مصدر موثوق.",
+      "source_ids": [
+        "SRC-CBUAE-RULEBOOK-INSURANCE-OVERVIEW"
+      ],
+      "verification_status": "category definition supported by CBUAE source; named-market membership not asserted",
+      "entity_scope": "participant category"
+    },
+    {
+      "entity_id": "ENT-ROLE-AGENT",
+      "name_en": "Insurance agent",
+      "name_ar": "وكيل تأمين",
+      "entity_type": "agent",
+      "jurisdiction": "UAE; applicability varies by activity and emirate",
+      "sector_ids": [],
+      "description_en": "Participant category, not a named company. Add individual market entities only after checking an official register or authoritative source.",
+      "description_ar": "فئة مشاركين وليست شركة مسماة. تُضاف الشركات الفردية بعد التحقق من سجل رسمي أو مصدر موثوق.",
+      "source_ids": [
+        "SRC-CBUAE-RULEBOOK-INSURANCE-OVERVIEW"
+      ],
+      "verification_status": "category definition supported by CBUAE source; named-market membership not asserted",
+      "entity_scope": "participant category"
+    },
+    {
+      "entity_id": "ENT-ROLE-TPA-HEALTH",
+      "name_en": "Health insurance third-party administrator (TPA)",
+      "name_ar": "مدير إدارة التأمين الصحي (TPA)",
+      "entity_type": "health_tpa",
+      "jurisdiction": "UAE; applicability varies by activity and emirate",
+      "sector_ids": [],
+      "description_en": "Participant category, not a named company. Add individual market entities only after checking an official register or authoritative source.",
+      "description_ar": "فئة مشاركين وليست شركة مسماة. تُضاف الشركات الفردية بعد التحقق من سجل رسمي أو مصدر موثوق.",
+      "source_ids": [
+        "SRC-CBUAE-RULEBOOK-INSURANCE-OVERVIEW"
+      ],
+      "verification_status": "category definition supported by CBUAE source; named-market membership not asserted",
+      "entity_scope": "participant category"
+    },
+    {
+      "entity_id": "ENT-ROLE-POLICYHOLDER",
+      "name_en": "Policyholder",
+      "name_ar": "حامل الوثيقة",
+      "entity_type": "customer_role",
+      "jurisdiction": "UAE; applicability varies by activity and emirate",
+      "sector_ids": [],
+      "description_en": "Participant category, not a named company. Add individual market entities only after checking an official register or authoritative source.",
+      "description_ar": "فئة مشاركين وليست شركة مسماة. تُضاف الشركات الفردية بعد التحقق من سجل رسمي أو مصدر موثوق.",
+      "source_ids": [
+        "SRC-CBUAE-RULEBOOK-INSURANCE-OVERVIEW"
+      ],
+      "verification_status": "category definition supported by CBUAE source; named-market membership not asserted",
+      "entity_scope": "participant category"
+    },
+    {
+      "entity_id": "ENT-ROLE-INSURED",
+      "name_en": "Insured member / insured party",
+      "name_ar": "الشخص أو الجهة المؤمن عليها",
+      "entity_type": "customer_role",
+      "jurisdiction": "UAE; applicability varies by activity and emirate",
+      "sector_ids": [],
+      "description_en": "Participant category, not a named company. Add individual market entities only after checking an official register or authoritative source.",
+      "description_ar": "فئة مشاركين وليست شركة مسماة. تُضاف الشركات الفردية بعد التحقق من سجل رسمي أو مصدر موثوق.",
+      "source_ids": [
+        "SRC-CBUAE-RULEBOOK-INSURANCE-OVERVIEW"
+      ],
+      "verification_status": "category definition supported by CBUAE source; named-market membership not asserted",
+      "entity_scope": "participant category"
+    },
+    {
+      "entity_id": "ENT-ROLE-BENEFICIARY",
+      "name_en": "Beneficiary",
+      "name_ar": "المستفيد",
+      "entity_type": "customer_role",
+      "jurisdiction": "UAE; applicability varies by activity and emirate",
+      "sector_ids": [],
+      "description_en": "Participant category, not a named company. Add individual market entities only after checking an official register or authoritative source.",
+      "description_ar": "فئة مشاركين وليست شركة مسماة. تُضاف الشركات الفردية بعد التحقق من سجل رسمي أو مصدر موثوق.",
+      "source_ids": [
+        "SRC-CBUAE-RULEBOOK-INSURANCE-OVERVIEW"
+      ],
+      "verification_status": "category definition supported by CBUAE source; named-market membership not asserted",
+      "entity_scope": "participant category"
+    },
+    {
+      "entity_id": "ENT-ROLE-LOSS-ADJUSTER",
+      "name_en": "Surveyor / loss adjuster",
+      "name_ar": "المعاين / مقيّم الخسائر",
+      "entity_type": "professional_role",
+      "jurisdiction": "UAE; applicability varies by activity and emirate",
+      "sector_ids": [],
+      "description_en": "Participant category, not a named company. Add individual market entities only after checking an official register or authoritative source.",
+      "description_ar": "فئة مشاركين وليست شركة مسماة. تُضاف الشركات الفردية بعد التحقق من سجل رسمي أو مصدر موثوق.",
+      "source_ids": [
+        "SRC-CBUAE-RULEBOOK-INSURANCE-OVERVIEW"
+      ],
+      "verification_status": "category definition supported by CBUAE source; named-market membership not asserted",
+      "entity_scope": "participant category"
+    },
+    {
+      "entity_id": "ENT-ROLE-AGGREGATOR",
+      "name_en": "Insurance price-comparison website / aggregator",
+      "name_ar": "موقع مقارنة أسعار التأمين",
+      "entity_type": "intermediary_role",
+      "jurisdiction": "UAE; applicability varies by activity and emirate",
+      "sector_ids": [],
+      "description_en": "Participant category, not a named company. Add individual market entities only after checking an official register or authoritative source.",
+      "description_ar": "فئة مشاركين وليست شركة مسماة. تُضاف الشركات الفردية بعد التحقق من سجل رسمي أو مصدر موثوق.",
+      "source_ids": [
+        "SRC-CBUAE-RULEBOOK-INSURANCE-OVERVIEW"
+      ],
+      "verification_status": "category definition supported by CBUAE source; named-market membership not asserted",
+      "entity_scope": "participant category"
+    }
+  ]
+}
