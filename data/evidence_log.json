@@ -1,0 +1,42 @@
+{
+  "dataset": "UAE Insurance Ecosystem Explorer evidence log",
+  "retrieved_date": "2026-10-20",
+  "records": [
+    {
+      "evidence_id": "EVD-001",
+      "claim": "The CBUAE Rulebook describes broad insurance product categories and principal insurance-sector participants.",
+      "claim_type": "fact",
+      "source_id": "SRC-CBUAE-RULEBOOK-INSURANCE-OVERVIEW",
+      "source_url": "https://rulebook.centralbank.ae/en/rulebook/21-overview-insurance-sector-activities-and-participants",
+      "source_location": "Section 2.1 — Overview of Insurance Sector Activities and Participants",
+      "observed_date": "2026-10-20",
+      "status": "source reviewed",
+      "confidence": "high",
+      "notes": "Check current applicability and later amendments before legal interpretation."
+    },
+    {
+      "evidence_id": "EVD-002",
+      "claim": "The CBUAE Rulebook page for Insurance Company Licensing Regulation C 4/2026 states an effective date of 14 August 2026 and In-Force status.",
+      "claim_type": "fact",
+      "source_id": "SRC-CBUAE-C4-2026-INTRO",
+      "source_url": "https://rulebook.centralbank.ae/en/rulebook/introduction-101",
+      "source_location": "Introduction — C 4/2026",
+      "observed_date": "2026-10-20",
+      "status": "source reviewed",
+      "confidence": "high",
+      "notes": "Supports the regulation page's stated status, not interpretation of every obligation."
+    },
+    {
+      "evidence_id": "EVD-003",
+      "claim": "The current 19-line map taxonomy is an exploratory navigation structure, not confirmed as an exhaustive official classification.",
+      "claim_type": "methodology_note",
+      "source_id": "",
+      "source_url": "",
+      "source_location": "Existing index.html sector array",
+      "observed_date": "2026-10-20",
+      "status": "needs validation",
+      "confidence": "high",
+      "notes": "Compare each line against applicable official classes and product definitions; do not label the taxonomy as official."
+    }
+  ]
+}
