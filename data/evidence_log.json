@@ -37,6 +37,18 @@
       "status": "needs validation",
       "confidence": "high",
       "notes": "Compare each line against applicable official classes and product definitions; do not label the taxonomy as official."
+    },
+    {
+      "evidence_id": "EVD-004",
+      "claim": "The current index.html sector array defines 10 sector nodes, while UI copy refers to 19 insurance lines.",
+      "claim_type": "data_quality_finding",
+      "source_id": "",
+      "source_url": "https://github.com/mohammedabdallahpharm-create/uae-ecosystem-full-explorer/blob/main/index.html",
+      "source_location": "const sectors array and copy text",
+      "observed_date": "2026-10-20",
+      "status": "verified by source-code inspection",
+      "confidence": "high",
+      "notes": "Resolve discrepancy by adding validated sector definitions or correcting the UI copy. This is a source-code finding, not a claim about the total number of official UAE insurance classes."
     }
   ]
 }
