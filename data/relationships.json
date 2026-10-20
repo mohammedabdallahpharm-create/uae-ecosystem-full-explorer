@@ -1,0 +1,67 @@
+{
+  "dataset": "UAE Insurance Ecosystem Explorer relationship patterns",
+  "retrieved_date": "2026-10-20",
+  "source_note": "Generic role relationships only; no named-company contractual relationship is asserted.",
+  "records": [
+    {
+      "relationship_id": "REL-INSURER-POLICYHOLDER-CONTRACT",
+      "from_entity_type": "insurer",
+      "to_entity_type": "customer_role",
+      "relationship_type": "insurance_contract",
+      "description_en": "An insurance policy establishes contractual rights and obligations for the relevant parties; exact roles depend on policy structure.",
+      "description_ar": "تنشئ وثيقة التأمين حقوقاً والتزامات للأطراف ذات الصلة؛ وتختلف الأدوار حسب هيكل الوثيقة.",
+      "sector_ids": [],
+      "evidence_status": "general structural relationship; specific contracts not represented",
+      "source_ids": [
+        "SRC-CBUAE-RULEBOOK-INSURANCE-OVERVIEW"
+      ],
+      "confidence": "high for general definition"
+    },
+    {
+      "relationship_id": "REL-INSURER-REINSURER-RISK-TRANSFER",
+      "from_entity_type": "insurer",
+      "to_entity_type": "reinsurer",
+      "relationship_type": "reinsurance",
+      "description_en": "Primary insurers may transfer or share defined risks with reinsurers; never infer a named-company relationship without evidence.",
+      "description_ar": "قد تنقل شركات التأمين المباشر أو تتشارك مخاطر محددة مع معيدي التأمين؛ لا تُفترض علاقة بين شركتين دون دليل.",
+      "sector_ids": [
+        "reinsurance"
+      ],
+      "evidence_status": "general structural relationship; named links require evidence",
+      "source_ids": [
+        "SRC-CBUAE-RULEBOOK-INSURANCE-OVERVIEW"
+      ],
+      "confidence": "high for general definition"
+    },
+    {
+      "relationship_id": "REL-INSURER-TPA-ADMINISTRATION",
+      "from_entity_type": "insurer",
+      "to_entity_type": "health_tpa",
+      "relationship_type": "delegated_administration",
+      "description_en": "A health TPA may administer health insurance programmes or claims on behalf of an insurer when appointed and within applicable scope.",
+      "description_ar": "قد يدير TPA برامج التأمين الصحي أو المطالبات نيابة عن شركة تأمين عند تكليفه وضمن النطاق المعمول به.",
+      "sector_ids": [
+        "health"
+      ],
+      "evidence_status": "general role supported; named appointments require evidence",
+      "source_ids": [
+        "SRC-CBUAE-RULEBOOK-INSURANCE-OVERVIEW"
+      ],
+      "confidence": "high for general role"
+    },
+    {
+      "relationship_id": "REL-BROKER-INSURER-DISTRIBUTION",
+      "from_entity_type": "broker",
+      "to_entity_type": "insurer",
+      "relationship_type": "intermediation",
+      "description_en": "Insurance brokers intermediate between insurance seekers and insurers; named panels and contracts require direct evidence.",
+      "description_ar": "يتوسط وسيط التأمين بين طالب التأمين وشركات التأمين؛ وتتطلب قوائم الشركاء والعقود دليلاً مباشراً.",
+      "sector_ids": [],
+      "evidence_status": "general role supported; named links require evidence",
+      "source_ids": [
+        "SRC-CBUAE-RULEBOOK-INSURANCE-OVERVIEW"
+      ],
+      "confidence": "high for general definition"
+    }
+  ]
+}
