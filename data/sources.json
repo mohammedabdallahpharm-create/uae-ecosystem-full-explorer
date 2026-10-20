@@ -1,0 +1,39 @@
+{
+  "dataset": "UAE Insurance Ecosystem Explorer source registry",
+  "retrieved_date": "2026-10-20",
+  "records": [
+    {
+      "source_id": "SRC-CBUAE-RULEBOOK-INSURANCE-OVERVIEW",
+      "title": "Overview of Insurance Sector Activities and Participants",
+      "publisher": "Central Bank of the UAE",
+      "source_type": "official regulatory guidance",
+      "url": "https://rulebook.centralbank.ae/en/rulebook/21-overview-insurance-sector-activities-and-participants",
+      "published_or_effective_date": "2022-10-31",
+      "retrieved_date": "2026-10-20",
+      "scope": "UAE insurance sector participant definitions and broad product categories",
+      "status": "official source; check for amendments or superseding instruments before legal interpretation"
+    },
+    {
+      "source_id": "SRC-CBUAE-C4-2026-INTRO",
+      "title": "Insurance Company Licensing Regulation C 4/2026 — Introduction",
+      "publisher": "Central Bank of the UAE",
+      "source_type": "official regulatory rulebook",
+      "url": "https://rulebook.centralbank.ae/en/rulebook/introduction-101",
+      "published_or_effective_date": "2026-08-14",
+      "retrieved_date": "2026-10-20",
+      "scope": "Insurance company licensing framework and linked legal instruments",
+      "status": "CBUAE page states In-Force; review the full regulation for specific obligations"
+    },
+    {
+      "source_id": "SRC-CBUAE-INSURANCE-PROFESSIONS",
+      "title": "Insurance-Related Professions",
+      "publisher": "Central Bank of the UAE",
+      "source_type": "official regulatory index",
+      "url": "https://rulebook.centralbank.ae/en/rulebook/insurance-related-professions",
+      "published_or_effective_date": "",
+      "retrieved_date": "2026-10-20",
+      "scope": "Index of insurance-related professional regulations",
+      "status": "official index; individual instruments require separate review"
+    }
+  ]
+}
