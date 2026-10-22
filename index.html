@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" dir="ltr">
-<head>
+<head><script>(function(){try{var q=new URLSearchParams(location.search).get('lang');if(q==='ar'||q==='en')localStorage.setItem('uae-insurance-system-language',q)}catch(e){}})();</script>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>UAE Insurance Ecosystem Explorer | five-minute guided market map</title>
 <meta name="description" content="Understand the UAE insurance market in five minutes. Explore all insurance lines around one hub, then open member-centred sector ecosystem maps and evidence.">
@@ -75,4 +75,4 @@ toggle.addEventListener("click",()=>{guide.hidden=!guide.hidden;paint()});docume
 const languageButton=document.querySelector("#langBtn, #lang, #langToggle");if(languageButton){languageButton.addEventListener("click",()=>{try{localStorage.setItem(KEY,document.documentElement.lang==="ar"?"ar":"en")}catch(e){}paint()});let saved="en";try{saved=localStorage.getItem(KEY)||"en"}catch(e){}if((saved==="ar"?"ar":"en")!==document.documentElement.lang)languageButton.click()}else{try{const saved=localStorage.getItem(KEY);if(saved==="ar"){document.documentElement.lang="ar";document.documentElement.dir="rtl"}}catch(e){}}paint();window.addEventListener("storage",e=>{if(e.key!==KEY||!languageButton)return;const wanted=e.newValue==="ar"?"ar":"en";if(document.documentElement.lang!==wanted)languageButton.click()});
 })();
 </script>
-</body></html>
+<script>(function(){const hosts=['gcc-insurance-ecosystem-explorer.vercel.app','saudi-insurance-ecosystem-explorer.vercel.app'];function pass(a){try{const u=new URL(a.href,location.href);if(hosts.includes(u.hostname)){u.searchParams.set('lang',document.documentElement.lang==='ar'?'ar':'en');a.href=u.href}}catch(e){}}document.querySelectorAll('a[href]').forEach(pass);document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href]');if(a)pass(a)},true)})();</script></body></html>

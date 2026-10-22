@@ -123,6 +123,7 @@ function setLang(ar){
 document.documentElement.lang=ar?'ar':'en';
 document.documentElement.dir=ar?'rtl':'ltr';
 document.body.style.direction=ar?'rtl':'ltr';
+document.querySelectorAll('a[href]').forEach(a=>{try{const u=new URL(a.href,location.href);if(['uae-ecosystem-evidence-lab.vercel.app','saudi-insurance-ecosystem-explorer.vercel.app'].includes(u.hostname)){u.searchParams.set('lang',ar?'ar':'en');a.href=u.href;}}catch(e){}});
 document.getElementById('langToggle').textContent=ar?'English':'العربية';
 const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
 let n;while((n=walker.nextNode())){
@@ -148,6 +149,7 @@ document.querySelectorAll('#comparison tbody tr').forEach(tr=>tr.querySelectorAl
 }
 }
 document.getElementById('langToggle').addEventListener('click',()=>setLang(document.documentElement.lang!=='ar'));
+const incomingLang=new URLSearchParams(location.search).get('lang');setLang(incomingLang==='ar');
 })();
 </script>
 </main></body></html>
