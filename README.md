@@ -4,7 +4,7 @@ A static, bilingual (English/Arabic) portfolio prototype for understanding the U
 
 **Start here:** [Open the UAE Insurance Ecosystem Explorer](https://uae-ecosystem-evidence-lab.vercel.app/) · [View the source repository](https://github.com/mohammedabdallahpharm-create/uae-ecosystem-full-explorer)
 
-> **Deployment note:** The separate [GCC Insurance Ecosystem Explorer](https://gcc-insurance-ecosystem-explorer.vercel.app/) is a broader gateway project. Its Vercel deployment currently exposes a separate single-page artifact; do not assume it is a direct deployment of every file in this repository.
+> **Deployment note:** The [GCC Insurance Ecosystem Explorer](https://gcc-insurance-ecosystem-explorer.vercel.app/) gateway source is now stored at \`gcc-gateway/index.html\` in this repository. It is deployed separately from the UAE multi-page explorer and compares UAE and Saudi Arabia across five dimensions; the other four GCC markets are explicitly marked as not yet mapped.
 
 ## What is in this repository
 
