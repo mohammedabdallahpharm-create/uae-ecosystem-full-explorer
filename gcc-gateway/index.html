@@ -136,8 +136,8 @@ document.querySelectorAll('#comparison tbody tr').forEach((tr,i)=>{
 const cells=tr.querySelectorAll('td');
 if(!tableArabic[i])return;
 cells.forEach(td=>{if(!td.dataset.enHTML)td.dataset.enHTML=td.innerHTML;});
-const src1=(cells[1].dataset.enHTML.match(/<span class="source">[\\s\\S]*?<\\/span>/i)||[])[0]||'';
-const src2=(cells[2].dataset.enHTML.match(/<span class="source">[\\s\\S]*?<\\/span>/i)||[])[0]||'';
+const src1=(cells[1].querySelector('.source')||{}).outerHTML||'';
+const src2=(cells[2].querySelector('.source')||{}).outerHTML||'';
 cells[0].textContent=tableArabic[i][0];
 cells[1].innerHTML=tableArabic[i][1]+src1;
 cells[2].innerHTML=tableArabic[i][2]+src2;
