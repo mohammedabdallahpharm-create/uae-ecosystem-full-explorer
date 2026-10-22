@@ -1,92 +1,50 @@
-# UAE Health Insurance Ecosystem Explorer
+# UAE Insurance Ecosystem Explorer
 
-An interactive, bilingual (English/Arabic) map of the UAE health insurance ecosystem — who regulates it, who pays for care, who administers claims, who delivers care, and where the operational friction and improvement opportunities sit.
+A static, bilingual (English/Arabic) portfolio prototype for understanding the UAE insurance market: start with the market map, open an insurance line, explore its member-centred ecosystem, and distinguish official evidence from interpretation and open questions.
 
-**[Open the live Explorer →](https://uae-ecosystem-evidence-lab.vercel.app)** · **[View source code](https://github.com/mohammedabdallahpharm-create/uae-ecosystem-full-explorer/blob/main/index.html)**
+**Start here:** [Open the UAE Insurance Ecosystem Explorer](https://uae-ecosystem-evidence-lab.vercel.app/) · [View the source repository](https://github.com/mohammedabdallahpharm-create/uae-ecosystem-full-explorer)
 
----
+> **Deployment note:** The separate [GCC Insurance Ecosystem Explorer](https://gcc-insurance-ecosystem-explorer.vercel.app/) is a broader gateway project. Its Vercel deployment currently exposes a separate single-page artifact; do not assume it is a direct deployment of every file in this repository.
 
-## What this is
+## What is in this repository
 
-A single self-contained web page (no install, no server, no external dependencies) that visualizes the UAE healthcare ecosystem as an interactive radial diagram. Entities are grouped into seven consistent functional clusters — **Regulators, Insurers, Brokers & Intermediaries, TPAs & Claims Administration, Providers, Digital Health Infrastructure, and Enablers (Payment, Audit)** — arranged around a central "Member" node, with a side panel that opens on click to show each entity's role, partners, member journey, claims flow, and operational impact.
-
-It was built in stages: starting as a single Abu Dhabi map, merged with a Dubai map, then redesigned and expanded to cover **all seven emirates**, and finally extended with a fifth **Value & Opportunity** view that reframes the same ecosystem around value flow, operational friction, and where technology (including, but not limited to, AI) could realistically help. The Explorer is presented as a clean, executive-facing portfolio project.
-
-## Professional case study
-
-This portfolio project demonstrates how I approach a complex healthcare-insurance system: map the main stakeholders, trace how value and claims workflows move between them, identify operational friction, and distinguish plausible technology opportunities from problems that do not require AI.
-
-It draws on my pharmacy background and prior health-insurance claims work, including outpatient and pharmacy claims adjudication and medical-documentation review. The UAE ecosystem views are market analysis and a portfolio exercise; they should not be read as a claim that I have personally performed UAE prior-authorization work or implemented these processes for a UAE payer.
-
-**Questions explored:** Who owns each part of the workflow? Where can handoffs create friction? Which opportunities call for better rules, process design, or human review—and where might technology help?
-
-**Created by:** Mohammed Abdallah · [LinkedIn](https://www.linkedin.com/in/mohammed-hassan-abdallah/) · [Email](mailto:mohammed.abdallah.pharm@gmail.com) · [Live Explorer](https://uae-ecosystem-evidence-lab.vercel.app)
-
-## What it covers
-
-Five switchable views, all sharing the same visual system:
-
-| View | What it shows |
+| Page | Purpose |
 |---|---|
-| **National Overview** | ~21 of the most nationally relevant entities across the whole UAE — the flagship, portfolio-ready view |
-| **Abu Dhabi** | ~18 entities specific to Abu Dhabi's regulatory and market structure (DOH, Thiqa, Daman, Malaffi, SEHA, etc.) |
-| **Dubai** | ~18 entities specific to Dubai's structure (DHA, Enaya/Saada, Sukoon, NABIDH, Dubai Health, etc.) |
-| **Northern Emirates** | ~17 entities covering Sharjah, Ajman, Umm Al Quwain, Ras Al Khaimah, and Fujairah under the federal framework that made health insurance mandatory there from 1 January 2025 |
-| **Value & Opportunity** | The same ecosystem reframed as 19 value-flow/operational nodes (Prior Authorization, Claims Adjudication, Eligibility & Enrollment, etc.), with friction ratings, a transparent opportunity-scoring model, an opportunity matrix, and filters for "where AI genuinely fits" versus "no AI required" |
+| `index.html` | Market-level map of insurance lines, with links into sector experiences |
+| `insurance-line-explorer.html` | Browse 19 insurance lines and compare sector-level ecosystem structures |
+| `intelligence-hub.html` | Navigate the insurance value chain and the research approach |
+| `sector-intelligence.html` | Evidence-linked signals, interpretations, validation questions and decision implications |
+| `health-insurance.html` | Detailed health-insurance ecosystem explorer |
+| `travel-insurance.html` | Travel-insurance ecosystem and synthetic, human-reviewed claims workflow |
+| `social-preview.svg` | 1200 × 630 social-preview artwork |
 
-Every entity's detail panel also states **which emirate(s) it applies to**, and every view has its own footnote listing the regulatory sources it draws on.
+## How to explore
 
-## How to use it
+1. Start with the market map.
+2. Select an insurance line and follow the link into its sector view.
+3. Use the **Back** and **Home** controls on the supporting pages.
+4. Switch between English and Arabic where the page provides a language control.
+5. In Sector Intelligence, read each signal in order: **source fact → interpretation → validation question → decision implication**.
 
-1. [Open the live Explorer](https://uae-ecosystem-evidence-lab.vercel.app) in any modern browser, or open `index.html` locally.
-2. Use the view switcher at the top to move between National Overview, the three emirate views, and Value & Opportunity.
-3. Click any node (bubble) to open its detail panel on the side; click the center "Member" node, press <kbd>Esc</kbd>, or click the panel's close button to dismiss it.
-4. Use the filter chips to highlight a segment (Citizens, Residents, Cross-emirate commuters, Seasonal visitors on the ecosystem views; "Where AI fits" and "Who owns the problem" on the Value & Opportunity view) — matching entities stay full-opacity, everything else dims, nothing is hidden.
-5. Use the **العربية / English** toggle at any time to switch language; the layout mirrors correctly for Arabic (right-to-left reading order, panel opens on the opposite side).
-6. To print or export a page to PDF (e.g. for a deck or a printed handout), use your browser's native Print function — the page has dedicated print styling so filter buttons and other interactive-only chrome are hidden automatically.
+## Evidence and limitations
 
-No data is transmitted anywhere. Everything — including the language toggle and all node data — runs entirely inside the browser from this one file.
+- Official regulatory text or official statistics support the factual claim only to the extent described by the linked source. A regulatory classification does not prove market size, demand, claims performance or a commercial opportunity.
+- Strategic interpretations and validation questions are analytical hypotheses, not confirmed market findings.
+- The travel-claims workflow uses synthetic examples. It is not connected to an insurer, does not process real claims, and does not make automatic coverage decisions.
+- Market-level statistics should be read with their source, reporting period and definition. Where official publications differ, record the discrepancy and verify the underlying table before relying on the number.
+- The explorer is a portfolio/research prototype, not legal, regulatory, insurance or investment advice. Check current official requirements before operational use.
+- Arabic copy should receive native-speaker review before being treated as publication-ready.
 
-## Evidence & limitations
+## Run locally
 
-This tool simplifies a genuinely complex, multi-regulator system for clarity. A few things worth knowing before relying on it:
+No build step, package manager or server is required for basic use. Download the HTML files and keep them in the same directory, then open `index.html` in a browser. For more representative local testing, run:
 
-- **Node sizes reflect illustrative market relevance, not audited market share.** This is stated in the in-app legend.
-- **Some entities are consolidated categories, not exhaustive lists** — e.g. "Major Private Hospital Groups" represents several real hospital brands rather than naming every one individually. Each such node says so in its own panel.
-- **Not every figure is independently verified.** Where the Explorer cites something specific (e.g. a reported percentage of claims processed electronically), it's flagged in-panel with its evidence status, and treated as *reported*, not as independently confirmed.
-- **A small number of items are explicitly marked "needs verification"** rather than stated as fact — most notably the exact current administration of Sharjah's separate citizen health scheme.
-- **The Value & Opportunity view's scoring model is a transparent analytical framework, not a measured financial statistic.** The formula is shown in-app; no market sizes, ROI figures, transaction volumes, or savings numbers were invented anywhere in the tool.
-
-
-## How to run it locally
-
-No build step, no package manager, no server required.
-
-- **Simplest:** download `index.html` and double-click it — it opens directly in your default browser.
-- **Or, from a terminal**, from inside this folder:
-  ```bash
-  # Python 3
-  python3 -m http.server 8000
-  # then open http://localhost:8000 in your browser
-  ```
-  This step is optional — it's only useful if you want to test it the way it would behave when served from a real web address rather than opened as a local file.
-
-## Deployment
-
-The public version is hosted on Vercel: [Open the live Explorer](https://uae-ecosystem-evidence-lab.vercel.app). The source is available in this repository. The page is a static, dependency-free web page:
-
-- **GitHub Pages** — push this repository to GitHub, enable Pages on the `main` branch (root folder), and it will serve directly since the file is already named `index.html`.
-- **Netlify, Vercel, Cloudflare Pages, or similar** — drag-and-drop deployment of this folder works with zero build settings.
-
-Recommended before a fully public launch:
-- A manual print/PDF export check across Chrome, Safari, Firefox, and Edge, since browsers render large SVGs slightly differently when printing.
-
-## Repository structure
-
+```bash
+python3 -m http.server 8000
 ```
-.
-├── index.html                          # The Explorer — open this file to use the tool
-├── README.md                           # This file
-└── docs/
-    └── docs/                                # Supporting project documentation
-```
+
+Then open `http://localhost:8000`.
+
+## Current quality priorities
+
+See [Audit and remediation plan](AUDIT-AND-REMEDIATION.md) for the second-pass review, evidence checks and the remaining verification work.
