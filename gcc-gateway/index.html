@@ -118,18 +118,34 @@ const tableArabic = [
 ["عمليات المطالبات / البيانات","تحدد اللوائح أنشطة مديري المطالبات المتعلقة بالمطالبات والدفع والبرامج المعتمدة وشبكات مقدمي الخدمة. لكنها لا تثبت وجود معيار موحد لتبادل المطالبات في جميع الإمارات.","تصف مواد اعتماد مقدمي الخدمة لدى المجلس مواعيد تقديم المطالبات وإعادة تقديمها ومتطلبات نظام الفوترة والحد الأدنى للبيانات. تحقّق من سريانها حالياً مع الهيئة."],
 ["دخول السوق والترخيص","تتطلب عمليات مدير مطالبات التأمين الصحي ترخيصاً من الجهة الاتحادية وترخيصاً من الجهة المختصة في الإمارة المعنية؛ أي ضرورة التحقق من المتطلبات الاتحادية والمحلية معاً.","تدرج الهيئة فئات تشمل التأمين وإعادة التأمين والوسطاء ومجمّعي الخدمات ومقدمي الخدمات مثل تسوية المطالبات وتقدير الخسائر والخدمات الاكتوارية. وتعتمد الفئة الدقيقة على النشاط."]
 ];
+const originalTextNodes = new WeakMap();
 function setLang(ar){
 document.documentElement.lang=ar?'ar':'en';
 document.documentElement.dir=ar?'rtl':'ltr';
 document.body.style.direction=ar?'rtl':'ltr';
 document.getElementById('langToggle').textContent=ar?'English':'العربية';
-document.querySelectorAll('a,button').forEach(el=>{if(el.id==='langToggle')return;});
 const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
-let n;while((n=walker.nextNode())){if(!n.dataset.en)n.dataset.en=n.nodeValue;const key=n.dataset.en.trim();if(translations[key]){n.nodeValue=ar?n.dataset.en.replace(key,translations[key]):n.dataset.en;}}
-const sels=[['.hero h1','سوقان للتأمين. خمسة محاور توضّح كيف يعمل النظام.'],['.hero p',translations["A practical comparison of insurance oversight, mandatory health coverage, claims administration and market access—grounded in official sources, with evidence separated from interpretation."]]];
+let n;while((n=walker.nextNode())){
+if(!originalTextNodes.has(n)) originalTextNodes.set(n,n.nodeValue);
+const original=originalTextNodes.get(n);
+const key=original.trim();
+if(translations[key]) n.nodeValue=ar?original.replace(key,translations[key]):original;
+}
 if(ar){
-document.querySelectorAll('#comparison tbody tr').forEach((tr,i)=>{const cells=tr.querySelectorAll('td');if(tableArabic[i]){cells.forEach(td=>{if(!td.dataset.enHTML)td.dataset.enHTML=td.innerHTML;});const src1=(cells[1].dataset.enHTML.match(/<span class="source">[\\s\\S]*?<\\/span>/i)||[])[0]||'';const src2=(cells[2].dataset.enHTML.match(/<span class="source">[\\s\\S]*?<\\/span>/i)||[])[0]||'';cells[0].textContent=tableArabic[i][0];cells[1].innerHTML=tableArabic[i][1]+src1;cells[2].innerHTML=tableArabic[i][2]+src2;cells.forEach(td=>{td.querySelectorAll('a').forEach(a=>{const t=a.textContent.trim();if(translations[t])a.textContent=translations[t];});});}}); 
-}else{document.querySelectorAll('#comparison tbody tr').forEach(tr=>tr.querySelectorAll('td').forEach(td=>{if(td.dataset.enHTML)td.innerHTML=td.dataset.enHTML;}));}
+document.querySelectorAll('#comparison tbody tr').forEach((tr,i)=>{
+const cells=tr.querySelectorAll('td');
+if(!tableArabic[i])return;
+cells.forEach(td=>{if(!td.dataset.enHTML)td.dataset.enHTML=td.innerHTML;});
+const src1=(cells[1].dataset.enHTML.match(/<span class="source">[\\s\\S]*?<\\/span>/i)||[])[0]||'';
+const src2=(cells[2].dataset.enHTML.match(/<span class="source">[\\s\\S]*?<\\/span>/i)||[])[0]||'';
+cells[0].textContent=tableArabic[i][0];
+cells[1].innerHTML=tableArabic[i][1]+src1;
+cells[2].innerHTML=tableArabic[i][2]+src2;
+cells.forEach(td=>td.querySelectorAll('a').forEach(a=>{const label=a.textContent.trim();if(translations[label])a.textContent=translations[label];}));
+});
+}else{
+document.querySelectorAll('#comparison tbody tr').forEach(tr=>tr.querySelectorAll('td').forEach(td=>{if(td.dataset.enHTML)td.innerHTML=td.dataset.enHTML;}));
+}
 }
 document.getElementById('langToggle').addEventListener('click',()=>setLang(document.documentElement.lang!=='ar'));
 })();
