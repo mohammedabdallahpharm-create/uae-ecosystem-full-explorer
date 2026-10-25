@@ -2608,12 +2608,35 @@ function currentData(){ return DATA[state.view]; }
 
 const svg = document.getElementById("map");
 const SVGNS = "http://www.w3.org/2000/svg";
+const MAP_NODE_LABELS = {
+  DOH:{en:"Abu Dhabi Health",ar:"دائرة الصحة"}, DHA:{en:"Dubai Health Authority",ar:"هيئة الصحة بدبي"},
+  MOHAP:{en:"Federal Health Bodies",ar:"الجهات الصحية الاتحادية"}, CBUAE:{en:"Central Bank · Insurance",ar:"المركزي · التأمين"},
+  DAM:{en:"Daman",ar:"دامان"}, SUK:{en:"Sukoon",ar:"سكون"}, ADNIC:{en:"ADNIC",ar:"أدنيك"},
+  AXA:{en:"AXA Gulf",ar:"أكسا الخليج"}, INTL:{en:"Global / Regional Insurers",ar:"شركات عالمية وإقليمية"},
+  BRK1:{en:"Corporate Brokers",ar:"وسطاء الشركات"}, BRK2:{en:"Individual Brokers",ar:"وسطاء الأفراد"},
+  BRK:{en:"Insurance Brokers",ar:"وسطاء التأمين"}, EMP:{en:"Employers",ar:"أصحاب العمل"},
+  SPON:{en:"Employers / Sponsors",ar:"أصحاب العمل والكفلاء"}, DIST:{en:"Brokers & Distribution",ar:"الوسطاء والتوزيع"},
+  TPA1:{en:"Neuron",ar:"نيورون"}, TPA2:{en:"Nextcare / NAS",ar:"نكست كير / NAS"}, MDL:{en:"Almadallah",ar:"المدلة"},
+  SEHA:{en:"SEHA · Abu Dhabi",ar:"صحة · أبوظبي"}, DXBH:{en:"Dubai Health",ar:"دبي للصحة"},
+  NEPH:{en:"EHS Public Network",ar:"شبكة EHS الحكومية"}, PRIV:{en:"Private Hospitals",ar:"المستشفيات الخاصة"},
+  HOSP:{en:"Hospitals & Specialist Care",ar:"المستشفيات والرعاية التخصصية"},
+  OPN:{en:"Clinics · Labs · Pharmacies",ar:"عيادات · تشخيص · صيدليات"}, PHYS:{en:"Clinical Workforce",ar:"الكوادر السريرية"},
+  MAL:{en:"Malaffi",ar:"ملفّي"}, NABIDH:{en:"NABIDH",ar:"نابض"}, RIY:{en:"Riayati · Tatmeen",ar:"رعايتي · تمكين"},
+  AANI:{en:"Aani Payments",ar:"مدفوعات عاني"}, AUD:{en:"Audit & Compliance",ar:"التدقيق والامتثال"},
+  ICP:{en:"ICP / GDRFA",ar:"الهوية والإقامة"}, SHA:{en:"Sharjah Health Authority",ar:"هيئة الصحة بالشارقة"},
+  REG1:{en:"Regulation & Standards",ar:"التنظيم والمعايير"}, REG2:{en:"Compliance & Audit",ar:"الامتثال والتدقيق"},
+  GOVCOV:{en:"Government-Funded Cover",ar:"تغطية بتمويل حكومي"}, EMPCOV:{en:"Employer-Funded Cover",ar:"تغطية بتمويل صاحب العمل"},
+  COMCOV:{en:"Commercial Underwriting",ar:"الاكتتاب التجاري"}, ENR:{en:"Eligibility & Enrollment",ar:"الأهلية والتسجيل"},
+  PA:{en:"Prior Authorization",ar:"الموافقة المسبقة"}, CSUB:{en:"Claims Submission",ar:"إرسال المطالبات"},
+  CADJ:{en:"Claims Adjudication",ar:"البت في المطالبات"}, HIE:{en:"Health Data Exchange",ar:"تبادل البيانات الصحية"},
+  CTI:{en:"Claims Transaction Systems",ar:"أنظمة معاملات المطالبات"}, GRD:{en:"Government Data",ar:"البيانات الحكومية"},
+  PAY:{en:"Payment & Reconciliation",ar:"الدفع والتسوية"}, DEC:{en:"Decisions & Outcomes",ar:"القرارات والنتائج"}
+};
 function shortMapLabel(node){
+  const labels = MAP_NODE_LABELS[node.id];
+  if(labels) return state.lang==="en" ? labels.en : labels.ar;
   const full = state.lang==="en" ? node.name_en : node.name_ar;
-  if(state.lang==="en") return full.length>23 ? full.slice(0,21).trimEnd()+"…" : full;
-  const cleaned = full.replace(/[（(].*?[）)]/g,"").replace(/\s+/g," ").trim();
-  const words = cleaned.split(" ");
-  return words.length>2 ? words.slice(0,2).join(" ")+"…" : (cleaned.length>13 ? cleaned.slice(0,12)+"…" : cleaned);
+  return full.length > 24 ? full.slice(0,22).trimEnd()+"…" : full;
 }
 function el(tag,attrs){ const e=document.createElementNS(SVGNS,tag); for(const k in attrs) e.setAttribute(k,attrs[k]); return e; }
 
