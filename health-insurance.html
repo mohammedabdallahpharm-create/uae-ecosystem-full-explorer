@@ -3204,5 +3204,16 @@ restoreShareHash();
 })();
 </script>
 
+
+<!-- Minimal shared navigation: Back and Home only -->
+<style>
+#shared-site-nav{position:fixed;top:0;left:0;right:0;z-index:99999;display:flex;gap:8px;align-items:center;padding:8px max(12px,calc((100vw - 1320px)/2));background:rgba(255,255,255,.97);border-bottom:1px solid #dbe3e8;box-shadow:0 3px 14px rgba(11,35,64,.08);backdrop-filter:blur(10px);font:700 12px/1.2 system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+#shared-site-nav a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid #dbe3e8;border-radius:999px;padding:8px 12px;color:#0b2340;background:#fff;cursor:pointer;font:inherit}
+#shared-site-nav a:hover{border-color:#0f6e6e;color:#0f6e6e}
+body{padding-top:54px!important}
+@media(max-width:480px){#shared-site-nav{padding:6px 8px;gap:6px}#shared-site-nav a{padding:8px 10px;font-size:11px}body{padding-top:50px!important}}
+</style>
+<nav id="shared-site-nav" aria-label="Site navigation"><a href="index.html" id="shared-back-link"><span aria-hidden="true">←</span><span data-shared-back>Back</span></a><a href="index.html"><span aria-hidden="true">⌂</span><span data-shared-home>Home</span></a></nav>
+<script>(function(){const nav=document.getElementById("shared-site-nav"),back=document.getElementById("shared-back-link");function paint(){const ar=document.documentElement.lang==="ar";nav.dir=ar?"rtl":"ltr";nav.querySelector("[data-shared-back]").textContent=ar?"رجوع":"Back";nav.querySelector("[data-shared-home]").textContent=ar?"الرئيسية":"Home"}back.addEventListener("click",function(e){try{if(document.referrer&&new URL(document.referrer).origin===location.origin&&history.length>1){e.preventDefault();history.back()}}catch(err){}});paint();const langBtn=document.querySelector("#langBtn, #lang, #langToggle");if(langBtn)langBtn.addEventListener("click",()=>setTimeout(paint,0));})();</script>
 </body>
 </html>
