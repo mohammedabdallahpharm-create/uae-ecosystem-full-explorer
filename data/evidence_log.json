@@ -1,6 +1,6 @@
 {
   "dataset": "UAE Insurance Ecosystem Explorer evidence log",
-  "retrieved_date": "2026-10-20",
+  "retrieved_date": "2026-10-25",
   "records": [
     {
       "evidence_id": "EVD-001",
@@ -28,27 +28,27 @@
     },
     {
       "evidence_id": "EVD-003",
-      "claim": "The current 19-line map taxonomy is an exploratory navigation structure, not confirmed as an exhaustive official classification.",
+      "claim": "The 19-sector taxonomy is an exploratory navigation structure with dedicated pages, not a confirmed exhaustive official UAE insurance classification.",
       "claim_type": "methodology_note",
       "source_id": "",
       "source_url": "",
-      "source_location": "Existing index.html sector array",
-      "observed_date": "2026-10-20",
-      "status": "needs validation",
+      "source_location": "data/sectors.json and the 19 dedicated sector HTML pages",
+      "observed_date": "2026-10-25",
+      "status": "methodology limitation documented",
       "confidence": "high",
-      "notes": "Compare each line against applicable official classes and product definitions; do not label the taxonomy as official."
+      "notes": "Dedicated prototype pages show content coverage only; compare each line against applicable official classes and product definitions before making regulatory or market-completeness claims."
     },
     {
       "evidence_id": "EVD-004",
-      "claim": "The current index.html sector array defines 10 sector nodes, while UI copy refers to 19 insurance lines.",
+      "claim": "The main market map in index.html defines 10 high-level nodes; the dedicated sector explorer layer and registry contain 19 sector pages/records.",
       "claim_type": "data_quality_finding",
       "source_id": "",
       "source_url": "https://github.com/mohammedabdallahpharm-create/uae-ecosystem-full-explorer/blob/main/index.html",
-      "source_location": "const sectors array and copy text",
-      "observed_date": "2026-10-20",
-      "status": "verified by source-code inspection",
+      "source_location": "index.html sector array; data/sectors.json; root-level sector HTML pages",
+      "observed_date": "2026-10-25",
+      "status": "verified by source-code inspection; registry aligned on audit branch",
       "confidence": "high",
-      "notes": "Resolve discrepancy by adding validated sector definitions or correcting the UI copy. This is a source-code finding, not a claim about the total number of official UAE insurance classes."
+      "notes": "This is a distinction between the high-level map and dedicated detail pages, not a claim about the total number of official UAE insurance classes. The registry now links each of the 19 records to an existing dedicated page."
     }
   ]
 }

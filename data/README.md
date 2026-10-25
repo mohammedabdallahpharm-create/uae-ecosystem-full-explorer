@@ -1,9 +1,9 @@
 # UAE Insurance Ecosystem Explorer — Data Layer
 
-This folder separates reusable data from the visual map. The current dataset is a starter registry, not a complete verified census of UAE market participants. Audit finding: the current main-map sector array contains 10 sector nodes, although the UI copy refers to 19 insurance lines. Treat that as a content/data mismatch to resolve before presenting the map as covering 19 lines.
+This folder separates reusable data from the visual map. The registry now contains **19 dedicated sector explorer pages**, while the main market map in `index.html` intentionally presents **10 high-level nodes**. These are different navigation layers, not a count of officially recognized insurance classes. The 19-line taxonomy is exploratory and is not presented as an exhaustive official UAE classification.
 
 ## Files
-- `sectors.json`: the existing map's sector taxonomy, bilingual labels, summaries, and links.
+- `sectors.json`: 19 bilingual sector records with conceptual summaries, generic roles, and links to dedicated pages.
 - `entities.json`: named entities and participant-role categories. Categories are not companies.
 - `relationships.json`: generic relationship patterns, not named-company contracts or affiliations.
 - `sources.json`: official reference sources with retrieval dates and scope notes.
@@ -17,14 +17,18 @@ This folder separates reusable data from the visual map. The current dataset is 
 5. Record jurisdiction and effective dates; UAE federal, emirate-level, and financial-free-zone regimes must not be conflated.
 6. Use ISO dates (`YYYY-MM-DD`), stable IDs, bilingual names where available, and explicit unknowns rather than guesses.
 7. Review current CBUAE instruments before relying on older guidance. This dataset supports market intelligence, not legal advice.
+8. Treat sector summaries and role lists as conceptual workflow descriptions unless claim-level sources support a specific market assertion.
 
-## Known audit finding
-- Main map source (`index.html`) currently defines 10 sector nodes: health, motor, travel, life, property, marine, aviation, liability, engineering, and reinsurance. UI copy says 19; this is not supported by the current array. Do not claim 19 live sector nodes until the map and sector registry are reconciled.
+## Current scope and limitations
+- `index.html` contains 10 high-level market-map nodes.
+- `sectors.json` contains 19 sector records, each linked to a dedicated HTML explorer page. A dedicated page is evidence of prototype coverage, not proof that the sector's market participants, products, regulatory scope, or demand have been independently verified.
+- `entities.json` currently contains 11 entity/category records; `relationships.json` contains 4 generic relationship patterns; `sources.json` contains 3 source records; and `evidence_log.json` contains 4 evidence/methodology records. This is a starter evidence layer, not a verified census of the UAE market.
+- The 19-sector taxonomy must not be described as an official exhaustive classification. Check current official product classes and applicable instruments before making regulatory claims.
 
-## Next ingestion
-- Current official CBUAE registers for insurers and insurance-related professions.
-- Official emirate health-insurance authority/provider requirements for health insurance.
-- Official product/line definitions and applicable instruments for motor, travel, life, property, marine, aviation, liability, engineering and reinsurance.
-- Source-specific evidence for named company offerings, licences, networks and contractual links.
+## Next evidence work
+- Expand the official-source registry and attach source-specific evidence to each sector's applicable product/class definitions.
+- Add current official registers for insurers and insurance-related professions.
+- Add official emirate health-insurance authority/provider requirements for health insurance.
+- Verify named-company offerings, licences, networks and contractual links independently before adding them.
 
-Retrieved: 2026-10-20.
+Retrieved: 2026-10-25.

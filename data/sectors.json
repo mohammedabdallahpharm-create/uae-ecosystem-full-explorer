@@ -1,7 +1,7 @@
 {
   "dataset": "UAE Insurance Ecosystem Explorer sector taxonomy",
-  "retrieved_date": "2026-10-20",
-  "source_note": "Extracted from existing index.html; exploratory taxonomy, not official exhaustive classification.",
+  "retrieved_date": "2026-10-25",
+  "source_note": "Curated from the repository's 19 dedicated sector explorer pages. This is a conceptual navigation taxonomy, not an official exhaustive UAE insurance classification. Sector roles and journeys describe generic workflows unless separately supported by claim-level evidence.",
   "sectors": [
     {
       "sector_id": "health",
@@ -56,9 +56,9 @@
         "ورشة الإصلاح / مقيّم الأضرار",
         "مطالب من طرف ثالث"
       ],
-      "detail_page": "sector-ecosystem.html?sector=motor",
-      "detail_type": "Sector overview",
-      "record_status": "sector taxonomy / conceptual overview",
+      "detail_page": "motor-insurance.html",
+      "detail_type": "Dedicated sector explorer",
+      "record_status": "sector taxonomy / conceptual overview; dedicated page exists",
       "verification_status": "needs source validation for market-specific participants"
     },
     {
@@ -85,9 +85,9 @@
         "مقدم طبي أو جهة سفر",
         "مراجعة المطالبة والأدلة"
       ],
-      "detail_page": "sector-ecosystem.html?sector=travel",
-      "detail_type": "Detailed sector explorer",
-      "record_status": "sector taxonomy / conceptual overview",
+      "detail_page": "travel-insurance.html",
+      "detail_type": "Dedicated sector explorer",
+      "record_status": "sector taxonomy / conceptual overview; dedicated page exists",
       "verification_status": "needs source validation for market-specific participants"
     },
     {
@@ -114,9 +114,9 @@
         "شركة التأمين والمستشار",
         "الاكتتاب / المطالبات"
       ],
-      "detail_page": "sector-ecosystem.html?sector=life",
-      "detail_type": "Sector overview",
-      "record_status": "sector taxonomy / conceptual overview",
+      "detail_page": "life-insurance.html",
+      "detail_type": "Dedicated sector explorer",
+      "record_status": "sector taxonomy / conceptual overview; dedicated page exists",
       "verification_status": "needs source validation for market-specific participants"
     },
     {
@@ -143,9 +143,9 @@
         "المعاين / مقيّم الخسائر",
         "الإصلاح وإعادة التأهيل"
       ],
-      "detail_page": "sector-ecosystem.html?sector=property",
-      "detail_type": "Sector overview",
-      "record_status": "sector taxonomy / conceptual overview",
+      "detail_page": "property-insurance.html",
+      "detail_type": "Dedicated sector explorer",
+      "record_status": "sector taxonomy / conceptual overview; dedicated page exists",
       "verification_status": "needs source validation for market-specific participants"
     },
     {
@@ -172,9 +172,9 @@
         "الناقل / اللوجستيات",
         "المعاين البحري"
       ],
-      "detail_page": "sector-ecosystem.html?sector=marine",
-      "detail_type": "Sector overview",
-      "record_status": "sector taxonomy / conceptual overview",
+      "detail_page": "marine-cargo-insurance.html",
+      "detail_type": "Dedicated sector explorer",
+      "record_status": "sector taxonomy / conceptual overview; dedicated page exists",
       "verification_status": "needs source validation for market-specific participants"
     },
     {
@@ -201,9 +201,9 @@
         "شركة التأمين / إعادة التأمين",
         "خبير فني لتقييم الخسائر"
       ],
-      "detail_page": "sector-ecosystem.html?sector=aviation",
-      "detail_type": "Sector overview",
-      "record_status": "sector taxonomy / conceptual overview",
+      "detail_page": "aviation-insurance.html",
+      "detail_type": "Dedicated sector explorer",
+      "record_status": "sector taxonomy / conceptual overview; dedicated page exists",
       "verification_status": "needs source validation for market-specific participants"
     },
     {
@@ -230,9 +230,9 @@
         "المطالب / المستشار القانوني",
         "الأدلة وتقييم المسؤولية"
       ],
-      "detail_page": "sector-ecosystem.html?sector=liability",
-      "detail_type": "Sector overview",
-      "record_status": "sector taxonomy / conceptual overview",
+      "detail_page": "liability-insurance.html",
+      "detail_type": "Dedicated sector explorer",
+      "record_status": "sector taxonomy / conceptual overview; dedicated page exists",
       "verification_status": "needs source validation for market-specific participants"
     },
     {
@@ -259,9 +259,9 @@
         "المهندس / المعاين",
         "المطالبات وتقييم الخسائر"
       ],
-      "detail_page": "sector-ecosystem.html?sector=engineering",
-      "detail_type": "Sector overview",
-      "record_status": "sector taxonomy / conceptual overview",
+      "detail_page": "engineering-insurance.html",
+      "detail_type": "Dedicated sector explorer",
+      "record_status": "sector taxonomy / conceptual overview; dedicated page exists",
       "verification_status": "needs source validation for market-specific participants"
     },
     {
@@ -288,10 +288,307 @@
         "وسيط إعادة التأمين",
         "بيانات المخاطر والاتفاقيات"
       ],
-      "detail_page": "sector-ecosystem.html?sector=reinsurance",
-      "detail_type": "Sector overview",
-      "record_status": "sector taxonomy / conceptual overview",
+      "detail_page": "reinsurance.html",
+      "detail_type": "Dedicated sector explorer",
+      "record_status": "sector taxonomy / conceptual overview; dedicated page exists",
       "verification_status": "needs source validation for market-specific participants"
+    },
+    {
+      "sector_id": "agriculture",
+      "name_en": "Agriculture & livestock",
+      "name_ar": "التأمين الزراعي والثروة الحيوانية",
+      "member_journey_en": "Crop · livestock · seasonal risk",
+      "member_journey_ar": "المحاصيل · الثروة الحيوانية · المخاطر الموسمية",
+      "map_position": {
+        "x": 80,
+        "y": 610
+      },
+      "overview_en": "Agricultural cover may involve crop, livestock and agricultural assets, with seasonal exposure and event-specific evidence.",
+      "overview_ar": "قد يشمل التأمين الزراعي المحاصيل والثروة الحيوانية والأصول الزراعية، مع مراعاة المخاطر الموسمية والأدلة المرتبطة بالحدث.",
+      "typical_roles_en": [
+        "Agricultural insurer / underwriter",
+        "Broker / cooperative",
+        "Farmer / producer / agribusiness",
+        "Veterinary / agronomy / weather data",
+        "Field surveyor / specialist",
+        "Claims & policy review"
+      ],
+      "typical_roles_ar": [
+        "شركة تأمين زراعي / اكتتاب",
+        "وسيط / تعاونية",
+        "مزارع / منتج / مشروع زراعي",
+        "بيانات بيطرية / زراعية / طقس",
+        "مسّاح ميداني / مختص",
+        "مراجعة المطالبات والوثيقة"
+      ],
+      "detail_page": "agriculture-insurance.html",
+      "detail_type": "Dedicated sector explorer",
+      "record_status": "sector taxonomy / conceptual overview; dedicated page exists",
+      "verification_status": "conceptual roles and overview; market-specific participants, products and regulatory applicability require source validation"
+    },
+    {
+      "sector_id": "credit_guarantee",
+      "name_en": "Credit, guarantee & surety",
+      "name_ar": "تأمين الائتمان والضمان والكفالة",
+      "member_journey_en": "Contract · non-payment · recovery",
+      "member_journey_ar": "العقد · عدم السداد · الاسترداد",
+      "map_position": {
+        "x": 200,
+        "y": 610
+      },
+      "overview_en": "Credit, guarantee and surety cover can involve non-payment, guarantee obligations, contract terms, counterparty exposure and recovery evidence.",
+      "overview_ar": "قد يشمل تأمين الائتمان والضمان والكفالة عدم السداد والتزامات الضمان وشروط العقود ومخاطر الأطراف المقابلة وأدلة الاسترداد.",
+      "typical_roles_en": [
+        "Credit / guarantee insurer",
+        "Broker / bank / trade channel",
+        "Applicant business",
+        "Buyer, debtor or beneficiary",
+        "Contract and payment evidence",
+        "Claims & recovery team"
+      ],
+      "typical_roles_ar": [
+        "شركة تأمين ائتمان / ضمان",
+        "وسيط / بنك / قناة تجارية",
+        "المنشأة مقدمة الطلب",
+        "المشتري أو المدين أو المستفيد",
+        "أدلة العقد والسداد",
+        "فريق المطالبات والاسترداد"
+      ],
+      "detail_page": "credit-guarantee-insurance.html",
+      "detail_type": "Dedicated sector explorer",
+      "record_status": "sector taxonomy / conceptual overview; dedicated page exists",
+      "verification_status": "conceptual roles and overview; market-specific participants, products and regulatory applicability require source validation"
+    },
+    {
+      "sector_id": "fire",
+      "name_en": "Fire & allied perils",
+      "name_ar": "الحريق والأخطار الملحقة",
+      "member_journey_en": "Property · incident · loss",
+      "member_journey_ar": "الممتلكات · الحادث · الخسارة",
+      "map_position": {
+        "x": 320,
+        "y": 610
+      },
+      "overview_en": "Fire and allied-perils cover concerns specified events affecting insured buildings, contents and commercial assets, subject to policy terms.",
+      "overview_ar": "يتعلق تأمين الحريق والأخطار الملحقة بالأحداث المحددة التي تؤثر في المباني والمحتويات والأصول التجارية المؤمن عليها، وفق شروط الوثيقة.",
+      "typical_roles_en": [
+        "Property insurer / underwriter",
+        "Broker / commercial channel",
+        "Property owner / tenant / business",
+        "Civil Defence / incident evidence",
+        "Loss adjuster / engineer",
+        "Claims & recovery teams"
+      ],
+      "typical_roles_ar": [
+        "شركة تأمين ممتلكات / اكتتاب",
+        "وسيط / قناة تجارية",
+        "مالك العقار / المستأجر / المنشأة",
+        "الدفاع المدني / أدلة الحادث",
+        "مقيّم خسائر / مهندس",
+        "فرق المطالبات والاسترداد"
+      ],
+      "detail_page": "fire-insurance.html",
+      "detail_type": "Dedicated sector explorer",
+      "record_status": "sector taxonomy / conceptual overview; dedicated page exists",
+      "verification_status": "conceptual roles and overview; market-specific participants, products and regulatory applicability require source validation"
+    },
+    {
+      "sector_id": "money_valuables_crime",
+      "name_en": "Money, valuables & crime",
+      "name_ar": "تأمين الأموال والمقتنيات والجرائم",
+      "member_journey_en": "Custody · incident · forensic evidence",
+      "member_journey_ar": "الحيازة · الحادث · الأدلة الجنائية",
+      "map_position": {
+        "x": 440,
+        "y": 610
+      },
+      "overview_en": "This specialist cover may address money in transit or storage, theft, robbery, fidelity and defined property exposures, subject to policy wording.",
+      "overview_ar": "قد يغطي هذا التأمين المتخصص الأموال أثناء النقل أو التخزين والسرقة والسطو وخيانة الأمانة ومخاطر ممتلكات محددة، وفق نص الوثيقة.",
+      "typical_roles_en": [
+        "Specialist / property insurer",
+        "Broker / financial-services channel",
+        "Business / cash handler / institution",
+        "Custody logs / CCTV / police",
+        "Loss adjuster / forensic specialist",
+        "Claims & recovery"
+      ],
+      "typical_roles_ar": [
+        "شركة تأمين متخصصة / ممتلكات",
+        "وسيط / قناة خدمات مالية",
+        "منشأة / مسؤول نقدية / مؤسسة",
+        "سجلات الحيازة / كاميرات / شرطة",
+        "مقيّم خسائر / مختص جنائي",
+        "المطالبات والاسترداد"
+      ],
+      "detail_page": "money-valuables-crime-insurance.html",
+      "detail_type": "Dedicated sector explorer",
+      "record_status": "sector taxonomy / conceptual overview; dedicated page exists",
+      "verification_status": "conceptual roles and overview; market-specific participants, products and regulatory applicability require source validation"
+    },
+    {
+      "sector_id": "oil_energy",
+      "name_en": "Oil & energy",
+      "name_ar": "تأمين النفط والطاقة",
+      "member_journey_en": "Energy asset · interruption · liability",
+      "member_journey_ar": "أصول الطاقة · توقف الأعمال · المسؤولية",
+      "map_position": {
+        "x": 560,
+        "y": 610
+      },
+      "overview_en": "Specialist energy cover may address energy assets, operational interruption, equipment and associated liability exposures.",
+      "overview_ar": "قد يتناول التأمين المتخصص للطاقة أصول الطاقة وانقطاع العمليات والمعدات ومخاطر المسؤولية المرتبطة بها.",
+      "typical_roles_en": [
+        "Energy insurer / specialist underwriter",
+        "Specialist broker / placement adviser",
+        "Energy operator / asset owner",
+        "Engineering & maintenance teams",
+        "Reinsurers / loss adjusters",
+        "Claims & risk oversight"
+      ],
+      "typical_roles_ar": [
+        "شركة تأمين طاقة / اكتتاب متخصص",
+        "وسيط متخصص / مستشار ترتيب",
+        "مشغل طاقة / مالك أصل",
+        "فرق الهندسة والصيانة",
+        "معيدو التأمين / مقيّمو الخسائر",
+        "المطالبات والإشراف على المخاطر"
+      ],
+      "detail_page": "oil-energy-insurance.html",
+      "detail_type": "Dedicated sector explorer",
+      "record_status": "sector taxonomy / conceptual overview; dedicated page exists",
+      "verification_status": "conceptual roles and overview; market-specific participants, products and regulatory applicability require source validation"
+    },
+    {
+      "sector_id": "personal_accident",
+      "name_en": "Personal accident",
+      "name_ar": "تأمين الحوادث الشخصية",
+      "member_journey_en": "Accident · injury · benefit evidence",
+      "member_journey_ar": "حادث · إصابة · أدلة الاستحقاق",
+      "map_position": {
+        "x": 680,
+        "y": 610
+      },
+      "overview_en": "Personal accident cover may provide defined benefits for accidental injury, disability or death, supported by event-specific evidence and policy terms.",
+      "overview_ar": "قد يوفر تأمين الحوادث الشخصية منافع محددة للإصابة العرضية أو العجز أو الوفاة، وفق أدلة الحادث وشروط الوثيقة.",
+      "typical_roles_en": [
+        "Personal accident insurer",
+        "Broker / employer / direct channel",
+        "Insured individual or group",
+        "Medical provider / police / employer",
+        "Claims benefit assessor",
+        "Regulatory and policy controls"
+      ],
+      "typical_roles_ar": [
+        "شركة تأمين حوادث شخصية",
+        "وسيط / صاحب عمل / قناة مباشرة",
+        "فرد أو مجموعة مؤمن عليها",
+        "مقدم طبي / شرطة / صاحب عمل",
+        "مقيّم منافع المطالبات",
+        "ضوابط تنظيمية ووثائقية"
+      ],
+      "detail_page": "personal-accident-insurance.html",
+      "detail_type": "Dedicated sector explorer",
+      "record_status": "sector taxonomy / conceptual overview; dedicated page exists",
+      "verification_status": "conceptual roles and overview; market-specific participants, products and regulatory applicability require source validation"
+    },
+    {
+      "sector_id": "rail",
+      "name_en": "Rail & rolling stock",
+      "name_ar": "تأمين السكك الحديدية ومعدات القطارات",
+      "member_journey_en": "Infrastructure · rolling stock · liability",
+      "member_journey_ar": "البنية التحتية · القطارات · المسؤولية",
+      "map_position": {
+        "x": 800,
+        "y": 610
+      },
+      "overview_en": "Rail cover may involve infrastructure, rolling stock, asset damage and related liability risks, with inspection and maintenance evidence.",
+      "overview_ar": "قد يشمل تأمين السكك الحديدية البنية التحتية ومعدات القطارات وأضرار الأصول ومخاطر المسؤولية، مع أدلة الفحص والصيانة.",
+      "typical_roles_en": [
+        "Infrastructure / transport insurer",
+        "Specialist broker / project adviser",
+        "Rail operator / asset owner",
+        "Asset, inspection & maintenance teams",
+        "Engineer / loss adjuster",
+        "Claims, liability & recovery"
+      ],
+      "typical_roles_ar": [
+        "شركة تأمين بنية تحتية / نقل",
+        "وسيط متخصص / مستشار مشروع",
+        "مشغل سكة حديد / مالك أصل",
+        "فرق الأصول والفحص والصيانة",
+        "مهندس / مقيّم خسائر",
+        "المطالبات والمسؤولية والاسترداد"
+      ],
+      "detail_page": "rail-insurance.html",
+      "detail_type": "Dedicated sector explorer",
+      "record_status": "sector taxonomy / conceptual overview; dedicated page exists",
+      "verification_status": "conceptual roles and overview; market-specific participants, products and regulatory applicability require source validation"
+    },
+    {
+      "sector_id": "space",
+      "name_en": "Space & satellite",
+      "name_ar": "تأمين الفضاء والأقمار الصناعية",
+      "member_journey_en": "Satellite · launch · in-orbit risk",
+      "member_journey_ar": "القمر الصناعي · الإطلاق · مخاطر المدار",
+      "map_position": {
+        "x": 920,
+        "y": 610
+      },
+      "overview_en": "Space cover may address satellites, launch, in-orbit equipment and associated third-party liability exposures.",
+      "overview_ar": "قد يتناول تأمين الفضاء الأقمار الصناعية والإطلاق والمعدات في المدار ومخاطر المسؤولية تجاه الغير المرتبطة بها.",
+      "typical_roles_en": [
+        "Specialist space insurer / capacity",
+        "Specialist broker / international placement",
+        "Satellite owner / operator / project",
+        "Engineering / telemetry teams",
+        "Launch providers / technical experts",
+        "Claims, reinsurers & liability review"
+      ],
+      "typical_roles_ar": [
+        "شركة تأمين فضاء متخصصة / طاقة استيعابية",
+        "وسيط متخصص / ترتيب دولي",
+        "مالك القمر / المشغل / المشروع",
+        "فرق الهندسة والقياس عن بُعد",
+        "مزودو الإطلاق / خبراء فنيون",
+        "المطالبات وإعادة التأمين ومراجعة المسؤولية"
+      ],
+      "detail_page": "space-insurance.html",
+      "detail_type": "Dedicated sector explorer",
+      "record_status": "sector taxonomy / conceptual overview; dedicated page exists",
+      "verification_status": "conceptual roles and overview; market-specific participants, products and regulatory applicability require source validation"
+    },
+    {
+      "sector_id": "takaful",
+      "name_en": "Takaful",
+      "name_ar": "التكافل",
+      "member_journey_en": "Participants · fund · operator governance",
+      "member_journey_ar": "المشاركون · الصندوق · حوكمة المشغل",
+      "map_position": {
+        "x": 1040,
+        "y": 610
+      },
+      "overview_en": "Takaful arrangements involve Sharia-compliant risk-sharing, participant-fund and operator functions, governance and claims services; specific structures vary.",
+      "overview_ar": "تتضمن ترتيبات التكافل تقاسم المخاطر وفق أحكام الشريعة ووظائف صندوق المشاركين والمشغل والحوكمة وخدمات المطالبات، وتختلف الهياكل المحددة.",
+      "typical_roles_en": [
+        "Licensed takaful operator",
+        "Participants / policyholders",
+        "Broker / distribution channel",
+        "Participant fund & operator functions",
+        "Claims administration",
+        "Regulator & Sharia governance"
+      ],
+      "typical_roles_ar": [
+        "مشغل تكافل مرخص",
+        "المشاركون / حملة الوثائق",
+        "وسيط / قناة توزيع",
+        "وظائف صندوق المشاركين والمشغل",
+        "إدارة المطالبات",
+        "الجهة التنظيمية والحوكمة الشرعية"
+      ],
+      "detail_page": "takaful-insurance.html",
+      "detail_type": "Dedicated sector explorer",
+      "record_status": "sector taxonomy / conceptual overview; dedicated page exists",
+      "verification_status": "conceptual roles and overview; market-specific participants, products and regulatory applicability require source validation"
     }
   ]
 }
