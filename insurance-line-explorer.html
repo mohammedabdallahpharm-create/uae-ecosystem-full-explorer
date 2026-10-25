@@ -15,7 +15,7 @@
 <body><main class="shell">
 <header class="top"><div class="toprow"><div><div class="eyebrow" data-en="UAE insurance operations · Connected explorer" data-ar="عمليات التأمين في الإمارات · مستكشف مترابط">UAE insurance operations · Connected explorer</div><h1 data-en="One ecosystem view for every insurance line." data-ar="منظومة واحدة لاستكشاف كل نوع من التأمين.">One ecosystem view for every insurance line.</h1><p data-en="Choose an insurance line to explore its ecosystem, stakeholders, operating flow, evidence needs and validation questions — using the same consistent format as the Health Ecosystem and Travel Insurance views." data-ar="اختر نوع التأمين لاستكشاف منظومته وأطرافه وسير العمل والأدلة المطلوبة وأسئلة التحقق، باستخدام نفس القالب الموحد لمنظومة التأمين الصحي ومستكشف تأمين السفر.">Choose an insurance line to explore its ecosystem, stakeholders, operating flow, evidence needs and validation questions — using the same consistent format as the Health Ecosystem and Travel Insurance views.</p></div><button class="lang" id="langBtn">العربية</button></div></header>
 <nav class="nav" aria-label="Explore the insurance intelligence pages"><a href="index.html" data-en="Market Map" data-ar="خريطة السوق">Market Map</a><a href="health-insurance.html" data-en="Health Ecosystem" data-ar="منظومة التأمين الصحي">Health Ecosystem</a><a href="travel-insurance.html" data-en="Travel Insurance" data-ar="تأمين السفر">Travel Insurance</a><a href="sector-intelligence.html" data-en="Evidence & Signals" data-ar="الأدلة والإشارات">Evidence & Signals</a></nav>
-<div class="toolbar"><div><label class="fieldlabel" for="sectorSelect" data-en="Select an insurance line" data-ar="اختر نوع التأمين">Select an insurance line</label><select class="select" id="sectorSelect"></select></div><div class="count" id="lineCount">19 insurance lines · bilingual view</div></div>
+<div class="toolbar"><div><label class="fieldlabel" for="sectorSelect" data-en="Select an insurance line" data-ar="اختر نوع التأمين">Select an insurance line</label><select class="select" id="sectorSelect"></select></div><div class="count" id="lineCount">19 exploratory insurance categories · bilingual view</div></div>
 <section class="stats"><div class="stat"><strong id="statSector">—</strong><span data-en="Selected insurance line" data-ar="نوع التأمين المحدد">Selected insurance line</span></div><div class="stat"><strong>6</strong><span data-en="Ecosystem roles mapped" data-ar="أدوار في المنظومة">Ecosystem roles mapped</span></div><div class="stat"><strong>5</strong><span data-en="Workflow stages" data-ar="مراحل سير العمل">Workflow stages</span></div><div class="stat"><strong data-en="Human-led" data-ar="بإشراف بشري">Human-led</strong><span data-en="Review and final decisions" data-ar="المراجعة والقرارات النهائية">Review and final decisions</span></div></section>
 <section class="panel" id="allSectors"><div class="panelhead"><div><h2 data-en="All insurance ecosystems" data-ar="كل منظومات التأمين">All insurance ecosystems</h2><p class="sub" data-en="Open a dedicated ecosystem page for each insurance line. All sectors live inside this one system." data-ar="افتح صفحة مستقلة لكل نوع تأمين. جميع القطاعات موجودة داخل هذا النظام الواحد.">Open a dedicated ecosystem page for each insurance line. All sectors live inside this one system.</p></div><span class="status" data-en="19 sector pages" data-ar="19 صفحة قطاعية">19 sector pages</span></div><div id="sectorCards" class="sector-grid"></div></section>
 <section class="panel"><div class="panelhead"><div><h2 id="ecosystemTitle">Insurance ecosystem</h2><p class="sub" id="ecosystemIntro">A practical map of roles, handoffs and evidence.</p></div><span class="status" data-en="Research prototype · verify line-specific facts" data-ar="نموذج بحثي · تحقق من حقائق كل فئة">Research prototype · verify line-specific facts</span></div><div class="grid" id="entityGrid"></div><div class="note" id="scopeNote"></div></section>
@@ -54,7 +54,7 @@ let lang="en";
 function tr(en,ar){return lang==="ar"?ar:en;}
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
 function getSelected(){const id=new URLSearchParams(location.search).get("line");return data.find(function(d){return d.id===id;})||data.find(function(d){return d.id==="motor";});}
-function renderSelect(){const sel=document.getElementById("sectorSelect");const current=getSelected().id;sel.innerHTML=data.map(function(d){return '<option value="'+d.id+'"'+(d.id===current?' selected':'')+'>'+escapeHtml(lang==="ar"?d.ar:d.en)+'</option>';}).join("");document.getElementById("lineCount").textContent=tr("19 insurance lines · same explorer format","19 نوعاً من التأمين · قالب استكشاف موحّد");}
+function renderSelect(){const sel=document.getElementById("sectorSelect");const current=getSelected().id;sel.innerHTML=data.map(function(d){return '<option value="'+d.id+'"'+(d.id===current?' selected':'')+'>'+escapeHtml(lang==="ar"?d.ar:d.en)+'</option>';}).join("");document.getElementById("lineCount").textContent=tr("19 exploratory insurance categories · same explorer format","19 فئة استكشافية للتأمين · قالب استكشاف موحّد");}
 const sectorPages={motor:"motor-insurance.html",health:"health-insurance.html",life:"life-insurance.html",travel:"travel-insurance.html",property:"property-insurance.html",marine:"marine-cargo-insurance.html",accident:"personal-accident-insurance.html",takaful:"takaful-insurance.html",engineering:"engineering-insurance.html",liability:"liability-insurance.html",aviation:"aviation-insurance.html",credit:"credit-guarantee-insurance.html",agriculture:"agriculture-insurance.html",reinsurance:"reinsurance.html",fire:"fire-insurance.html",oil:"oil-energy-insurance.html",rail:"rail-insurance.html",space:"space-insurance.html",crime:"money-valuables-crime-insurance.html"};
 function render(){
 const d=getSelected();
@@ -77,7 +77,7 @@ document.getElementById("langBtn").addEventListener("click",function(){lang=lang
 render();
 </script>
 
-<!-- Shared navigation, five-minute orientation and persistent language -->
+<!-- Shared navigation and persistent language -->
 <style>
 body{padding-top:54px!important}
 #shared-site-nav{position:fixed;top:0;left:0;right:0;z-index:99999;display:flex;gap:7px;align-items:center;flex-wrap:wrap;padding:7px max(12px,calc((100vw - 1320px)/2));background:rgba(255,255,255,.97);border-bottom:1px solid #dbe3e8;box-shadow:0 3px 14px rgba(11,35,64,.08);backdrop-filter:blur(10px);font:700 12px/1.2 system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
@@ -85,13 +85,7 @@ body{padding-top:54px!important}
 #shared-site-nav a:hover,#shared-site-nav button:hover{border-color:#0f6e6e;color:#0f6e6e}
 #shared-site-nav .shared-nav-spacer{flex:1}
 #shared-site-nav .shared-nav-label{font-weight:600;color:#54626d;font-size:11px}
-#shared-guide{position:fixed;top:58px;inset-inline-end:12px;z-index:99998;width:min(470px,calc(100vw - 24px));max-height:calc(100vh - 72px);overflow:auto;background:#fff;border:1px solid #dbe3e8;border-radius:16px;box-shadow:0 18px 55px rgba(11,35,64,.22);padding:18px;color:#172b40;font:14px/1.5 system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
-#shared-guide[hidden]{display:none}
-#shared-guide h2{font-size:19px;margin:0 0 5px;color:#0b2340}
-#shared-guide p{margin:0 0 12px;color:#54626d}
-#shared-guide ol{margin:0;padding-inline-start:22px;display:grid;gap:9px}
-#shared-guide li strong{color:#0b2340}
-#shared-guide .shared-guide-note{margin-top:13px;padding:10px;background:#f7f8f9;border-radius:9px;font-size:12px}
+
 @media(max-width:480px){#shared-site-nav{gap:5px;padding:6px 7px}#shared-site-nav a,#shared-site-nav button{padding:8px 9px;font-size:11px}#shared-site-nav .shared-nav-label{display:none}body{padding-top:52px!important}}
 </style>
 <nav id="shared-site-nav" aria-label="Site navigation"><a href="#" id="shared-back-link"><span aria-hidden="true">←</span><span data-shared-back>Back</span></a><a href="index.html"><span aria-hidden="true">⌂</span><span data-shared-home>Home</span></a><span class="shared-nav-spacer"></span><span class="shared-nav-label" data-shared-label>UAE Insurance Intelligence System</span></nav>

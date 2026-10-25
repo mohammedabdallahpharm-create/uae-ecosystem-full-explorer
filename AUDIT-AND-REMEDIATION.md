@@ -43,7 +43,7 @@
 
 ### P2 — Navigation and language quality
 
-- Shared navigation code provides Back/Home and a five-minute guide on supporting pages. Smoke-test each page's language toggle and verify that the global language preference is applied consistently, rather than merely changing navigation labels.
+- Shared navigation provides Back/Home and a persistent language preference. The floating five-minute guide styling was removed per request; the current repository HTML has no `shared-guide` element or five-minute guide markup. Smoke-test each page's language toggle and verify that the global language preference is applied consistently, rather than merely changing navigation labels.
 - **Next improvement:** Keyboard-test the market-map nodes, confirm visible focus states, verify SVG labels at mobile widths, and review all Arabic strings with a native speaker.
 
 ### P2 — Accessibility, automated checks and maintenance
@@ -56,7 +56,9 @@
 
 **Verified from repository/Vercel metadata:** repository page inventory, stale README, main-page time mismatch, configured Vercel domains, latest deployment states, and the single-file artifact in the GCC deployment tree.
 
-**Not yet verified in a real browser:** every live page's runtime behaviour, cross-page language persistence, responsive visual quality, keyboard accessibility, exact Git commit behind each deployment, and external availability from the user's network.
+**Verified on the Vercel preview for `fix/explorer-audit-oct-2026`:** direct HTTP 200 responses for the root and all 23 HTML routes; no `shared-guide` element or five-minute guide markup in those responses; repository-local `.html` links resolve to files in the repository. This is an HTTP/source smoke test, not a full interactive browser test.
+
+**Not yet verified in a real browser:** cross-page language persistence, responsive visual quality, keyboard accessibility, every SVG label at mobile widths, the exact Git commit behind the production alias, and external availability from the user's network.
 
 ## Release gate
 

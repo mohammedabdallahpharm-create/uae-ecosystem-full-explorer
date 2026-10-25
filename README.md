@@ -11,7 +11,7 @@ A static, bilingual (English/Arabic) portfolio prototype for understanding the U
 | Page | Purpose |
 |---|---|
 | `index.html` | Market-level map of insurance lines, with links into sector experiences |
-| `insurance-line-explorer.html` | Browse 19 insurance lines and compare sector-level ecosystem structures |
+| `insurance-line-explorer.html` | Browse 19 exploratory insurance categories and compare sector-level ecosystem structures |
 | `intelligence-hub.html` | Navigate the insurance value chain and the research approach |
 | `sector-intelligence.html` | Evidence-linked signals, interpretations, validation questions and decision implications |
 | `health-insurance.html` | Detailed health-insurance ecosystem explorer |
