@@ -2204,8 +2204,8 @@ const NODES_VALUE = [
  decision_ar:"ما إذا كانت المطالبة كما رُمّزت مكتملة ومتوافقة قبل التقديم.",
  opportunity_en:"Coding and formatting mismatches are a recurring rejection cause noted across the ecosystem views.",
  opportunity_ar:"عدم تطابق الترميز والتنسيق سبب رفض متكرر مذكور عبر عروض المنظومة.",
- tech_en:["automation","dataInfra"], tech_note_en:"Pre-submission validation against coding rules is a straightforward automation case.",
- tech_ar:["automation","dataInfra"], tech_note_ar:"التحقق قبل التقديم من قواعد الترميز حالة أتمتة مباشرة.",
+ tech_en:["automation","dataInfra"], tech_note_en:"Pre-submission validation against coding rules is a plausible automation case. eClaimLink listed facility, clinician and Dubai Drug Code updates dated 21–23 Oct 2026, so a real implementation should validate against the applicable list version rather than a static code table. Source: https://www.eclaimlink.ae/Default.aspx?ReturnUrl=%2Fdocs%2Fdocs%2Finfohub.aspx.",
+ tech_ar:["automation","dataInfra"], tech_note_ar:"التحقق قبل التقديم من قواعد الترميز مرشح للأتمتة. عرضت إي كليم لينك تحديثات لقوائم المنشآت والأطباء ورموز الأدوية في الفترة 21–23 أكتوبر 2026؛ لذلك يجب أن يتحقق التطبيق الفعلي من إصدار القائمة المناسب، لا من جدول رموز ثابت. المصدر: https://www.eclaimlink.ae/Default.aspx?ReturnUrl=%2Fdocs%2Fdocs%2Finfohub.aspx.",
  scores:{friction:3, value:4, data:4, decision:5},
  evidence:"analyst",
  journey:{
@@ -2235,8 +2235,8 @@ const NODES_VALUE = [
  decision_ar:"الدفع الكامل أو الجزئي أو التعليق أو الرفض.",
  opportunity_en:"Rule variation across Thiqa, Basic Plan, Enaya, and commercial schemes makes this structurally complex, as noted in the TPA nodes of every emirate view.",
  opportunity_ar:"تفاوت القواعد بين ثقة والخطة الأساسية وإيناية والمخططات التجارية يجعل هذا معقدًا هيكليًا، كما ورد في عقد مديري المطالبات في كل عرض إماراتي.",
- tech_en:["intelligence","decisionSupport","automation"], tech_note_en:"High-volume, rules-heavy adjudication is a strong automation and decision-support candidate, with human review retained for edge cases.",
- tech_ar:["intelligence","decisionSupport","automation"], tech_note_ar:"البتّ عالي الحجم وكثيف القواعد مرشح قوي للأتمتة ودعم القرار، مع بقاء المراجعة البشرية للحالات الاستثنائية.",
+ tech_en:["intelligence","decisionSupport","automation"], tech_note_en:"High-volume, rules-heavy adjudication is a candidate for decision support, with human review retained for exceptions. In Abu Dhabi, DOH publishes Claims and Adjudication Rules V2025.1 plus Addenda 01–07 and 2026 tariff updates; select the applicable version by encounter date. This is a documented version-control need, not proof of market-wide savings. Source: https://www.doh.gov.ae/en/Shafafiya/Prices.",
+ tech_ar:["intelligence","decisionSupport","automation"], tech_note_ar:"البتّ عالي الحجم وكثيف القواعد مرشح لدعم القرار، مع بقاء المراجعة البشرية للحالات الاستثنائية. تنشر دائرة الصحة بأبوظبي قواعد المطالبات والبتّ V2025.1 والإضافات 01–07 وتحديثات التعرفة خلال 2026؛ ويجب اختيار الإصدار المنطبق حسب تاريخ الزيارة. هذه حاجة موثقة لضبط الإصدارات، وليست دليلاً على وفورات محققة في السوق كله. المصدر: https://www.doh.gov.ae/en/Shafafiya/Prices.",
  scores:{friction:5, value:5, data:4, decision:5},
  evidence:"directional",
  journey:{
