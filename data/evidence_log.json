@@ -1,6 +1,6 @@
 {
   "dataset": "UAE Insurance Ecosystem Explorer evidence log",
-  "retrieved_date": "2026-10-25",
+  "retrieved_date": "2026-10-26",
   "records": [
     {
       "evidence_id": "EVD-001",
@@ -49,6 +49,30 @@
       "status": "verified by source-code inspection; registry aligned on audit branch",
       "confidence": "high",
       "notes": "This is a distinction between the high-level map and dedicated detail pages, not a claim about the total number of official UAE insurance classes. The registry now links each of the 19 records to an existing dedicated page."
+    },
+    {
+      "evidence_id": "EVD-005",
+      "claim": "The CBUAE Annual Report 2025 reports AED 75.2 billion gross written premiums (+15.5% year-on-year) and AED 46.2 billion gross paid claims (+11%) for 2025.",
+      "claim_type": "fact",
+      "source_id": "SRC-CBUAE-ANNUAL-REPORT-2025",
+      "source_url": "https://centralbank.ae/media/4qbn11cl/annual-report-2025-en.pdf",
+      "source_location": "Insurance Supervision — Key Financial Data / Gross Written Premiums / Paid Claims",
+      "observed_date": "2026-10-26",
+      "status": "official annual-report figures reviewed in indexed report text",
+      "confidence": "high",
+      "notes": "A separate statistical publication has been reported with a different premium total. Preserve the source-specific figure and reconcile definitions/tables before cross-publication comparison."
+    },
+    {
+      "evidence_id": "EVD-006",
+      "claim": "The CBUAE register PDF titled 'CB Register September of 2026' lists numbered insurance-company entries through item 54, followed by a separate section for insurance brokers and other related professions.",
+      "claim_type": "fact",
+      "source_id": "SRC-CBUAE-INS-REGISTER-SEP-2026",
+      "source_url": "https://centralbank.ae/media/os1jf13r/cb-register-september-of-2026.pdf",
+      "source_location": "PDF pages 1–4; insurance companies section ends at numbered item 54 and related-professions section follows",
+      "observed_date": "2026-10-26",
+      "status": "register inspected; exact current entity census should be confirmed against all pages and any subsequent register update",
+      "confidence": "medium",
+      "notes": "Do not present the historical Q4 2025 count of 58 as the current September 2026 count. Validate full list, category labels, and any register changes before publishing an entity-count KPI."
     }
   ]
 }
