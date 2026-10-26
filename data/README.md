@@ -25,6 +25,11 @@ This folder separates reusable data from the visual map. The registry now contai
 - `entities.json` currently contains 11 entity/category records; `relationships.json` contains 4 generic relationship patterns; `sources.json` contains 3 source records; and `evidence_log.json` contains 4 evidence/methodology records. This is a starter evidence layer, not a verified census of the UAE market.
 - The 19-sector taxonomy must not be described as an official exhaustive classification. Check current official product classes and applicable instruments before making regulatory claims.
 
+## Evidence Register v1 (2026-10-26)
+- `evidence_register_v1.json` is the first expanded register: 7 source records, 11 evidence records, and research links for all 19 sector records, including 39 explicitly unvalidated research-opportunity hypotheses.
+- Labels distinguish `FACT`, `ANALYSIS`, `HYPOTHESIS`, and `VERIFICATION_REQUIRED`. Health has the strongest starter evidence coverage; other sectors are not represented as fully researched merely because they are linked to market-wide context.
+- The CBUAE 2025 market aggregates are source-backed. The 2026 entity list is identified but has not yet been normalized into a complete entity-level census. The located Abu Dhabi 2010 claims standard is not assumed current; applicability must be confirmed. DHA's September 2026 circular is an operational orientation notice, not a complete claims rulebook.
+
 ## Next evidence work
 - Expand the official-source registry and attach source-specific evidence to each sector's applicable product/class definitions.
 - Add current official registers for insurers and insurance-related professions.
