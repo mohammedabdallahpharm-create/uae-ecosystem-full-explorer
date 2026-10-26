@@ -1,6 +1,6 @@
 {
   "dataset": "UAE Insurance Ecosystem Explorer source registry",
-  "retrieved_date": "2026-10-20",
+  "retrieved_date": "2026-10-26",
   "records": [
     {
       "source_id": "SRC-CBUAE-RULEBOOK-INSURANCE-OVERVIEW",
@@ -34,6 +34,28 @@
       "retrieved_date": "2026-10-20",
       "scope": "Index of insurance-related professional regulations",
       "status": "official index; individual instruments require separate review"
+    },
+    {
+      "source_id": "SRC-CBUAE-INS-REGISTER-SEP-2026",
+      "title": "CB Register September 2026 — Insurance Companies and Related Professions",
+      "publisher": "Central Bank of the UAE",
+      "source_type": "official licensing register (PDF)",
+      "url": "https://centralbank.ae/media/os1jf13r/cb-register-september-of-2026.pdf",
+      "published_or_effective_date": "2026-09",
+      "retrieved_date": "2026-10-26",
+      "scope": "Point-in-time register of insurance companies and related insurance professions; includes licence type/category and registration numbers.",
+      "status": "official register; counts are date-specific and must not be conflated with historical statistical reports"
+    },
+    {
+      "source_id": "SRC-CBUAE-ANNUAL-REPORT-2025",
+      "title": "Central Bank of the UAE — Annual Report 2025, Insurance Supervision",
+      "publisher": "Central Bank of the UAE",
+      "source_type": "official annual report",
+      "url": "https://centralbank.ae/media/4qbn11cl/annual-report-2025-en.pdf",
+      "published_or_effective_date": "2026-08-24",
+      "retrieved_date": "2026-10-26",
+      "scope": "2025 insurance-sector aggregate financial indicators, including gross written premiums and gross paid claims.",
+      "status": "official annual report; use the report's own definitions and tables; do not merge with separate statistical publications without reconciliation"
     }
   ]
 }
