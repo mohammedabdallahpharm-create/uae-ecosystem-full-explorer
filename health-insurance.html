@@ -145,6 +145,8 @@ svg#map{ width:100%; height:100%; display:block; }
 .legend h3{ font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--text-secondary); margin-block-end:var(--space-3); }
 [dir="rtl"] .legend h3{ letter-spacing:0; }
 .legend-clusters{ display:grid; grid-template-columns:1fr 1fr; gap:var(--space-2) var(--space-4); }
+.flow-legend-item{ flex-basis:auto; }
+.flow-legend-line{ display:inline-block; width:20px; min-width:20px; border-top:2px solid; }
 .legend-item{ display:flex; align-items:center; gap:var(--space-2); font-size:.8rem; color:var(--text-primary); }
 .swatch{ width:12px; height:12px; border-radius:var(--radius-full); flex:none; }
 .legend-size{ display:flex; align-items:flex-end; gap:var(--space-4); }
@@ -195,8 +197,14 @@ svg#map{ width:100%; height:100%; display:block; }
 .explainer li{ font-size:.85rem; color:var(--p-sand-100); opacity:.92; }
 .explainer .disclaimer{ margin-block-start:var(--space-3); padding-block-start:var(--space-3); border-block-start:1px solid rgba(255,255,255,.18); font-size:.76rem; font-style:italic; color:var(--p-sand-200); }
 
-.flow-arrow{ fill:none; stroke:var(--accent-gold); stroke-width:1.6; opacity:.55; }
-.flow-arrow.constraint{ stroke:var(--p-gray-500); stroke-dasharray:3 4; opacity:.5; }
+.flow-arrow{ fill:none; stroke-width:2; opacity:.78; }
+.flow-arrow.coverage{ stroke:var(--accent-gold); }
+.flow-arrow.eligibility{ stroke:#70b8a4; stroke-dasharray:5 3; }
+.flow-arrow.authorization{ stroke:#d6a2e8; }
+.flow-arrow.claim{ stroke:#e59b59; }
+.flow-arrow.payment{ stroke:#78b6e8; stroke-width:2.4; }
+.flow-arrow.data{ stroke:#9eabd8; stroke-dasharray:2 3; }
+.flow-arrow.constraint{ stroke:var(--p-gray-500); stroke-dasharray:3 4; opacity:.65; }
 
 .matrix-wrap{ background:var(--surface-panel); border:1px solid var(--border-default); border-radius:var(--radius-lg); padding:var(--space-4) var(--space-5); box-shadow:var(--shadow-card); }
 .matrix-wrap h3{ font-size:.85rem; font-weight:800; color:var(--p-navy-900); margin-block-end:var(--space-2); }
@@ -2510,19 +2518,20 @@ const NODES_VALUE = [
 ];
 
 const FLOWS = [
- {from:"SPON", to:"EMPCOV", type:"value"},
- {from:"SPON", to:"ENR", type:"value"},
- {from:"GOVCOV", to:"HOSP", type:"value"},
- {from:"EMPCOV", to:"OPN", type:"value"},
- {from:"HOSP", to:"PA", type:"value"},
- {from:"OPN", to:"CSUB", type:"value"},
- {from:"PA", to:"CADJ", type:"value"},
- {from:"CSUB", to:"CADJ", type:"value"},
- {from:"CADJ", to:"PAY", type:"value"},
- {from:"HOSP", to:"HIE", type:"value"},
- {from:"CADJ", to:"CTI", type:"value"},
- {from:"HIE", to:"DEC", type:"value"},
- {from:"CTI", to:"DEC", type:"value"},
+ // Relationship types distinguish coverage, eligibility, clinical data, claims, decisions and settlement.
+ {from:"SPON", to:"EMPCOV", type:"coverage"},
+ {from:"SPON", to:"ENR", type:"eligibility"},
+ {from:"GOVCOV", to:"HOSP", type:"coverage"},
+ {from:"EMPCOV", to:"OPN", type:"coverage"},
+ {from:"HOSP", to:"PA", type:"authorization"},
+ {from:"OPN", to:"CSUB", type:"claim"},
+ {from:"PA", to:"CADJ", type:"authorization"},
+ {from:"CSUB", to:"CADJ", type:"claim"},
+ {from:"CADJ", to:"PAY", type:"payment"},
+ {from:"HOSP", to:"HIE", type:"data"},
+ {from:"CADJ", to:"CTI", type:"claim"},
+ {from:"HIE", to:"DEC", type:"data"},
+ {from:"CTI", to:"DEC", type:"data"},
  {from:"REG1", to:"GOVCOV", type:"constraint"},
  {from:"REG2", to:"CADJ", type:"constraint"}
 ];
@@ -2618,9 +2627,9 @@ const MAP_NODE_LABELS = {
   BRK1:{en:"Corporate Brokers",ar:"وسطاء الشركات"}, BRK2:{en:"Individual Brokers",ar:"وسطاء الأفراد"},
   BRK:{en:"Insurance Brokers",ar:"وسطاء التأمين"}, EMP:{en:"Employers",ar:"أصحاب العمل"},
   SPON:{en:"Employers / Sponsors",ar:"أصحاب العمل والكفلاء"}, DIST:{en:"Broker Distribution",ar:"الوسطاء والتوزيع"},
-  TPA1:{en:"Neuron",ar:"نيورون"}, TPA2:{en:"Nextcare / NAS",ar:"نكست كير / NAS"}, MDL:{en:"Almadallah",ar:"المدلة"},
+  TPA1:{en:"Neuron",ar:"نيورون"}, TPA2:{en:"Nextcare / NAS",ar:"نكست كير"}, MDL:{en:"Almadallah",ar:"المدلة"},
   SEHA:{en:"SEHA · Abu Dhabi",ar:"صحة · أبوظبي"}, DXBH:{en:"Dubai Health Network",ar:"دبي للصحة"},
-  NEPH:{en:"EHS Public Network",ar:"شبكة EHS الحكومية"}, PRIV:{en:"Private Hospitals",ar:"المستشفيات الخاصة"},
+  NEPH:{en:"EHS Public Network",ar:"شبكة الإمارات الصحية"}, PRIV:{en:"Private Hospitals",ar:"المستشفيات الخاصة"},
   HOSP:{en:"Hospitals & Specialists",ar:"المستشفيات والرعاية التخصصية"},
   OPN:{en:"Clinics · Labs · Pharmacies",ar:"عيادات · تشخيص · صيدليات"}, PHYS:{en:"Clinical Workforce",ar:"الكوادر السريرية"},
   MAL:{en:"Malaffi",ar:"ملفّي"}, NABIDH:{en:"NABIDH",ar:"نابض"}, RIY:{en:"Riayati · Tatmeen",ar:"رعايتي · تمكين"},
@@ -2698,7 +2707,7 @@ function renderMap(){
       const y2 = pTo.y - (dy/dist)*(pTo.r+8);
       const mx = (x1+x2)/2 + (y1-y2)*0.06;
       const my = (y1+y2)/2 + (x2-x1)*0.06;
-      const path = el("path",{class:"flow-arrow"+(f.type==="constraint"?" constraint":""), d:`M${x1},${y1} Q${mx},${my} ${x2},${y2}`, "marker-end":"url(#flowArrowHead)"});
+      const path = el("path",{class:"flow-arrow "+f.type, d:`M${x1},${y1} Q${mx},${my} ${x2},${y2}`, "marker-end":"url(#flowArrowHead)"});
       svg.appendChild(path);
     });
   }
@@ -3087,6 +3096,25 @@ function renderLegend(){
     const label=document.createElement("span"); label.textContent = state.lang==="en"?c.en:c.ar;
     item.appendChild(sw); item.appendChild(label); wrap.appendChild(item);
   });
+  if(state.view==="value"){
+    const flowTypes=[
+      ["coverage","#accent-gold","Coverage","التغطية"],
+      ["eligibility","#70b8a4","Eligibility","الأهلية"],
+      ["authorization","#d6a2e8","Authorization","الموافقة المسبقة"],
+      ["claim","#e59b59","Claims","المطالبات"],
+      ["payment","#78b6e8","Payment","المدفوعات"],
+      ["data","#9eabd8","Data","البيانات"],
+      ["constraint","var(--p-gray-500)","Rules / audit","التنظيم والتدقيق"]
+    ];
+    flowTypes.forEach(([type,color,en,ar])=>{
+      const item=document.createElement("div"); item.className="legend-item flow-legend-item";
+      const sw=document.createElement("span"); sw.className="flow-legend-line";
+      sw.style.borderTopColor=color==="#accent-gold"?"var(--accent-gold)":color;
+      if(type==="eligibility"||type==="data"||type==="constraint") sw.style.borderTopStyle="dashed";
+      const label=document.createElement("span"); label.textContent=state.lang==="en"?en:ar;
+      item.appendChild(sw); item.appendChild(label); wrap.appendChild(item);
+    });
+  }
 }
 function renderExplainerSteps(){
   const t = STRINGS[state.lang];
