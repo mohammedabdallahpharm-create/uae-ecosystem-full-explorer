@@ -2639,7 +2639,7 @@ function shortMapLabel(node){
 }
 function wrapMapLabel(value){
   const maxChars = state.lang==="ar" ? 10 : 12;
-  const words = String(value).split(/\\s+/).filter(Boolean);
+  const words = String(value).split(/\s+/).filter(Boolean);
   const lines = [];
   let line = "";
   for(const word of words){
