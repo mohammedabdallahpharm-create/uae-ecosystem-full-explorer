@@ -2636,7 +2636,14 @@ function shortMapLabel(node){
   const labels = MAP_NODE_LABELS[node.id];
   if(labels) return state.lang==="en" ? labels.en : labels.ar;
   const full = state.lang==="en" ? node.name_en : node.name_ar;
-  return full.length > 24 ? full.slice(0,22).trimEnd()+"…" : full;
+  const limit = state.lang==="ar" ? 16 : 22;
+  if(full.length <= limit) return full;
+  const candidate = full.slice(0, limit + 1);
+  const boundary = candidate.lastIndexOf(" ");
+  const shortened = boundary >= Math.floor(limit * 0.55)
+    ? candidate.slice(0, boundary).trimEnd()
+    : full.slice(0, limit).trimEnd();
+  return shortened + "…";
 }
 function el(tag,attrs){ const e=document.createElementNS(SVGNS,tag); for(const k in attrs) e.setAttribute(k,attrs[k]); return e; }
 
