@@ -104,9 +104,9 @@ svg#map{ width:100%; height:100%; display:block; }
 .node.is-dimmed circle.node-bubble{ opacity:var(--node-dimmed-opacity); }
 .node.is-dimmed text{ opacity:var(--node-dimmed-opacity); }
 .node text.node-code{ fill:var(--text-on-dark); font-size:10.5px; font-weight:800; text-anchor:middle; dominant-baseline:middle; pointer-events:none; }
-.node text.node-label{ fill:#ffffff; font-size:9.5px; font-weight:850; text-anchor:middle; pointer-events:none; paint-order:stroke fill; stroke:#0b2340; stroke-width:.65px; stroke-linejoin:round; }
+.node text.node-label{ fill:#ffffff; font-size:8.5px; font-weight:850; text-anchor:middle; pointer-events:none; paint-order:stroke fill; stroke:#0b2340; stroke-width:.65px; stroke-linejoin:round; }
 .node text.node-sub{ fill:var(--text-secondary); font-size:9.5px; font-weight:600; pointer-events:none; paint-order:stroke fill; stroke:var(--surface-canvas); stroke-width:2.8px; stroke-linejoin:round; }
-#map.lang-ar .node text.node-label{font-size:9.5px;font-weight:850;text-anchor:middle;direction:rtl;unicode-bidi:plaintext;}
+#map.lang-ar .node text.node-label{font-size:8.5px;font-weight:850;text-anchor:middle;direction:rtl;unicode-bidi:plaintext;}
 #map.lang-ar .node text.node-label tspan{unicode-bidi:plaintext;}
 #map.lang-ar .node text.node-code{display:none;}
 #map .node text.node-sub{display:none;}
@@ -2651,30 +2651,25 @@ function shortMapLabel(node){
   return labels ? (state.lang==="en" ? labels.en : labels.ar)
     : (state.lang==="en" ? node.name_en : node.name_ar);
 }
-function wrapMapLabel(value){
-  // Labels are rendered inside the node bubbles, so keep them compact in both languages.
-  const maxChars = state.lang==="ar" ? 8 : 8;
-  const maxLines = 3;
-  const words = String(value).split(/\s+/).filter(Boolean);
-  const lines = [];
-  let line = "";
-  for(const word of words){
-    if(word.length > maxChars){
-      if(line){ lines.push(line); line=""; }
-      lines.push(word.slice(0,maxChars-1)+"…");
-      continue;
+function wrapMapLabel(value,maxChars=9,maxLines=4){
+  // Preserve complete bilingual labels; split long words instead of truncating them.
+  const words=String(value).split(/\s+/).filter(Boolean);
+  const lines=[]; let line="";
+  for(const original of words){
+    let word=original;
+    while(word.length>maxChars){
+      if(line){lines.push(line);line="";}
+      lines.push(word.slice(0,maxChars)); word=word.slice(maxChars);
     }
-    const candidate = line ? line+" "+word : word;
-    if(candidate.length <= maxChars){ line = candidate; }
-    else { lines.push(line); line = word; }
+    const candidate=line?line+" "+word:word;
+    if(candidate.length<=maxChars){line=candidate;}
+    else{if(line)lines.push(line);line=word;}
   }
-  if(line) lines.push(line);
-  if(lines.length > maxLines){
-    lines.length = maxLines;
-    const last = lines[maxLines-1];
-    lines[maxLines-1] = last.length >= maxChars ? last.slice(0,maxChars-1)+"…" : last+"…";
-  }
-  return lines;
+  if(line)lines.push(line);
+  if(lines.length<=maxLines)return lines;
+  const kept=lines.slice(0,maxLines-1);
+  kept.push(lines.slice(maxLines-1).join(" "));
+  return kept;
 }
 function el(tag,attrs){ const e=document.createElementNS(SVGNS,tag); for(const k in attrs) e.setAttribute(k,attrs[k]); return e; }
 
@@ -2725,10 +2720,10 @@ function renderMap(){
 
     const labelLines = wrapMapLabel(shortMapLabel(p.node));
     // Keep both English and Arabic labels centered fully inside the enlarged node bubble.
-    const labelY = p.y - ((labelLines.length-1)*5.1);
+    const labelY = p.y - ((labelLines.length-1)*4.5);
     const label = el("text",{class:"node-label", x:p.x, y:labelY, "text-anchor":"middle"});
     labelLines.forEach((line,i)=>{
-      const tspan = el("tspan",{x:p.x, dy:i===0?0:10.2});
+      const tspan = el("tspan",{x:p.x, dy:i===0?0:9, textLength:Math.max(1,p.r*1.62), lengthAdjust:"spacingAndGlyphs"});
       tspan.textContent = line;
       label.appendChild(tspan);
     });
