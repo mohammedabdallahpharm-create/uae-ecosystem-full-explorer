@@ -2674,101 +2674,101 @@ function wrapMapLabel(value,maxChars=9,maxLines=4){
 function el(tag,attrs){ const e=document.createElementNS(SVGNS,tag); for(const k in attrs) e.setAttribute(k,attrs[k]); return e; }
 
 function renderMap(){
-  svg.innerHTML = "";
+  // Rebuilt map renderer: draw every layer independently and avoid references
+  // to layout variables that do not exist in the current node scope.
+  svg.replaceChildren();
   svg.classList.toggle("lang-ar",state.lang==="ar");
-  const d = currentData();
-  const isValue = state.view==="value";
+  const d=currentData();
+  const isValue=state.view==="value";
+  const defs=el("defs",{});
+  const marker=el("marker",{id:"flowArrowHead",viewBox:"0 0 10 10",refX:"8",refY:"5",markerWidth:"6",markerHeight:"6",orient:"auto-start-reverse"});
+  marker.appendChild(el("path",{d:"M0,0 L10,5 L0,10 z",fill:"var(--accent-gold)"}));
+  defs.appendChild(marker); svg.appendChild(defs);
 
-  const defs = el("defs",{});
-  const marker = el("marker",{id:"flowArrowHead", viewBox:"0 0 10 10", refX:"8", refY:"5", markerWidth:"7", markerHeight:"7", orient:"auto-start-reverse"});
-  const arrowPath = el("path",{d:"M0,0 L10,5 L0,10 z", fill:"var(--accent-gold)"});
-  marker.appendChild(arrowPath); defs.appendChild(marker); svg.appendChild(defs);
-
+  // Cluster spokes are background guides only; nodes are rendered in a
+  // separate pass so a label problem cannot leave the whole map blank.
   d.clusterMeta.forEach(cm=>{
-    if(cm.count===0) return;
-    const rad = cm.angleDeg*Math.PI/180;
-    const farR = R0 + (cm.count-1)*RSTEP + 60;
-    const fx = CX + farR*Math.cos(rad);
-    const fy = CY + farR*Math.sin(rad);
-    svg.appendChild(el("line",{class:"spoke-line", id:"spoke-"+cm.cluster.key, x1:CX, y1:CY, x2:fx, y2:fy, stroke:"var(--accent-gold)", "stroke-opacity":"0.78", "marker-end":"url(#flowArrowHead)"}));
+    if(!cm.count)return;
+    const a=cm.angleDeg*Math.PI/180;
+    const endR=Math.min(455,R0+(cm.count-1)*RSTEP+48);
+    svg.appendChild(el("line",{class:"spoke-line","data-cluster":cm.cluster.key,
+      x1:CX,y1:CY,x2:CX+endR*Math.cos(a),y2:CY+endR*Math.sin(a)}));
   });
 
   if(isValue){
     FLOWS.forEach(f=>{
-      const pFrom = d.posById[f.from], pTo = d.posById[f.to];
-      if(!pFrom || !pTo) return;
-      const dx = pTo.x-pFrom.x, dy = pTo.y-pFrom.y;
-      const dist = Math.sqrt(dx*dx+dy*dy) || 1;
-      const x1 = pFrom.x + (dx/dist)*(pFrom.r+4);
-      const y1 = pFrom.y + (dy/dist)*(pFrom.r+4);
-      const x2 = pTo.x - (dx/dist)*(pTo.r+8);
-      const y2 = pTo.y - (dy/dist)*(pTo.r+8);
-      const mx = (x1+x2)/2 + (y1-y2)*0.06;
-      const my = (y1+y2)/2 + (x2-x1)*0.06;
-      const path = el("path",{class:"flow-arrow "+f.type, d:`M${x1},${y1} Q${mx},${my} ${x2},${y2}`, "marker-end":"url(#flowArrowHead)"});
-      svg.appendChild(path);
+      const a=d.posById[f.from],b=d.posById[f.to];
+      if(!a||!b)return;
+      const dx=b.x-a.x,dy=b.y-a.y,dist=Math.hypot(dx,dy)||1;
+      const x1=a.x+dx/dist*(a.r+3),y1=a.y+dy/dist*(a.r+3);
+      const x2=b.x-dx/dist*(b.r+7),y2=b.y-dy/dist*(b.r+7);
+      svg.appendChild(el("path",{class:"flow-arrow "+f.type,
+        d:`M${x1},${y1} L${x2},${y2}`,"marker-end":"url(#flowArrowHead)"}));
     });
   }
 
+  const colors={regulators:"#0f6e6e",insurers:"#b98a3b",brokers:"#5b6f9e",tpas:"#a8763c",providers:"#b8493f",digital:"#2f6fa8",enablers:"#6b7280"};
   d.positioned.forEach(p=>{
-    const g = el("g",{class:"node", tabindex:"0", role:"button", "data-id":p.node.id,
-      "aria-label":(state.lang==="en"?p.node.name_en:p.node.name_ar)});
-    const bubbleColors = {regulators:"#0f6e6e",insurers:"#b98a3b",brokers:"#5b6f9e",tpas:"#a8763c",providers:"#b8493f",digital:"#2f6fa8",enablers:"#6b7280"};
-    const circle = el("circle",{class:"node-bubble", cx:p.x, cy:p.y, r:p.r, fill:bubbleColors[p.cluster.key] || "#5b6f9e", "fill-opacity":"1", stroke:"#ffffff", "stroke-width":"3"});
-    if(isValue){ circle.setAttribute("stroke-width", String(1.5+p.node.scores.friction)); }
-    g.appendChild(circle);
+    const g=el("g",{class:"node",tabindex:"0",role:"button","data-id":p.node.id,
+      "aria-label":state.lang==="en"?p.node.name_en:p.node.name_ar});
+    g.appendChild(el("circle",{class:"node-bubble",cx:p.x,cy:p.y,r:p.r,
+      fill:colors[p.cluster.key]||"#5b6f9e",stroke:"#fff","stroke-width":2.5}));
+    if(isValue)g.lastChild.setAttribute("stroke-width",String(1.5+(p.node.scores?.friction||0)));
 
-    const labelLines = wrapMapLabel(shortMapLabel(p.node));
-    // Keep both English and Arabic labels centered fully inside the enlarged node bubble.
-    const labelY = p.y - ((labelLines.length-1)*4.5);
-    const label = el("text",{class:"node-label", x:p.x, y:labelY, "text-anchor":"middle"});
+    const labelLines=wrapMapLabel(shortMapLabel(p.node),Math.max(5,Math.floor(p.r*0.52)),4);
+    const lineHeight= p.r<22 ? 8 : 9.5;
+    const totalHeight=(labelLines.length-1)*lineHeight;
+    const label=el("text",{class:"node-label",x:p.x,y:p.y-totalHeight/2,
+      "text-anchor":"middle","dominant-baseline":"middle"});
     labelLines.forEach((line,i)=>{
-      const tspan = el("tspan",{x:p.x, dy:i===0?0:9, textLength:Math.max(1,p.r*1.62), lengthAdjust:"spacingAndGlyphs"});
-      tspan.textContent = line;
-      label.appendChild(tspan);
+      const t=el("tspan",{x:p.x,dy:i===0?0:lineHeight});
+      t.textContent=line; label.appendChild(t);
     });
-    const fullTitle = el("title",{});
-    fullTitle.textContent = state.lang==="en"?p.node.name_en:p.node.name_ar;
-    g.appendChild(fullTitle);
-    const sub = el("text",{class:"node-sub", x:labelX, y:p.y+11, "text-anchor":anchor});
-    sub.textContent = isValue
-      ? STRINGS[state.lang][frictionLabelKey(p.node.scores.friction)]
-      : (state.lang==="en"?p.node.coverage_en:p.node.coverage_ar);
-    g.appendChild(label); g.appendChild(sub);
+    g.appendChild(label);
 
-    g.addEventListener("click", ()=>selectNode(p.node.id));
-    g.addEventListener("keydown",(ev)=>{ if(ev.key==="Enter"||ev.key===" "){ ev.preventDefault(); selectNode(p.node.id);} });
+    const title=el("title",{});
+    title.textContent=state.lang==="en"?p.node.name_en:p.node.name_ar;
+    g.appendChild(title);
+    g.addEventListener("click",()=>selectNode(p.node.id));
+    g.addEventListener("keydown",ev=>{
+      if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();selectNode(p.node.id);}
+    });
     svg.appendChild(g);
   });
 
+  // Place cluster names around the perimeter, within the viewBox.
   d.clusterMeta.forEach(cm=>{
-    if(cm.count===0) return;
-    const rightHalf = Math.cos(cm.angleDeg*Math.PI/180) >= -0.05;
-    const anchor = rightHalf ? "start" : "end";
-    const lx = cm.endX + (rightHalf? 8 : -8);
-    const t1 = el("text",{class:"cluster-label", x:lx, y:cm.endY-4, "text-anchor":anchor, fill:cm.cluster.color});
-    t1.textContent = state.lang==="en"?cm.cluster.en:cm.cluster.ar;
-    const t2 = el("text",{class:"cluster-label-sub", x:lx, y:cm.endY+11, "text-anchor":anchor});
-    t2.textContent = (state.lang==="en" ? cm.count+" entities" : cm.count+" جهات");
-    svg.appendChild(t1); svg.appendChild(t2);
+    if(!cm.count)return;
+    const a=cm.angleDeg*Math.PI/180;
+    const rr=Math.min(465,R0+(cm.count-1)*RSTEP+Math.max(...d.positioned.filter(p=>p.cluster.key===cm.cluster.key).map(p=>p.r),0)+28);
+    const x=Math.max(18,Math.min(982,CX+rr*Math.cos(a)));
+    const y=Math.max(18,Math.min(982,CY+rr*Math.sin(a)));
+    const anchor=Math.cos(a)>0.25?"start":Math.cos(a)<-0.25?"end":"middle";
+    const title=el("text",{class:"cluster-label",x,y,"text-anchor":anchor,fill:cm.cluster.color});
+    title.textContent=state.lang==="en"?cm.cluster.en:cm.cluster.ar;
+    svg.appendChild(title);
+    if(state.lang==="en"){
+      const count=el("text",{class:"cluster-label-sub",x,y:y+13,"text-anchor":anchor});
+      count.textContent=cm.count+" entities";svg.appendChild(count);
+    }
   });
 
-  const cg = el("g",{class:"center-node", tabindex:"0", role:"button", "aria-label":(state.lang==="en"?d.center.name_en:d.center.name_ar)});
-  const ccircle = el("circle",{cx:CX, cy:CY, r:CENTER_R});
-  const ctext = el("text",{x:CX, y:CY-4, "text-anchor":"middle"});
-  ctext.textContent = state.lang==="en"?d.center.name_en:d.center.name_ar;
-  const csub = el("text",{class:"center-sub", x:CX, y:CY+14, "text-anchor":"middle"});
-  csub.textContent = STRINGS[state.lang].centerSub;
-  cg.appendChild(ccircle); cg.appendChild(ctext); cg.appendChild(csub);
-  cg.addEventListener("click", closePanel);
+  const cg=el("g",{class:"center-node",tabindex:"0",role:"button",
+    "aria-label":state.lang==="en"?d.center.name_en:d.center.name_ar});
+  cg.appendChild(el("circle",{cx:CX,cy:CY,r:CENTER_R}));
+  const ct=el("text",{x:CX,y:CY-4,"text-anchor":"middle"});
+  ct.textContent=state.lang==="en"?d.center.name_en:d.center.name_ar;cg.appendChild(ct);
+  const cs=el("text",{class:"center-sub",x:CX,y:CY+14,"text-anchor":"middle"});
+  cs.textContent=STRINGS[state.lang].centerSub;cg.appendChild(cs);
+  cg.addEventListener("click",closePanel);
+  cg.addEventListener("keydown",ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();closePanel();}});
   svg.appendChild(cg);
 
-  svg.setAttribute("aria-label", (state.lang==="en"
-    ? "Radial cluster diagram of the health insurance ecosystem — "+STRINGS.en["view"+viewKeySuffix()]
-    : "رسم عنقودي شعاعي لمنظومة التأمين الصحي"));
-
+  svg.setAttribute("aria-label",state.lang==="en"
+    ?"Radial cluster diagram of the health insurance ecosystem — "+STRINGS.en["view"+viewKeySuffix()]
+    :"رسم عنقودي شعاعي لمنظومة التأمين الصحي");
   applyVisualState();
-  if(isValue) renderOpportunityMatrix(); else clearOpportunityMatrix();
+  if(isValue)renderOpportunityMatrix();else clearOpportunityMatrix();
 }
 function viewKeySuffix(){
   return {national:"National", abudhabi:"AD", dubai:"DXB", northern:"NE", value:"Value"}[state.view];
