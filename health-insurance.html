@@ -428,7 +428,7 @@ en:{
   labelRole:"Role", labelResp:"Responsibilities", labelPartners:"Key partners", labelRelevance:"2025–2026 relevance",
   labelJourney:"Member journey", labelClaims:"Claims flow", labelImpact:"Impact", labelPain:"Pain points",
   labelCoverage:"Applies to",
-  centerName:"Member", centerSub:"Every cluster exists to serve this person",
+  centerName:"Health Insurance", centerSub:"Sector hub · connected system",
   langButton:"العربية",
   viewNational:"National Overview", viewAD:"Abu Dhabi", viewDXB:"Dubai", viewNE:"Northern Emirates", viewValue:"Value & Opportunity",
 
@@ -499,7 +499,7 @@ ar:{
   labelRole:"الدور", labelResp:"المسؤوليات", labelPartners:"الشركاء الرئيسيون", labelRelevance:"أهمية 2025–2026",
   labelJourney:"رحلة العضو", labelClaims:"مسار المطالبات", labelImpact:"الأثر", labelPain:"نقاط الألم",
   labelCoverage:"ينطبق على",
-  centerName:"العضو", centerSub:"كل مجموعة موجودة لخدمة هذا الشخص",
+  centerName:"التأمين الصحي", centerSub:"مركز القطاع · منظومة مترابطة",
   langButton:"English",
   viewNational:"النظرة الوطنية", viewAD:"أبوظبي", viewDXB:"دبي", viewNE:"الإمارات الشمالية", viewValue:"القيمة والفرصة",
 
@@ -2543,9 +2543,9 @@ function frictionLabelKey(frictionScore){
   return "frictionLow";
 }
 
-const CENTER = { name_en:"Member", name_ar:"العضو" };
+const CENTER = { name_en:"HEALTH INSURANCE", name_ar:"التأمين الصحي" };
 
-const CENTER_VALUE = { name_en:"Population / Demand", name_ar:"السكان / الطلب" };
+const CENTER_VALUE = { name_en:"HEALTH INSURANCE", name_ar:"التأمين الصحي" };
 
 const VIEWS = {
   national:{ nodes:NODES_NATIONAL, center:CENTER },
@@ -2657,7 +2657,7 @@ function renderMap(){
     const farR = R0 + (cm.count-1)*RSTEP + 60;
     const fx = CX + farR*Math.cos(rad);
     const fy = CY + farR*Math.sin(rad);
-    svg.appendChild(el("line",{class:"spoke-line", id:"spoke-"+cm.cluster.key, x1:CX, y1:CY, x2:fx, y2:fy, stroke:cm.cluster.color, "stroke-opacity":"0.35"}));
+    svg.appendChild(el("line",{class:"spoke-line", id:"spoke-"+cm.cluster.key, x1:CX, y1:CY, x2:fx, y2:fy, stroke:"var(--accent-gold)", "stroke-opacity":"0.78", "marker-end":"url(#flowArrowHead)"}));
   });
 
   if(isValue){
