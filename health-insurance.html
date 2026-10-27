@@ -104,9 +104,9 @@ svg#map{ width:100%; height:100%; display:block; }
 .node.is-dimmed circle.node-bubble{ opacity:var(--node-dimmed-opacity); }
 .node.is-dimmed text{ opacity:var(--node-dimmed-opacity); }
 .node text.node-code{ fill:var(--text-on-dark); font-size:10.5px; font-weight:800; text-anchor:middle; dominant-baseline:middle; pointer-events:none; }
-.node text.node-label{ fill:var(--text-primary); font-size:12px; font-weight:800; pointer-events:none; paint-order:stroke fill; stroke:var(--surface-canvas); stroke-width:3.5px; stroke-linejoin:round; }
+.node text.node-label{ fill:var(--text-on-dark); font-size:8.5px; font-weight:800; text-anchor:middle; pointer-events:none; paint-order:stroke fill; stroke:var(--surface-canvas); stroke-width:1.4px; stroke-linejoin:round; }
 .node text.node-sub{ fill:var(--text-secondary); font-size:9.5px; font-weight:600; pointer-events:none; paint-order:stroke fill; stroke:var(--surface-canvas); stroke-width:2.8px; stroke-linejoin:round; }
-#map.lang-ar .node text.node-label{font-size:11.5px;font-weight:750;direction:rtl;unicode-bidi:plaintext;}
+#map.lang-ar .node text.node-label{font-size:8.5px;font-weight:750;text-anchor:middle;direction:rtl;unicode-bidi:plaintext;}
 #map.lang-ar .node text.node-label tspan{unicode-bidi:plaintext;}
 #map.lang-ar .node text.node-code{display:none;}
 #map .node text.node-sub{display:none;}
@@ -2579,7 +2579,7 @@ const CX=500, CY=500;
 const CENTER_R=68;
 const R0=150, RSTEP=82;
 const K=10.6; // bubble radius = K*sqrt(weight)
-function bubbleR(weight){ return K*Math.sqrt(weight); }
+function bubbleR(weight){ return Math.max(35, Math.min(39, K*Math.sqrt(weight))); }
 
 function layoutNodes(nodeList){
   const byCluster = {};
@@ -2652,23 +2652,21 @@ function shortMapLabel(node){
     : (state.lang==="en" ? node.name_en : node.name_ar);
 }
 function wrapMapLabel(value){
-  // Use a consistent two-line label budget in both languages; full names remain in the detail panel.
-  const maxChars = state.lang==="ar" ? 12 : 13;
-  const maxLines = 2;
+  // Labels are rendered inside the node bubbles, so keep them compact in both languages.
+  const maxChars = state.lang==="ar" ? 8 : 8;
+  const maxLines = 3;
   const words = String(value).split(/\s+/).filter(Boolean);
   const lines = [];
   let line = "";
   for(const word of words){
-    const candidate = line ? line+" "+word : word;
-    if(candidate.length <= maxChars || !line){
-      if(candidate.length <= maxChars){ line = candidate; continue; }
-      // Keep long single words intact when possible; clip only the map label, not the detail panel.
-      line = word.slice(0,maxChars-1)+"…";
-      lines.push(line); line = "";
+    if(word.length > maxChars){
+      if(line){ lines.push(line); line=""; }
+      lines.push(word.slice(0,maxChars-1)+"…");
       continue;
     }
-    lines.push(line);
-    line = word;
+    const candidate = line ? line+" "+word : word;
+    if(candidate.length <= maxChars){ line = candidate; }
+    else { lines.push(line); line = word; }
   }
   if(line) lines.push(line);
   if(lines.length > maxLines){
@@ -2722,21 +2720,14 @@ function renderMap(){
       "aria-label":(state.lang==="en"?p.node.name_en:p.node.name_ar)});
     const circle = el("circle",{class:"node-bubble", cx:p.x, cy:p.y, r:p.r, fill:p.cluster.color});
     if(isValue){ circle.setAttribute("stroke-width", String(1.5+p.node.scores.friction)); }
-    const code = el("text",{class:"node-code", x:p.x, y:p.y});
-    code.textContent = state.lang==="en" ? p.node.id : "";
-    code.setAttribute("aria-hidden","true");
     g.appendChild(circle);
-    if(state.lang==="en") g.appendChild(code);
 
-    const rightHalf = Math.cos(p.angleDeg*Math.PI/180) >= -0.05;
-    const labelX = p.x + (rightHalf? p.r+10 : -(p.r+10));
-    const anchor = rightHalf ? "start" : "end";
     const labelLines = wrapMapLabel(shortMapLabel(p.node));
-    // Stagger labels along each fountain arm so text does not sit on the next node bubble.
-    const labelY = p.y + (p.clusterIndex % 2 === 0 ? -17 : 17) - ((labelLines.length-1)*6);
-    const label = el("text",{class:"node-label", x:labelX, y:labelY, "text-anchor":anchor});
+    // Keep both English and Arabic labels centered fully inside the enlarged node bubble.
+    const labelY = p.y - ((labelLines.length-1)*5.1);
+    const label = el("text",{class:"node-label", x:p.x, y:labelY, "text-anchor":"middle"});
     labelLines.forEach((line,i)=>{
-      const tspan = el("tspan",{x:labelX, dy:i===0?0:13});
+      const tspan = el("tspan",{x:p.x, dy:i===0?0:10.2});
       tspan.textContent = line;
       label.appendChild(tspan);
     });
