@@ -106,7 +106,7 @@ svg#map{ width:100%; height:100%; display:block; }
 .node text.node-code{ fill:var(--text-on-dark); font-size:10.5px; font-weight:800; text-anchor:middle; dominant-baseline:middle; pointer-events:none; }
 .node text.node-label{ fill:var(--text-primary); font-size:12px; font-weight:800; pointer-events:none; paint-order:stroke fill; stroke:var(--surface-canvas); stroke-width:3.5px; stroke-linejoin:round; }
 .node text.node-sub{ fill:var(--text-secondary); font-size:9.5px; font-weight:600; pointer-events:none; paint-order:stroke fill; stroke:var(--surface-canvas); stroke-width:2.8px; stroke-linejoin:round; }
-#map.lang-ar .node text.node-label{font-size:12.5px;font-weight:750;direction:rtl;unicode-bidi:plaintext;}
+#map.lang-ar .node text.node-label{font-size:11.5px;font-weight:750;direction:rtl;unicode-bidi:plaintext;}
 #map.lang-ar .node text.node-label tspan{unicode-bidi:plaintext;}
 #map.lang-ar .node text.node-code{display:none;}
 #map .node text.node-sub{display:none;}
@@ -2596,7 +2596,7 @@ function layoutNodes(nodeList){
       const r = R0 + j*RSTEP;
       const x = CX + r*Math.cos(angleRad);
       const y = CY + r*Math.sin(angleRad);
-      positioned.push({node:n, cluster, x, y, r:bubbleR(n.weight), angleDeg});
+      positioned.push({node:n, cluster, x, y, r:bubbleR(n.weight), angleDeg, clusterIndex:j});
     });
     if(list.length>0){
       const lastR = R0 + (list.length-1)*RSTEP + bubbleR(Math.max(...list.map(n=>n.weight))) + 46;
@@ -2623,28 +2623,28 @@ function currentData(){ return DATA[state.view]; }
 const svg = document.getElementById("map");
 const SVGNS = "http://www.w3.org/2000/svg";
 const MAP_NODE_LABELS = {
-  DOH:{en:"Abu Dhabi Health",ar:"دائرة الصحة"}, DHA:{en:"Dubai Health",ar:"هيئة الصحة بدبي"},
-  MOHAP:{en:"Federal Health",ar:"الجهات الصحية الاتحادية"}, CBUAE:{en:"CBUAE · Insurance",ar:"المركزي · التأمين"},
-  DAM:{en:"Daman",ar:"دامان"}, SUK:{en:"Sukoon",ar:"سكون"}, ADNIC:{en:"ADNIC",ar:"أدنيك"},
-  AXA:{en:"AXA Gulf",ar:"أكسا الخليج"}, INTL:{en:"Global / Regional",ar:"شركات عالمية وإقليمية"},
+  DOH:{en:"Abu Dhabi Health",ar:"صحة أبوظبي"}, DHA:{en:"Dubai Health",ar:"صحة دبي"},
+  MOHAP:{en:"Federal Health",ar:"الصحة الاتحادية"}, CBUAE:{en:"CBUAE Insurance",ar:"المركزي والتأمين"},
+  DAM:{en:"Daman",ar:"ضمان"}, SUK:{en:"Sukoon",ar:"سكون"}, ADNIC:{en:"ADNIC",ar:"أدنيك"},
+  AXA:{en:"AXA Gulf",ar:"أكسا الخليج"}, INTL:{en:"Global Insurers",ar:"شركات عالمية"},
   BRK1:{en:"Corporate Brokers",ar:"وسطاء الشركات"}, BRK2:{en:"Individual Brokers",ar:"وسطاء الأفراد"},
   BRK:{en:"Insurance Brokers",ar:"وسطاء التأمين"}, EMP:{en:"Employers",ar:"أصحاب العمل"},
-  SPON:{en:"Employers / Sponsors",ar:"أصحاب العمل والكفلاء"}, DIST:{en:"Broker Distribution",ar:"الوسطاء والتوزيع"},
-  TPA1:{en:"Neuron",ar:"نيورون"}, TPA2:{en:"Nextcare / NAS",ar:"نكست كير"}, MDL:{en:"Almadallah",ar:"المدلة"},
-  SEHA:{en:"SEHA · Abu Dhabi",ar:"صحة · أبوظبي"}, DXBH:{en:"Dubai Health Network",ar:"دبي للصحة"},
-  NEPH:{en:"EHS Public Network",ar:"شبكة الإمارات الصحية"}, PRIV:{en:"Private Hospitals",ar:"المستشفيات الخاصة"},
-  HOSP:{en:"Hospitals & Specialists",ar:"المستشفيات والرعاية التخصصية"},
-  OPN:{en:"Clinics · Labs · Pharmacies",ar:"عيادات · تشخيص · صيدليات"}, PHYS:{en:"Clinical Workforce",ar:"الكوادر السريرية"},
-  MAL:{en:"Malaffi",ar:"ملفّي"}, NABIDH:{en:"NABIDH",ar:"نابض"}, RIY:{en:"Riayati · Tatmeen",ar:"رعايتي · تمكين"},
-  AANI:{en:"Aani Payments",ar:"مدفوعات عاني"}, AUD:{en:"Audit & Compliance",ar:"التدقيق والامتثال"},
-  ICP:{en:"ICP / GDRFA",ar:"الهوية والإقامة"}, SHA:{en:"Sharjah Health",ar:"هيئة الصحة بالشارقة"},
-  REG1:{en:"Rules & Standards",ar:"التنظيم والمعايير"}, REG2:{en:"Compliance & Audit",ar:"الامتثال والتدقيق"},
-  GOVCOV:{en:"Government Cover",ar:"تغطية بتمويل حكومي"}, EMPCOV:{en:"Employer Cover",ar:"تغطية بتمويل صاحب العمل"},
-  COMCOV:{en:"Commercial Underwriting",ar:"الاكتتاب التجاري"}, ENR:{en:"Eligibility & Enrollment",ar:"الأهلية والتسجيل"},
-  PA:{en:"Prior Auth.",ar:"الموافقة المسبقة"}, CSUB:{en:"Claims Submission",ar:"إرسال المطالبات"},
-  CADJ:{en:"Claims Adjudication",ar:"البت في المطالبات"}, HIE:{en:"Health Data Exchange",ar:"تبادل البيانات الصحية"},
-  CTI:{en:"Claims Systems",ar:"أنظمة معاملات المطالبات"}, GRD:{en:"Government Data",ar:"البيانات الحكومية"},
-  PAY:{en:"Payment & Settlement",ar:"الدفع والتسوية"}, DEC:{en:"Decisions & Outcomes",ar:"القرارات والنتائج"}
+  SPON:{en:"Employers / Sponsors",ar:"أصحاب العمل والكفلاء"}, DIST:{en:"Broker Distribution",ar:"توزيع الوسطاء"},
+  TPA1:{en:"Neuron",ar:"نيورون"}, TPA2:{en:"Nextcare / NAS",ar:"نكست كير وناس"}, MDL:{en:"Almadallah",ar:"المدللة"},
+  SEHA:{en:"SEHA Abu Dhabi",ar:"صحة أبوظبي"}, DXBH:{en:"Dubai Health Network",ar:"شبكة صحة دبي"},
+  NEPH:{en:"EHS Public Network",ar:"شبكة الإمارات الصحية"}, PRIV:{en:"Private Hospitals",ar:"مستشفيات خاصة"},
+  HOSP:{en:"Hospitals & Specialists",ar:"مستشفيات وتخصصات"},
+  OPN:{en:"Clinics, Labs, Pharmacies",ar:"عيادات ومختبرات وصيدليات"}, PHYS:{en:"Clinical Workforce",ar:"الكوادر الطبية"},
+  MAL:{en:"Malaffi",ar:"ملفّي"}, NABIDH:{en:"NABIDH",ar:"نابض"}, RIY:{en:"Riayati / Tatmeen",ar:"رعايتي وتم"},
+  AANI:{en:"Aani Payments",ar:"مدفوعات آني"}, AUD:{en:"Audit & Compliance",ar:"تدقيق وامتثال"},
+  ICP:{en:"ICP / GDRFA",ar:"الهوية والإقامة"}, SHA:{en:"Sharjah Health",ar:"صحة الشارقة"},
+  REG1:{en:"Rules & Standards",ar:"قواعد ومعايير"}, REG2:{en:"Compliance & Audit",ar:"امتثال وتدقيق"},
+  GOVCOV:{en:"Government Cover",ar:"تغطية حكومية"}, EMPCOV:{en:"Employer Cover",ar:"تغطية صاحب العمل"},
+  COMCOV:{en:"Commercial Underwriting",ar:"اكتتاب تجاري"}, ENR:{en:"Eligibility & Enrollment",ar:"أهلية وتسجيل"},
+  PA:{en:"Prior Authorization",ar:"موافقة مسبقة"}, CSUB:{en:"Claims Submission",ar:"إرسال المطالبات"},
+  CADJ:{en:"Claims Adjudication",ar:"تسوية المطالبات"}, HIE:{en:"Health Data Exchange",ar:"تبادل البيانات الصحية"},
+  CTI:{en:"Claims Systems",ar:"أنظمة المطالبات"}, GRD:{en:"Government Data",ar:"بيانات حكومية"},
+  PAY:{en:"Payment & Settlement",ar:"دفع وتسوية"}, DEC:{en:"Decisions & Outcomes",ar:"قرارات ونتائج"}
 };
 function shortMapLabel(node){
   const labels = MAP_NODE_LABELS[node.id];
@@ -2652,9 +2652,9 @@ function shortMapLabel(node){
     : (state.lang==="en" ? node.name_en : node.name_ar);
 }
 function wrapMapLabel(value){
-  // Arabic names need more horizontal room and up to three readable lines.
-  const maxChars = state.lang==="ar" ? 14 : 12;
-  const maxLines = state.lang==="ar" ? 3 : 2;
+  // Use a consistent two-line label budget in both languages; full names remain in the detail panel.
+  const maxChars = state.lang==="ar" ? 12 : 13;
+  const maxLines = 2;
   const words = String(value).split(/\s+/).filter(Boolean);
   const lines = [];
   let line = "";
@@ -2732,9 +2732,11 @@ function renderMap(){
     const labelX = p.x + (rightHalf? p.r+10 : -(p.r+10));
     const anchor = rightHalf ? "start" : "end";
     const labelLines = wrapMapLabel(shortMapLabel(p.node));
-    const label = el("text",{class:"node-label", x:labelX, y:p.y-((labelLines.length-1)*6), "text-anchor":anchor});
+    // Stagger labels along each fountain arm so text does not sit on the next node bubble.
+    const labelY = p.y + (p.clusterIndex % 2 === 0 ? -17 : 17) - ((labelLines.length-1)*6);
+    const label = el("text",{class:"node-label", x:labelX, y:labelY, "text-anchor":anchor});
     labelLines.forEach((line,i)=>{
-      const tspan = el("tspan",{x:labelX, dy:i===0?0:12});
+      const tspan = el("tspan",{x:labelX, dy:i===0?0:13});
       tspan.textContent = line;
       label.appendChild(tspan);
     });
