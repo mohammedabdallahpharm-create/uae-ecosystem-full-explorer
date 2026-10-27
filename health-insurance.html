@@ -98,7 +98,7 @@ svg#map{ width:100%; height:100%; display:block; }
 .cluster-label-sub{ font-size:9.5px; font-weight:600; fill:var(--text-muted); }
 
 .node{ cursor:pointer; }
-.node circle.node-bubble{ stroke:var(--node-stroke); stroke-width:2; transition:opacity .25s ease, transform .15s ease, stroke .15s ease, stroke-width .15s ease; transform-origin:center; }
+.node circle.node-bubble{ opacity:1; stroke:#ffffff; stroke-width:3; transition:opacity .25s ease, transform .15s ease, stroke .15s ease, stroke-width .15s ease; transform-origin:center; }
 .node:hover circle.node-bubble{ transform:scale(1.08); }
 .node.is-selected circle.node-bubble{ stroke:var(--node-stroke-selected); stroke-width:3.5; }
 .node.is-dimmed circle.node-bubble{ opacity:var(--node-dimmed-opacity); }
@@ -2579,7 +2579,7 @@ const CX=500, CY=500;
 const CENTER_R=68;
 const R0=150, RSTEP=82;
 const K=10.6; // bubble radius = K*sqrt(weight)
-function bubbleR(weight){ return Math.max(35, Math.min(39, K*Math.sqrt(weight))); }
+function bubbleR(weight){ return K*Math.sqrt(weight); }
 
 function layoutNodes(nodeList){
   const byCluster = {};
@@ -2718,7 +2718,7 @@ function renderMap(){
   d.positioned.forEach(p=>{
     const g = el("g",{class:"node", tabindex:"0", role:"button", "data-id":p.node.id,
       "aria-label":(state.lang==="en"?p.node.name_en:p.node.name_ar)});
-    const circle = el("circle",{class:"node-bubble", cx:p.x, cy:p.y, r:p.r, fill:p.cluster.color});
+    const circle = el("circle",{class:"node-bubble", cx:p.x, cy:p.y, r:p.r, fill:p.cluster.color, "fill-opacity":"1", stroke:"#ffffff", "stroke-width":"3"});
     if(isValue){ circle.setAttribute("stroke-width", String(1.5+p.node.scores.friction)); }
     g.appendChild(circle);
 
