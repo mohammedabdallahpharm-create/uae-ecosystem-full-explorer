@@ -103,7 +103,9 @@ svg#map{ width:100%; height:100%; display:block; }
 .node text.node-code{ fill:var(--text-on-dark); font-size:10.5px; font-weight:800; text-anchor:middle; dominant-baseline:middle; pointer-events:none; }
 .node text.node-label{ fill:var(--text-primary); font-size:12px; font-weight:800; pointer-events:none; paint-order:stroke fill; stroke:var(--surface-canvas); stroke-width:3.5px; stroke-linejoin:round; }
 .node text.node-sub{ fill:var(--text-secondary); font-size:9.5px; font-weight:600; pointer-events:none; paint-order:stroke fill; stroke:var(--surface-canvas); stroke-width:2.8px; stroke-linejoin:round; }
-#map.lang-ar .node text.node-label{font-size:10.5px;font-weight:750;direction:rtl;unicode-bidi:plaintext;}
+#map.lang-ar .node text.node-label{font-size:11px;font-weight:750;direction:rtl;unicode-bidi:plaintext;}
+#map.lang-ar .node text.node-label tspan{unicode-bidi:plaintext;}
+#map.lang-ar .node text.node-code{display:none;}
 #map .node text.node-sub{display:none;}
 #map.lang-ar .cluster-label{font-size:11px;letter-spacing:0;}
 #map.lang-ar .cluster-label-sub{display:none;}
@@ -2707,8 +2709,10 @@ function renderMap(){
     const circle = el("circle",{class:"node-bubble", cx:p.x, cy:p.y, r:p.r, fill:p.cluster.color});
     if(isValue){ circle.setAttribute("stroke-width", String(1.5+p.node.scores.friction)); }
     const code = el("text",{class:"node-code", x:p.x, y:p.y});
-    code.textContent = p.node.id;
-    g.appendChild(circle); g.appendChild(code);
+    code.textContent = state.lang==="en" ? p.node.id : "";
+    code.setAttribute("aria-hidden","true");
+    g.appendChild(circle);
+    if(state.lang==="en") g.appendChild(code);
 
     const rightHalf = Math.cos(p.angleDeg*Math.PI/180) >= -0.05;
     const labelX = p.x + (rightHalf? p.r+10 : -(p.r+10));
