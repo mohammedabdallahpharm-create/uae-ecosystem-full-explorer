@@ -56,7 +56,7 @@ const nodes=[
 {id:"reins",x:555,y:75,en:"Reinsurer",ar:"معيد التأمين",type:"Risk capacity",desc:"A reinsurance counterparty may support an insurer's risk capacity under a separate reinsurance contract.",descAr:"قد يدعم طرف إعادة التأمين قدرة شركة التأمين على تحمل المخاطر بموجب عقد مستقل.",roles:["Provides risk transfer capacity under agreed terms.","Typically interfaces with the insurer, not the individual claimant."],rolesAr:["يوفر قدرة لنقل المخاطر وفق الشروط المتفق عليها.","يتعامل عادة مع شركة التأمين لا مع المطالب الفردي."],links:"Part of the wider risk-financing ecosystem; not a claim decision-maker by default.",linksAr:"جزء من منظومة تمويل المخاطر الأوسع وليس صاحب قرار المطالبة افتراضياً."}
 ];
 const edges=[["core","reg"],["core","ins"],["core","dist"],["core","insured"],["core","benef"],["core","provider"],["core","authorities"],["core","claims"],["core","employer"],["core","reins"],["ins","claims"],["dist","insured"],["employer","insured"],["provider","claims"],["authorities","claims"],["claims","benef"]];
-let lang="en",zoom=1,selected="core";
+let lang=new URLSearchParams(location.search).get("lang")==="ar"?"ar":"en",zoom=1,selected="core";
 const $=id=>document.getElementById(id);
 function renderMap(){const nodesEl=$("nodes"),links=$("mapLinks");nodesEl.innerHTML="";links.innerHTML="";
 edges.forEach(([a,b])=>{const A=nodes.find(n=>n.id===a),B=nodes.find(n=>n.id===b);const line=document.createElementNS("http://www.w3.org/2000/svg","line");line.setAttribute("x1",A.x);line.setAttribute("y1",A.y);line.setAttribute("x2",B.x);line.setAttribute("y2",B.y);if(a===selected||b===selected)line.classList.add("active");links.appendChild(line)});
@@ -66,5 +66,5 @@ function renderDetail(){const n=nodes.find(x=>x.id===selected);$("nodeType").tex
 function setLang(next){lang=next;document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";$("app").classList.toggle("rtl",lang==="ar");document.querySelectorAll("[data-en][data-ar]").forEach(el=>{el.textContent=el.dataset[lang]});$("langBtn").textContent=lang==="en"?"العربية":"English";renderMap();renderDetail()}
 document.querySelectorAll("[data-view]").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll("[data-view]").forEach(x=>x.classList.toggle("active",x===b));["map","value","workflow","evidence"].forEach(v=>$(v+"View").classList.toggle("hidden",v!==b.dataset.view))}));
 $("langBtn").addEventListener("click",()=>setLang(lang==="en"?"ar":"en"));$("zoomIn").addEventListener("click",()=>{zoom=Math.min(1.25,zoom+.1);renderMap()});$("zoomOut").addEventListener("click",()=>{zoom=Math.max(.8,zoom-.1);renderMap()});$("zoomReset").addEventListener("click",()=>{zoom=1;renderMap()});
-renderMap();renderDetail();
+setLang(lang);
 </script></body></html>
